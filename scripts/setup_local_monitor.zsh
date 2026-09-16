@@ -6,12 +6,15 @@ RUNTIME_DIR="$HOME/Library/Application Support/PokemonStockMonitor"
 LABEL="com.leo.pokemon-stock-monitor"
 DISCOVERY_LABEL="com.leo.pokemon-stock-monitor.discovery"
 HEALTH_LABEL="com.leo.pokemon-stock-monitor.health"
+CONTROL_LABEL="com.leo.pokemon-stock-monitor.control"
 PLIST_SOURCE="$PROJECT_DIR/launchd/$LABEL.plist"
 DISCOVERY_PLIST_SOURCE="$PROJECT_DIR/launchd/$DISCOVERY_LABEL.plist"
 HEALTH_PLIST_SOURCE="$PROJECT_DIR/launchd/$HEALTH_LABEL.plist"
+CONTROL_PLIST_SOURCE="$PROJECT_DIR/launchd/$CONTROL_LABEL.plist"
 PLIST_TARGET="$HOME/Library/LaunchAgents/$LABEL.plist"
 DISCOVERY_PLIST_TARGET="$HOME/Library/LaunchAgents/$DISCOVERY_LABEL.plist"
 HEALTH_PLIST_TARGET="$HOME/Library/LaunchAgents/$HEALTH_LABEL.plist"
+CONTROL_PLIST_TARGET="$HOME/Library/LaunchAgents/$CONTROL_LABEL.plist"
 LOG_DIR="$HOME/Library/Logs/PokemonStockMonitor"
 TOKEN_SERVICE="pokemon-stock-monitor.telegram-token"
 CHAT_SERVICE="pokemon-stock-monitor.telegram-chat-id"
@@ -76,18 +79,22 @@ fi
 /bin/cp "$PLIST_SOURCE" "$PLIST_TARGET"
 /bin/cp "$DISCOVERY_PLIST_SOURCE" "$DISCOVERY_PLIST_TARGET"
 /bin/cp "$HEALTH_PLIST_SOURCE" "$HEALTH_PLIST_TARGET"
-/bin/chmod 600 "$PLIST_TARGET" "$DISCOVERY_PLIST_TARGET" "$HEALTH_PLIST_TARGET"
+/bin/cp "$CONTROL_PLIST_SOURCE" "$CONTROL_PLIST_TARGET"
+/bin/chmod 600 "$PLIST_TARGET" "$DISCOVERY_PLIST_TARGET" "$HEALTH_PLIST_TARGET" "$CONTROL_PLIST_TARGET"
 /bin/chmod 700 "$RUNTIME_DIR/run_local_monitor.zsh"
 
 /bin/launchctl bootout "gui/$USER_ID/$LABEL" >/dev/null 2>&1 || true
 /bin/launchctl bootout "gui/$USER_ID/$DISCOVERY_LABEL" >/dev/null 2>&1 || true
 /bin/launchctl bootout "gui/$USER_ID/$HEALTH_LABEL" >/dev/null 2>&1 || true
+/bin/launchctl bootout "gui/$USER_ID/$CONTROL_LABEL" >/dev/null 2>&1 || true
 /bin/sleep 1
 /bin/launchctl bootstrap "gui/$USER_ID" "$PLIST_TARGET"
 /bin/launchctl bootstrap "gui/$USER_ID" "$DISCOVERY_PLIST_TARGET"
 /bin/launchctl bootstrap "gui/$USER_ID" "$HEALTH_PLIST_TARGET"
+/bin/launchctl bootstrap "gui/$USER_ID" "$CONTROL_PLIST_TARGET"
 /bin/launchctl kickstart -k "gui/$USER_ID/$LABEL"
 /bin/launchctl kickstart -k "gui/$USER_ID/$DISCOVERY_LABEL"
+/bin/launchctl kickstart -k "gui/$USER_ID/$CONTROL_LABEL"
 
 print "Moniteur local installé : stock toutes les 60 secondes, découverte et rapport de santé toutes les 10 minutes."
 print "Logs : $LOG_DIR"

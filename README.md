@@ -175,6 +175,8 @@ Le rapport Telegram envoyé toutes les 10 minutes indique le nombre de sites et 
 
 Le compteur est remis à zéro dès qu'au moins une vérification de la boutique réussit. Une simple rupture de stock n'est jamais considérée comme une panne du moniteur.
 
+Lorsqu'un rapport est rouge, le moniteur tente d'abord de relancer automatiquement le scan produits et la découverte. Le même message affiche aussi un bouton **🔄 Tout relancer**. Un petit contrôleur local lit uniquement les clics de ce bouton toutes les 15 secondes et n'accepte la commande que depuis le `TELEGRAM_CHAT_ID` configuré. Il ne permet d'exécuter aucune commande libre. Le bouton ne peut fonctionner que si le Mac est allumé, connecté à Internet et que la session utilisateur est ouverte.
+
 Pour envoyer le rapport immédiatement sans attendre le prochain passage :
 
 ```bash

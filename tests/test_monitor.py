@@ -88,6 +88,10 @@ class DetectionTests(unittest.TestCase):
                 self.assertTrue(send_health_report())
         self.assertIn("Monitor en retard", send.call_args.args[0])
         self.assertIn("moins de 3 minutes", send.call_args.args[0])
+        self.assertEqual(
+            send.call_args.kwargs["reply_markup"]["inline_keyboard"][0][0]["callback_data"],
+            "restart_all",
+        )
 
     @patch("monitor.send_telegram_alert", return_value=True)
     def test_alert_once_then_rearm_after_out_of_stock(self, send):

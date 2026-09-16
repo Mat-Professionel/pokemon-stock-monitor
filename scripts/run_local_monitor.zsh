@@ -19,7 +19,13 @@ export TELEGRAM_CHAT_ID="$chat_id"
 export DISCOVERED_PRODUCTS_FILE="$RUNTIME_DIR/discovered-products.json"
 export RECORD_HEALTH="true"
 export HEALTH_STATE_FILES="$RUNTIME_DIR/state-products.json:$RUNTIME_DIR/state-discovery.json"
+export AUTO_RESTART_STALE="true"
+export TELEGRAM_CONTROL_STATE_FILE="$RUNTIME_DIR/telegram-control-state.json"
 mode="${1:---products-only}"
+if [[ "$mode" == "--telegram-control" ]]; then
+  cd "$PROJECT_DIR"
+  exec "$RUNTIME_DIR/venv/bin/python" "$PROJECT_DIR/telegram_control.py"
+fi
 if [[ "$mode" == "--discovery-only" ]]; then
   export STATE_FILE="$RUNTIME_DIR/state-discovery.json"
 else

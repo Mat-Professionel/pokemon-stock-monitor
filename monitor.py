@@ -25,6 +25,7 @@ from urllib3.util.retry import Retry
 import config
 from monitors import monitor_for
 from monitors.discovery import discover_products
+from local_control import RESTART_CALLBACK_DATA, restart_local_services
 
 
 def paris_now() -> datetime:
@@ -210,21 +211,24 @@ def money(price: float | None) -> str:
     return "non détecté" if price is None else f"{price:.2f} €".replace(".", ",")
 
 
-def send_telegram_message(message: str) -> bool:
+def send_telegram_message(message: str, reply_markup: dict[str, Any] | None = None) -> bool:
     token = config.TELEGRAM_BOT_TOKEN
     chat_id = config.TELEGRAM_CHAT_ID
     if not token or not chat_id:
         logging.error("Secrets TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID absents")
         return False
     try:
+        payload = {
+            "chat_id": chat_id,
+            "text": message,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": True,
+        }
+        if reply_markup:
+            payload["reply_markup"] = reply_markup
         response = requests.post(
             f"https://api.telegram.org/bot{token}/sendMessage",
-            json={
-                "chat_id": chat_id,
-                "text": message,
-                "parse_mode": "HTML",
-                "disable_web_page_preview": True,
-            },
+            json=payload,
             timeout=config.REQUEST_TIMEOUT_SECONDS,
         )
         payload = response.json()
@@ -369,6 +373,9 @@ def send_health_report() -> bool:
     category_sources = [
         item for item in ean_sources if item.get("type") in ("category_search", "sitemap")
     ]
+    restart_requested = False
+    if not scan_is_fresh and config.AUTO_RESTART_STALE:
+        restart_requested = restart_local_services()
     lines = [
         "<b>✅ Pokémon Monitor opérationnel</b>" if scan_is_fresh else "<b>🔴 Pokémon Monitor en retard</b>",
         "",
@@ -380,13 +387,22 @@ def send_health_report() -> bool:
     ]
     if not scan_is_fresh:
         lines.append("⚠️ Le scan rapide devrait dater de moins de 3 minutes.")
+        lines.append(
+            "🔄 Relance automatique demandée." if restart_requested
+            else "❌ La relance automatique n'a pas pu être confirmée."
+        )
     for value in sorted(errors.values(), key=lambda item: str(item.get("store", "")))[:8]:
         lines.append(
             f"• {html.escape(str(value.get('store', 'Site')))} : "
             f"{int(value.get('consecutive_errors', 0))} échec(s) — "
             f"{html.escape(str(value.get('last_error') or 'erreur inconnue'))}"
         )
-    return send_telegram_message("\n".join(lines))
+    reply_markup = None
+    if not scan_is_fresh:
+        reply_markup = {
+            "inline_keyboard": [[{"text": "🔄 Tout relancer", "callback_data": RESTART_CALLBACK_DATA}]]
+        }
+    return send_telegram_message("\n".join(lines), reply_markup=reply_markup)
 
 
 def log_result(product: dict[str, Any], result: dict[str, Any]) -> None:
