@@ -1,4 +1,22 @@
 {
+  "discovery": {
+    "auchan-pokemon-30-sitemap": {
+      "last_success": "2026-09-16T03:55:24+02:00",
+      "products": []
+    },
+    "joueclub-pokemon-30-sitemap": {
+      "last_success": "2026-09-16T03:55:33+02:00",
+      "products": []
+    },
+    "lagranderecre-pokemon-30-sitemap": {
+      "last_success": "2026-09-16T03:55:33+02:00",
+      "products": []
+    },
+    "leclerc-pokemon-30-sitemap": {
+      "last_success": "2026-09-16T03:58:25+02:00",
+      "products": []
+    }
+  },
   "products": {
     "carrefour-etb-30": {
       "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
@@ -20,6 +38,36 @@
       "name": "Coffret Amphinobi-ex 30e anniversaire",
       "store": "Smyths Toys",
       "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-amphinobi-ex-30eme-anniversaire/p/261830"
+    },
+    "smyths-deck-dresseur-30": {
+      "name": "Deck du Dresseur Combat Pokémon 30e anniversaire",
+      "store": "Smyths Toys",
+      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-deck-du-dresseur-combat-30e-anniversaire-modele-aleatoire/p/261786"
+    },
+    "smyths-etb-30": {
+      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
+      "store": "Smyths Toys",
+      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-dresseur-delite-30eme-anniversaire/p/261821"
+    },
+    "smyths-nymphali-30": {
+      "name": "Coffret Nymphali-ex Pokémon 30e anniversaire",
+      "store": "Smyths Toys",
+      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-nymphali-ex-30eme-anniversaire/p/261788"
+    },
+    "smyths-pack-2-boosters-30": {
+      "name": "Pack 2 Boosters Pokémon 30e anniversaire",
+      "store": "Smyths Toys",
+      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-pack-2-boosters-30eme-anniversaire/p/261787"
+    },
+    "smyths-portfolio-30": {
+      "name": "Portfolio avec Boosters Pokémon 30e anniversaire",
+      "store": "Smyths Toys",
+      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-portfolio-avec-boosters-modele-aleatoire/p/261831"
+    },
+    "smyths-poster-30": {
+      "name": "Coffret Collection Poster Pokémon 30e anniversaire",
+      "store": "Smyths Toys",
+      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-collection-poster-30eme-anniversaire/p/261814"
     }
   },
   "version": 1
