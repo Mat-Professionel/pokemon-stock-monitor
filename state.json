@@ -1,5 +1,26 @@
 {
-  "version": 1,
-  "products": {}
+  "products": {
+    "carrefour-etb-30": {
+      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
+      "store": "Carrefour",
+      "url": "https://www.carrefour.fr/p/cartes-a-jouer-et-a-collectionner-coffret-dresseur-d-elite-30e-anniversaire-pokemon-0196214144835"
+    },
+    "joueclub-pokemon-day-30": {
+      "alert_level": "none",
+      "availability": "unavailable",
+      "direct_seller": true,
+      "last_change": "2026-09-16T03:43:30+02:00",
+      "last_price": 19.99,
+      "name": "Coffret Pokémon Day 2026 - 30 ans",
+      "seller": null,
+      "store": "JouéClub",
+      "url": "https://www.joueclub.fr/pokemon/pokemon-coffret-3boosters-carte-exclusive-0196214139718.html"
+    },
+    "smyths-amphinobi-30": {
+      "name": "Coffret Amphinobi-ex 30e anniversaire",
+      "store": "Smyths Toys",
+      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-amphinobi-ex-30eme-anniversaire/p/261830"
+    }
+  },
+  "version": 1
 }
-
