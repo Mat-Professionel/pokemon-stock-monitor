@@ -1,0 +1,35 @@
+"""Configuration centrale du moniteur."""
+
+from __future__ import annotations
+
+import os
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent
+PRODUCTS_FILE = BASE_DIR / "products.json"
+STATE_FILE = BASE_DIR / "state.json"
+
+TIMEZONE = "Europe/Paris"
+MAX_WORKERS = int(os.getenv("MAX_WORKERS", "5"))
+REQUEST_TIMEOUT_SECONDS = int(os.getenv("REQUEST_TIMEOUT_SECONDS", "20"))
+REQUEST_RETRIES = int(os.getenv("REQUEST_RETRIES", "2"))
+REQUEST_BACKOFF_SECONDS = float(os.getenv("REQUEST_BACKOFF_SECONDS", "1"))
+ALERT_EXPENSIVE_PRODUCTS = os.getenv("ALERT_EXPENSIVE_PRODUCTS", "false").lower() in {
+    "1",
+    "true",
+    "yes",
+}
+
+USER_AGENT = os.getenv(
+    "USER_AGENT",
+    (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/131.0.0.0 Safari/537.36"
+    ),
+)
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "smyths-etb-30",
+    "name": "ETB Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "PASTE_SMYTHS_PRODUCT_URL_HERE",
+    "max_price": 65,
+    "enabled": false
+  },
+  {
+    "id": "fnac-etb-30",
+    "name": "ETB Pokémon 30e anniversaire",
+    "store": "Fnac",
+    "url": "PASTE_FNAC_PRODUCT_URL_HERE",
+    "max_price": 65,
+    "require_direct_seller": true,
+    "enabled": false
+  },
+  {
+    "id": "amazon-etb-30",
+    "name": "ETB Pokémon 30e anniversaire",
+    "store": "Amazon France",
+    "url": "PASTE_AMAZON_PRODUCT_URL_HERE",
+    "max_price": 65,
+    "require_direct_seller": true,
+    "engine": "playwright",
+    "enabled": false
+  },
+  {
+    "id": "other-nymphali-30",
+    "name": "Coffret Nymphali-ex 30e anniversaire",
+    "store": "Cultura",
+    "url": "PASTE_CULTURA_PRODUCT_URL_HERE",
+    "max_price": 45,
+    "enabled": false
+  }
+]
+
