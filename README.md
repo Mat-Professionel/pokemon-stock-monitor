@@ -155,6 +155,8 @@ Le planning de secours GitHub est `*/30 * * * *`. Les boutiques sont vérifiées
 
 Les LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL toutes les 10 minutes, vérifient un produit témoin par boutique toutes les 10 minutes et envoient le rapport Telegram toutes les 10 minutes. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
 
+L'installation lance aussi `/usr/bin/caffeinate -i` via un LaunchAgent dédié. Cela empêche uniquement la veille automatique du système : l'écran peut toujours s'éteindre. Fermer le capot d'un Mac portable interrompt normalement la surveillance locale ; GitHub Actions reste alors la voie de secours.
+
 Installation :
 
 ```bash
