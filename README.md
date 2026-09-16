@@ -94,7 +94,7 @@ Le système limite par défaut la découverte à 12 fiches par source. `link_pat
 
 ### Découverte par sitemap officiel
 
-Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consulte aussi les sitemaps produits publics des enseignes. Cette voie permet de repérer une nouvelle fiche même lorsqu'elle n'apparaît pas encore dans une page de recherche interne. Les sitemaps sont relus toutes les 15 minutes, puis les fiches découvertes sont gardées dans `state.json` et contrôlées toutes les 5 minutes. Les fiches déjà connues sont toujours contrôlées en premier : un sitemap lent ne retarde donc pas leur vérification de stock.
+Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consulte aussi les sitemaps produits publics des enseignes. Cette voie permet de repérer une nouvelle fiche même lorsqu'elle n'apparaît pas encore dans une page de recherche interne. Les sitemaps sont relus toutes les 10 minutes, puis les fiches découvertes sont gardées dans le registre local et contrôlées toutes les 60 secondes. Les fiches déjà connues sont toujours contrôlées en premier : un sitemap lent ne retarde donc pas leur vérification de stock.
 
 Les champs utiles sont `type: "sitemap"`, `sitemap_include_patterns`, `max_sitemap_files`, `max_discovered_products` et `discovery_interval_minutes`. Une erreur temporaire ne vide pas le cache de la dernière découverte réussie.
 
@@ -153,7 +153,7 @@ Le planning de secours GitHub est `*/30 * * * *`. Les boutiques sont vérifiées
 
 ## Surveillance locale rapide sur le Mac
 
-Les trois LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL toutes les 15 minutes et envoient un rapport de santé chaque jour à 7 h. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
+Les trois LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL toutes les 10 minutes et envoient un rapport de santé Telegram toutes les 10 minutes. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
 
 Installation :
 
@@ -171,11 +171,11 @@ Le workflow GitHub reste un secours toutes les 30 minutes lorsque le Mac est ét
 
 ### Surveillance du moniteur
 
-Le rapport Telegram de 7 h indique le nombre de sites et de produits surveillés, l'heure du dernier scan et les erreurs encore actives. Si tous les contrôles d'une boutique échouent cinq fois de suite, une alerte technique est envoyée avec l'erreur observée et le fallback utilisé. L'alerte n'est pas répétée à chaque scan. Un second message confirme automatiquement le rétablissement de la boutique.
+Le rapport Telegram envoyé toutes les 10 minutes indique le nombre de sites et de produits surveillés, l'heure et l'âge du dernier scan, la couverture URL/EAN/catégorie de l'ETB et les erreurs encore actives. Si le dernier scan rapide date de plus de trois minutes, le rapport devient rouge et signale que le moniteur est en retard. Si tous les contrôles d'une boutique échouent cinq fois de suite, une alerte technique est envoyée avec l'erreur observée et le fallback utilisé. L'alerte n'est pas répétée à chaque scan. Un second message confirme automatiquement le rétablissement de la boutique.
 
 Le compteur est remis à zéro dès qu'au moins une vérification de la boutique réussit. Une simple rupture de stock n'est jamais considérée comme une panne du moniteur.
 
-Pour envoyer le rapport immédiatement sans attendre 7 h :
+Pour envoyer le rapport immédiatement sans attendre le prochain passage :
 
 ```bash
 "$HOME/Library/Application Support/PokemonStockMonitor/run_local_monitor.zsh" --health-report

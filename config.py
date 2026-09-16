@@ -17,6 +17,7 @@ HEALTH_STATE_FILES = [
     if value
 ]
 RECORD_HEALTH = os.getenv("RECORD_HEALTH", "false").lower() in {"1", "true", "yes"}
+HEALTH_STALE_AFTER_SECONDS = int(os.getenv("HEALTH_STALE_AFTER_SECONDS", "180"))
 
 TIMEZONE = "Europe/Paris"
 MAX_WORKERS = int(os.getenv("MAX_WORKERS", "5"))

@@ -89,5 +89,5 @@ fi
 /bin/launchctl kickstart -k "gui/$USER_ID/$LABEL"
 /bin/launchctl kickstart -k "gui/$USER_ID/$DISCOVERY_LABEL"
 
-print "Moniteur local installé : stock toutes les 60 secondes, découverte toutes les 15 minutes, rapport de santé à 7 h."
+print "Moniteur local installé : stock toutes les 60 secondes, découverte et rapport de santé toutes les 10 minutes."
 print "Logs : $LOG_DIR"

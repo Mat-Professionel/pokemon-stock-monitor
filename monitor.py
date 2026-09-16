@@ -347,19 +347,39 @@ def send_health_report() -> bool:
                     errors[key] = value
 
     last_scan = "aucun scan enregistré"
+    scan_is_fresh = False
+    scan_age_seconds: int | None = None
     if latest_scan:
         try:
-            last_scan = datetime.fromisoformat(latest_scan).astimezone(ZoneInfo(config.TIMEZONE)).strftime("%d/%m/%Y %H:%M:%S")
+            scan_time = datetime.fromisoformat(latest_scan).astimezone(ZoneInfo(config.TIMEZONE))
+            scan_age_seconds = max(0, int((paris_now() - scan_time).total_seconds()))
+            scan_is_fresh = scan_age_seconds <= config.HEALTH_STALE_AFTER_SECONDS
+            last_scan = scan_time.strftime("%d/%m/%Y %H:%M:%S")
         except ValueError:
             last_scan = latest_scan
+    age_text = "inconnu"
+    if scan_age_seconds is not None:
+        age_text = f"il y a {scan_age_seconds} s" if scan_age_seconds < 120 else f"il y a {scan_age_seconds // 60} min"
+    target_ean = "0196214144835"
+    exact_ean = [item for item in configured_products if str(item.get("ean", "")) == target_ean]
+    ean_sources = [
+        item for item in enabled
+        if item.get("type", "product") != "product" and target_ean in [str(value) for value in item.get("eans", [])]
+    ]
+    category_sources = [
+        item for item in ean_sources if item.get("type") in ("category_search", "sitemap")
+    ]
     lines = [
-        "<b>✅ Pokémon Monitor opérationnel</b>",
+        "<b>✅ Pokémon Monitor opérationnel</b>" if scan_is_fresh else "<b>🔴 Pokémon Monitor en retard</b>",
         "",
         f"🏪 Sites surveillés : {len(sites)}",
         f"📦 Produits : {len(configured_products) + len(discovered)}",
-        f"🕒 Dernier scan : {html.escape(last_scan)}",
+        f"🕒 Dernier scan : {html.escape(last_scan)} ({age_text})",
+        f"🎯 ETB {target_ean} : {len(exact_ean)} URL(s) exacte(s), {len(ean_sources)} source(s) EAN, {len(category_sources)} catégorie(s)/sitemap(s)",
         f"⚠️ Erreurs actives : {len(errors)}",
     ]
+    if not scan_is_fresh:
+        lines.append("⚠️ Le scan rapide devrait dater de moins de 3 minutes.")
     for value in sorted(errors.values(), key=lambda item: str(item.get("store", "")))[:8]:
         lines.append(
             f"• {html.escape(str(value.get('store', 'Site')))} : "

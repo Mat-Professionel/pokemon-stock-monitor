@@ -1,11 +1,20 @@
+import json
+import tempfile
 import unittest
 from datetime import datetime
+from pathlib import Path
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 import requests
 
-from monitor import expand_discovery_sources, product_key, update_store_health, updated_state_and_alert
+from monitor import (
+    expand_discovery_sources,
+    product_key,
+    send_health_report,
+    update_store_health,
+    updated_state_and_alert,
+)
 from monitors.discovery import discover_from_html, discover_from_sitemap
 from monitors.generic import GenericMonitor, parse_price
 from monitors.cultura_api import result_for as cultura_result_for
@@ -62,6 +71,23 @@ class DetectionTests(unittest.TestCase):
         self.assertEqual(send.call_count, 2)
         self.assertEqual(states["fnac"]["consecutive_errors"], 0)
         self.assertFalse(states["fnac"]["alerted"])
+
+    @patch("monitor.send_telegram_message", return_value=True)
+    def test_health_report_flags_a_stale_scan(self, send):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            products = root / "products.json"
+            state = root / "state.json"
+            products.write_text("[]", encoding="utf-8")
+            state.write_text(json.dumps({"last_scan": "2020-01-01T00:00:00+01:00"}), encoding="utf-8")
+            with (
+                patch("monitor.config.PRODUCTS_FILE", products),
+                patch("monitor.config.DISCOVERED_PRODUCTS_FILE", None),
+                patch("monitor.config.HEALTH_STATE_FILES", [state]),
+            ):
+                self.assertTrue(send_health_report())
+        self.assertIn("Monitor en retard", send.call_args.args[0])
+        self.assertIn("moins de 3 minutes", send.call_args.args[0])
 
     @patch("monitor.send_telegram_alert", return_value=True)
     def test_alert_once_then_rearm_after_out_of_stock(self, send):

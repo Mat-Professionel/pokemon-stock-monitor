@@ -9,13 +9,10 @@
     <string>/Users/leo/Library/Application Support/PokemonStockMonitor/run_local_monitor.zsh</string>
     <string>--health-report</string>
   </array>
-  <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key>
-    <integer>7</integer>
-    <key>Minute</key>
-    <integer>0</integer>
-  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StartInterval</key>
+  <integer>600</integer>
   <key>ProcessType</key>
   <string>Background</string>
   <key>StandardOutPath</key>
