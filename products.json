@@ -22,6 +22,66 @@
     "enabled": true
   },
   {
+    "id": "smyths-deck-dresseur-30",
+    "name": "Deck du Dresseur Combat Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-deck-du-dresseur-combat-30e-anniversaire-modele-aleatoire/p/261786",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": true
+  },
+  {
+    "id": "smyths-pack-2-boosters-30",
+    "name": "Pack 2 Boosters Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-pack-2-boosters-30eme-anniversaire/p/261787",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": true
+  },
+  {
+    "id": "smyths-nymphali-30",
+    "name": "Coffret Nymphali-ex Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-nymphali-ex-30eme-anniversaire/p/261788",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": true
+  },
+  {
+    "id": "smyths-poster-30",
+    "name": "Coffret Collection Poster Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-collection-poster-30eme-anniversaire/p/261814",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": true
+  },
+  {
+    "id": "smyths-etb-30",
+    "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-dresseur-delite-30eme-anniversaire/p/261821",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": true
+  },
+  {
+    "id": "smyths-portfolio-30",
+    "name": "Portfolio avec Boosters Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-portfolio-avec-boosters-modele-aleatoire/p/261831",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": true
+  },
+  {
     "id": "smyths-pokemon-30-discovery",
     "name": "Découverte Smyths Pokémon 30e anniversaire",
     "store": "Smyths Toys",
@@ -64,6 +124,23 @@
     "enabled": true
   },
   {
+    "id": "leclerc-pokemon-30-sitemap",
+    "name": "Sitemap produits E.Leclerc Pokémon 30 ans",
+    "store": "E.Leclerc",
+    "url": "https://www.e.leclerc/sitemap/sitemap-index.xml",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokémon 30 ans", "Elite Trainer Box 30th"],
+    "link_patterns": ["/fp/"],
+    "sitemap_include_patterns": ["sitemap-products-"],
+    "max_sitemap_files": 60,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 360,
+    "max_price": 65,
+    "require_direct_seller": true,
+    "type": "sitemap",
+    "enabled": true
+  },
+  {
     "id": "auchan-pokemon-30-discovery",
     "name": "Recherche Auchan Pokémon 30e anniversaire",
     "store": "Auchan",
@@ -74,6 +151,23 @@
     "max_price": 65,
     "require_direct_seller": true,
     "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "auchan-pokemon-30-sitemap",
+    "name": "Sitemap produits Auchan Pokémon 30 ans",
+    "store": "Auchan",
+    "url": "https://www.auchan.fr/sitemap.xml",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokémon 30 ans", "Elite Trainer Box 30th"],
+    "link_patterns": ["/pr-"],
+    "sitemap_include_patterns": ["sitemap-products"],
+    "max_sitemap_files": 5,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 360,
+    "max_price": 65,
+    "require_direct_seller": true,
+    "type": "sitemap",
     "enabled": true
   },
   {
@@ -88,6 +182,23 @@
     "engine": "playwright",
     "product_engine": "playwright",
     "type": "search",
+    "enabled": true
+  },
+  {
+    "id": "cultura-pokemon-30-sitemap",
+    "name": "Sitemap produits Cultura Pokémon 30 ans",
+    "store": "Cultura",
+    "url": "https://www.cultura.com/sitemap_products.xml",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokémon 30 ans", "Elite Trainer Box 30th"],
+    "link_patterns": ["/p-"],
+    "sitemap_include_patterns": ["sitemap_products_"],
+    "max_sitemap_files": 50,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 360,
+    "max_price": 65,
+    "product_engine": "playwright",
+    "type": "sitemap",
     "enabled": true
   },
   {
@@ -129,6 +240,22 @@
     "enabled": true
   },
   {
+    "id": "joueclub-pokemon-30-sitemap",
+    "name": "Sitemap produits JouéClub Pokémon 30 ans",
+    "store": "JouéClub",
+    "url": "https://www.joueclub.fr/Assets/Rbs/Seo/sitemap-index.xml",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokémon 30 ans"],
+    "link_patterns": ["/pokemon/"],
+    "sitemap_include_patterns": ["Rbs_Catalog_Product"],
+    "max_sitemap_files": 5,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 360,
+    "max_price": 65,
+    "type": "sitemap",
+    "enabled": true
+  },
+  {
     "id": "joueclub-pokemon-day-30",
     "name": "Coffret Pokémon Day 2026 - 30 ans",
     "store": "JouéClub",
@@ -148,6 +275,22 @@
     "link_patterns": ["/jeux-de-societe/", "/document/"],
     "max_price": 65,
     "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "lagranderecre-pokemon-30-sitemap",
+    "name": "Sitemap produits La Grande Récré Pokémon 30 ans",
+    "store": "La Grande Récré",
+    "url": "https://www.lagranderecre.fr/Assets/Rbs/Seo/sitemap-index.xml",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokémon 30 ans"],
+    "link_patterns": ["/pokemon/", "/jeux-de-societe/", "/document/"],
+    "sitemap_include_patterns": ["Rbs_Catalog_Product"],
+    "max_sitemap_files": 3,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 360,
+    "max_price": 65,
+    "type": "sitemap",
     "enabled": true
   },
   {

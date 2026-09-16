@@ -92,6 +92,12 @@ Une entrée avec `"type": "search"` ou `"type": "category_search"` ne déclenche
 
 Le système limite par défaut la découverte à 12 fiches par source. `link_patterns` est facultatif, mais permet d'écarter les liens de menus, articles et publicités.
 
+### Découverte par sitemap officiel
+
+Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consulte aussi les sitemaps produits publics des enseignes. Cette voie permet de repérer une nouvelle fiche même lorsqu'elle n'apparaît pas encore dans une page de recherche interne. Les sitemaps sont relus toutes les 6 heures, puis les fiches découvertes sont gardées dans `state.json` et contrôlées toutes les 5 minutes.
+
+Les champs utiles sont `type: "sitemap"`, `sitemap_include_patterns`, `max_sitemap_files`, `max_discovered_products` et `discovery_interval_minutes`. Une erreur temporaire ne vide pas le cache de la dernière découverte réussie.
+
 Important : les sites changent régulièrement leur HTML et certains bloquent les serveurs GitHub. Le programme préfère ne pas alerter lorsque le vendeur ou l'état est incertain. Consultez les logs et ajustez l'option `require_direct_seller` seulement si nécessaire.
 
 ## 6. Tester Telegram
@@ -159,7 +165,7 @@ Une erreur sur une boutique n'arrête pas les autres vérifications.
 
 Pour une nouvelle boutique, ajoutez simplement son produit à `products.json` : le détecteur générique sera utilisé. Pour une logique dédiée, créez un petit module dans `monitors/`, ajoutez un profil dans `monitors/profiles.py`, puis associez son nom dans `monitors/__init__.py`.
 
-Le système ne contourne ni CAPTCHA ni protection anti-bot. Il effectue un seul chargement par produit et par passage, avec délai d'attente, tentatives limitées et backoff.
+Le système ne contourne ni CAPTCHA ni protection anti-bot. Il utilise des pages publiques, un navigateur standard pour le contenu JavaScript et les sitemaps officiels quand ils existent. Un site peut néanmoins refuser l'adresse IP des serveurs GitHub ; dans ce cas l'état reste « inconnu » et aucune fausse alerte n'est envoyée.
 
 ## Commandes utiles
 

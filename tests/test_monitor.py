@@ -3,8 +3,8 @@ from unittest.mock import patch
 
 import requests
 
-from monitor import product_key, updated_state_and_alert
-from monitors.discovery import discover_from_html
+from monitor import expand_discovery_sources, product_key, updated_state_and_alert
+from monitors.discovery import discover_from_html, discover_from_sitemap
 from monitors.generic import GenericMonitor, parse_price
 
 
@@ -103,6 +103,53 @@ class DetectionTests(unittest.TestCase):
         page = '<article><span>EAN 0196214144835</span><a href="/p/etb">Voir la fiche</a></article>'
         products = discover_from_html(source, page)
         self.assertEqual(len(products), 1)
+
+    def test_sitemap_discovers_hyphenated_keyword_url(self):
+        source = {
+            "id": "sitemap-test",
+            "name": "Sitemap",
+            "store": "Test",
+            "url": "https://shop.test/sitemap.xml",
+            "keywords": ["Pokémon 30e anniversaire"],
+            "link_patterns": ["/pokemon/"],
+            "max_price": 65,
+            "type": "sitemap",
+        }
+        sitemap = b'''<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+          <url><loc>https://shop.test/pokemon/coffret-pokemon-30e-anniversaire.html</loc></url>
+          <url><loc>https://shop.test/pokemon/booster-standard.html</loc></url>
+        </urlset>'''
+        response = unittest.mock.Mock(content=sitemap)
+        response.raise_for_status.return_value = None
+        session = unittest.mock.Mock()
+        session.get.return_value = response
+        products = discover_from_sitemap(source, session)
+        self.assertEqual(len(products), 1)
+        self.assertIn("30e-anniversaire", products[0]["url"])
+
+    @patch("monitor.check_discovery_source")
+    def test_explicit_product_wins_over_discovered_duplicate(self, check_source):
+        explicit = {
+            "id": "explicit",
+            "name": "Produit exact",
+            "store": "Test",
+            "url": "https://shop.test/p/1",
+            "max_price": 30,
+            "type": "product",
+        }
+        source = {
+            "id": "source",
+            "name": "Recherche",
+            "store": "Test",
+            "url": "https://shop.test/search",
+            "type": "search",
+        }
+        check_source.return_value = (source, [dict(explicit, id="found", max_price=65)])
+        products = expand_discovery_sources([explicit, source], {"products": {}}, test_mode=True)
+        self.assertEqual(len(products), 1)
+        self.assertEqual(products[0]["id"], "explicit")
+        self.assertEqual(products[0]["max_price"], 30)
 
 
 if __name__ == "__main__":

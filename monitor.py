@@ -12,7 +12,7 @@ import os
 import sys
 import tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -115,15 +115,42 @@ def check_discovery_source(source: dict[str, Any]) -> tuple[dict[str, Any], list
         session.close()
 
 
-def expand_discovery_sources(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def _cached_discovery(source: dict[str, Any], state: dict[str, Any], test_mode: bool) -> list[dict[str, Any]] | None:
+    if test_mode or not source.get("discovery_interval_minutes"):
+        return None
+    cached = state.setdefault("discovery", {}).get(str(source.get("id", source["url"])))
+    if not isinstance(cached, dict) or "products" not in cached or not cached.get("last_success"):
+        return None
+    try:
+        last_success = datetime.fromisoformat(str(cached["last_success"]))
+        interval = timedelta(minutes=float(source["discovery_interval_minutes"]))
+        if paris_now() - last_success < interval:
+            return cached["products"] if isinstance(cached["products"], list) else []
+    except (TypeError, ValueError):
+        pass
+    return None
+
+
+def expand_discovery_sources(
+    entries: list[dict[str, Any]], state: dict[str, Any], test_mode: bool = False
+) -> list[dict[str, Any]]:
     direct = [item for item in entries if item.get("type", "product") == "product"]
-    sources = [item for item in entries if item.get("type") in ("search", "category_search", "discovery")]
+    sources = [item for item in entries if item.get("type") in ("search", "category_search", "discovery", "sitemap")]
     if not sources:
         return direct
 
     discovered: list[dict[str, Any]] = []
-    with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(sources))) as executor:
-        futures = {executor.submit(check_discovery_source, source): source for source in sources}
+    due: list[dict[str, Any]] = []
+    for source in sources:
+        cached = _cached_discovery(source, state, test_mode)
+        if cached is None:
+            due.append(source)
+        else:
+            logging.info("[%s] découverte réutilisée depuis le cache → %d fiche(s)", source["store"].upper(), len(cached))
+            discovered.extend(cached)
+
+    with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(due) or 1)) as executor:
+        futures = {executor.submit(check_discovery_source, source): source for source in due}
         for future in as_completed(futures):
             source = futures[future]
             try:
@@ -133,10 +160,18 @@ def expand_discovery_sources(entries: list[dict[str, Any]]) -> list[dict[str, An
                 continue
             logging.info("[%s] découverte → %d fiche(s) correspondante(s)", source["store"].upper(), len(products))
             discovered.extend(products)
+            if source.get("discovery_interval_minutes") and not test_mode:
+                cache_key = str(source.get("id", source["url"]))
+                state.setdefault("discovery", {})[cache_key] = {
+                    "last_success": now_iso(),
+                    "products": products,
+                }
 
     unique: dict[str, dict[str, Any]] = {}
     for product in [*direct, *discovered]:
-        unique[product["url"]] = product
+        # Une fiche explicitement configurée garde ses réglages (seuil, moteur,
+        # vendeur) si elle est aussi retrouvée par une source de découverte.
+        unique.setdefault(product["url"], product)
     return list(unique.values())
 
 
@@ -293,13 +328,15 @@ def run(test_mode: bool = False) -> int:
         else:
             active.append(product)
 
-    active = expand_discovery_sources(active)
-    if not active:
-        logging.warning("Aucun produit actif avec une URL réelle dans products.json")
-        return 0
-
     state = load_json(config.STATE_FILE, {"version": 1, "products": {}})
     old_state = json.dumps(state, sort_keys=True)
+    active = expand_discovery_sources(active, state, test_mode)
+    if not active:
+        logging.warning("Aucun produit actif avec une URL réelle dans products.json")
+        if not test_mode and json.dumps(state, sort_keys=True) != old_state:
+            save_json_atomic(config.STATE_FILE, state)
+        return 0
+
     product_states = state.setdefault("products", {})
 
     with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(active))) as executor:
