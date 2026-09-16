@@ -8,7 +8,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "products.json"
-STATE_FILE = BASE_DIR / "state.json"
+STATE_FILE = Path(os.getenv("STATE_FILE", str(BASE_DIR / "state.json"))).expanduser()
 
 TIMEZONE = "Europe/Paris"
 MAX_WORKERS = int(os.getenv("MAX_WORKERS", "5"))
@@ -32,4 +32,3 @@ USER_AGENT = os.getenv(
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
-

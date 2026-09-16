@@ -350,7 +350,7 @@ def check_products_batch(
             )
 
 
-def run(test_mode: bool = False) -> int:
+def run(test_mode: bool = False, products_only: bool = False, discovery_only: bool = False) -> int:
     products = load_json(config.PRODUCTS_FILE, [])
     if not isinstance(products, list):
         logging.error("products.json doit contenir une liste JSON")
@@ -375,14 +375,18 @@ def run(test_mode: bool = False) -> int:
     # Priorité au stock des fiches connues : une exploration de gros sitemaps
     # ne doit jamais retarder le contrôle des boutons « Ajouter au panier ».
     direct = [item for item in active if item.get("type", "product") == "product"]
-    check_products_batch(direct, product_states, test_mode)
+    if not discovery_only:
+        check_products_batch(direct, product_states, test_mode)
 
-    expanded = expand_discovery_sources(active, state, test_mode)
-    direct_urls = {product["url"] for product in direct}
-    discovered = [product for product in expanded if product["url"] not in direct_urls]
-    check_products_batch(discovered, product_states, test_mode)
+    discovered: list[dict[str, Any]] = []
+    if not products_only:
+        expanded = expand_discovery_sources(active, state, test_mode)
+        direct_urls = {product["url"] for product in direct}
+        discovered = [product for product in expanded if product["url"] not in direct_urls]
+        check_products_batch(discovered, product_states, test_mode)
 
-    if not direct and not discovered:
+    checked_count = (0 if discovery_only else len(direct)) + len(discovered)
+    if checked_count == 0:
         logging.warning("Aucun produit actif avec une URL réelle dans products.json")
         if not test_mode and json.dumps(state, sort_keys=True) != old_state:
             save_json_atomic(config.STATE_FILE, state)
@@ -404,11 +408,17 @@ def main() -> int:
     modes.add_argument("--once", action="store_true", help="effectue un scan normal")
     modes.add_argument("--test", action="store_true", help="analyse sans alerte ni écriture")
     modes.add_argument("--test-telegram", action="store_true", help="teste uniquement Telegram")
+    modes.add_argument("--products-only", action="store_true", help="contrôle uniquement les fiches connues")
+    modes.add_argument("--discovery-only", action="store_true", help="cherche et contrôle uniquement les nouvelles fiches")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     if args.test_telegram:
         return 0 if send_telegram_message("✅ Bot Pokémon opérationnel.") else 1
-    return run(test_mode=args.test)
+    return run(
+        test_mode=args.test,
+        products_only=args.products_only,
+        discovery_only=args.discovery_only,
+    )
 
 
 if __name__ == "__main__":

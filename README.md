@@ -1,6 +1,6 @@
 # Moniteur de stock Pokémon 30 ans
 
-Ce projet vérifie vos URL de produits toutes les 5 minutes avec GitHub Actions. Il envoie une alerte Telegram seulement lorsqu'un produit devient réellement achetable, puis attend une rupture avant de réarmer l'alerte.
+Ce projet vérifie vos URL de produits chaque minute sur le Mac lorsqu'il est éveillé, avec GitHub Actions toutes les 30 minutes en secours. Il envoie une alerte Telegram seulement lorsqu'un produit devient réellement achetable, puis attend une rupture avant de réarmer l'alerte.
 
 Boutiques reconnues : Smyths Toys, E.Leclerc, Fnac, Carrefour, Cultura, King Jouet, Amazon France, Cdiscount, Auchan, Micromania, JouéClub, La Grande Récré et Philibert. Une boutique inconnue utilise automatiquement le détecteur générique.
 
@@ -145,7 +145,25 @@ python monitor.py --once
 
 Pour prouver que Telegram fonctionne sans attendre un stock, lancez manuellement le workflow et cochez **Envoyer uniquement un message de test Telegram**. Vous devez recevoir immédiatement `✅ Bot Pokémon opérationnel.`
 
-Le planning est `*/5 * * * *`. Les boutiques sont vérifiées en parallèle, avec au maximum cinq requêtes simultanées.
+Le planning de secours GitHub est `*/30 * * * *`. Les boutiques sont vérifiées en parallèle, avec au maximum cinq requêtes simultanées.
+
+## Surveillance locale rapide sur le Mac
+
+Les deux LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes et découvrent les nouvelles URL toutes les 15 minutes, indépendamment l'un de l'autre. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
+
+Installation :
+
+```bash
+./scripts/setup_local_monitor.zsh
+```
+
+Arrêt et désinstallation réversible :
+
+```bash
+./scripts/uninstall_local_monitor.zsh
+```
+
+Le workflow GitHub reste un secours toutes les 30 minutes lorsque le Mac est éteint. Une alerte locale et une alerte GitHub peuvent exceptionnellement être envoyées pour le même retour en stock, car leurs états anti-spam sont séparés.
 
 ## Comment fonctionne l'anti-spam ?
 
