@@ -1,7 +1,27 @@
 {
   "discovery": {
+    "amazon-pokemon-30-discovery": {
+      "last_attempt": "2026-09-16T04:01:49+02:00",
+      "last_error": "RuntimeError: HTTP 503",
+      "products": []
+    },
     "auchan-pokemon-30-sitemap": {
       "last_success": "2026-09-16T03:55:24+02:00",
+      "products": []
+    },
+    "cultura-pokemon-30-discovery": {
+      "last_attempt": "2026-09-16T04:01:47+02:00",
+      "last_error": "RuntimeError: HTTP 403",
+      "products": []
+    },
+    "cultura-pokemon-30-sitemap": {
+      "last_attempt": "2026-09-16T04:01:45+02:00",
+      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.cultura.com/sitemap_products.xml",
+      "products": []
+    },
+    "fnac-pokemon-30-discovery": {
+      "last_attempt": "2026-09-16T04:01:47+02:00",
+      "last_error": "RuntimeError: HTTP 403",
       "products": []
     },
     "joueclub-pokemon-30-sitemap": {
@@ -14,6 +34,11 @@
     },
     "leclerc-pokemon-30-sitemap": {
       "last_success": "2026-09-16T03:58:25+02:00",
+      "products": []
+    },
+    "micromania-pokemon-30-discovery": {
+      "last_attempt": "2026-09-16T04:01:49+02:00",
+      "last_error": "RuntimeError: HTTP 403",
       "products": []
     }
   },
