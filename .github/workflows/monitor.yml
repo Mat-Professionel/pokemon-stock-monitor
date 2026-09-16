@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+    inputs:
+      telegram_test:
+        description: "Envoyer uniquement un message de test Telegram"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -45,9 +51,15 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python monitor.py --once
+        run: |
+          if [ "${{ inputs.telegram_test }}" = "true" ]; then
+            python monitor.py --test-telegram
+          else
+            python monitor.py --once
+          fi
 
       - name: Sauvegarder le nouvel état
+        if: ${{ inputs.telegram_test != true }}
         run: |
           if git diff --quiet -- state.json; then
             echo "Aucun changement d'état"
@@ -59,4 +71,3 @@ jobs:
           git commit -m "chore: update stock state [skip ci]"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
-

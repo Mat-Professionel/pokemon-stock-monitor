@@ -329,6 +329,27 @@ def updated_state_and_alert(
     return current
 
 
+def check_products_batch(
+    products: list[dict[str, Any]], product_states: dict[str, Any], test_mode: bool
+) -> None:
+    if not products:
+        return
+    with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(products))) as executor:
+        futures = {executor.submit(check_product, product): product for product in products}
+        for future in as_completed(futures):
+            product = futures[future]
+            try:
+                _, result = future.result()
+            except Exception as exc:
+                logging.exception("[%s] %s → échec isolé: %s", product["store"], product["name"], exc)
+                continue
+            log_result(product, result)
+            key = product_key(product)
+            product_states[key] = updated_state_and_alert(
+                product, result, product_states.get(key, {}), test_mode
+            )
+
+
 def run(test_mode: bool = False) -> int:
     products = load_json(config.PRODUCTS_FILE, [])
     if not isinstance(products, list):
@@ -349,29 +370,23 @@ def run(test_mode: bool = False) -> int:
 
     state = load_json(config.STATE_FILE, {"version": 1, "products": {}})
     old_state = json.dumps(state, sort_keys=True)
-    active = expand_discovery_sources(active, state, test_mode)
-    if not active:
+    product_states = state.setdefault("products", {})
+
+    # Priorité au stock des fiches connues : une exploration de gros sitemaps
+    # ne doit jamais retarder le contrôle des boutons « Ajouter au panier ».
+    direct = [item for item in active if item.get("type", "product") == "product"]
+    check_products_batch(direct, product_states, test_mode)
+
+    expanded = expand_discovery_sources(active, state, test_mode)
+    direct_urls = {product["url"] for product in direct}
+    discovered = [product for product in expanded if product["url"] not in direct_urls]
+    check_products_batch(discovered, product_states, test_mode)
+
+    if not direct and not discovered:
         logging.warning("Aucun produit actif avec une URL réelle dans products.json")
         if not test_mode and json.dumps(state, sort_keys=True) != old_state:
             save_json_atomic(config.STATE_FILE, state)
         return 0
-
-    product_states = state.setdefault("products", {})
-
-    with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(active))) as executor:
-        futures = {executor.submit(check_product, product): product for product in active}
-        for future in as_completed(futures):
-            product = futures[future]
-            try:
-                _, result = future.result()
-            except Exception as exc:
-                logging.exception("[%s] %s → échec isolé: %s", product["store"], product["name"], exc)
-                continue
-            log_result(product, result)
-            key = product_key(product)
-            product_states[key] = updated_state_and_alert(
-                product, result, product_states.get(key, {}), test_mode
-            )
 
     if test_mode:
         logging.info("Mode test: aucune alerte envoyée, state.json non modifié")

@@ -94,7 +94,7 @@ Le système limite par défaut la découverte à 12 fiches par source. `link_pat
 
 ### Découverte par sitemap officiel
 
-Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consulte aussi les sitemaps produits publics des enseignes. Cette voie permet de repérer une nouvelle fiche même lorsqu'elle n'apparaît pas encore dans une page de recherche interne. Les sitemaps sont relus toutes les 6 heures, puis les fiches découvertes sont gardées dans `state.json` et contrôlées toutes les 5 minutes.
+Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consulte aussi les sitemaps produits publics des enseignes. Cette voie permet de repérer une nouvelle fiche même lorsqu'elle n'apparaît pas encore dans une page de recherche interne. Les sitemaps sont relus toutes les 15 minutes, puis les fiches découvertes sont gardées dans `state.json` et contrôlées toutes les 5 minutes. Les fiches déjà connues sont toujours contrôlées en premier : un sitemap lent ne retarde donc pas leur vérification de stock.
 
 Les champs utiles sont `type: "sitemap"`, `sitemap_include_patterns`, `max_sitemap_files`, `max_discovered_products` et `discovery_interval_minutes`. Une erreur temporaire ne vide pas le cache de la dernière découverte réussie.
 
@@ -142,6 +142,8 @@ python monitor.py --once
 3. Cliquez sur **Run workflow** pour le premier lancement.
 4. Ouvrez l'exécution et vérifiez la ligne correspondant à chaque boutique.
 5. Revenez plus tard dans **Actions** : de nouvelles exécutions planifiées doivent apparaître. GitHub peut retarder un cron de quelques minutes.
+
+Pour prouver que Telegram fonctionne sans attendre un stock, lancez manuellement le workflow et cochez **Envoyer uniquement un message de test Telegram**. Vous devez recevoir immédiatement `✅ Bot Pokémon opérationnel.`
 
 Le planning est `*/5 * * * *`. Les boutiques sont vérifiées en parallèle, avec au maximum cinq requêtes simultanées.
 
