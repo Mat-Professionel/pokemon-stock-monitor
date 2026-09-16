@@ -7,6 +7,7 @@
     "ean": "0196214144835",
     "max_price": 65,
     "require_direct_seller": true,
+    "engine": "playwright",
     "type": "product",
     "enabled": true
   },
@@ -84,6 +85,8 @@
     "keywords": ["Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite 30e anniversaire"],
     "link_patterns": ["/p-"],
     "max_price": 65,
+    "engine": "playwright",
+    "product_engine": "playwright",
     "type": "search",
     "enabled": true
   },
@@ -107,6 +110,8 @@
     "eans": ["0196214144835"],
     "keywords": ["Pokémon 30e anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokémon 30 ans"],
     "max_price": 65,
+    "engine": "playwright",
+    "product_engine": "playwright",
     "type": "search",
     "enabled": true
   },
