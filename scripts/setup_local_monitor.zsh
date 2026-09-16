@@ -110,5 +110,5 @@ fi
 /bin/launchctl kickstart -k "gui/$USER_ID/$CANARY_LABEL"
 /bin/launchctl kickstart -k "gui/$USER_ID/$KEEPAWAKE_LABEL"
 
-print "Moniteur local installé : stock toutes les 60 secondes, découverte, témoins et rapport de santé toutes les 10 minutes. Veille automatique bloquée tant que la session reste ouverte."
+print "Moniteur local installé : stock toutes les 60 secondes, découverte toutes les 2 minutes, témoins et rapport de santé toutes les 10 minutes. Veille automatique bloquée tant que la session reste ouverte."
 print "Logs : $LOG_DIR"

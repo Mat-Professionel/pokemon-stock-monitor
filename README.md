@@ -94,11 +94,11 @@ Le système limite par défaut la découverte à 12 fiches par source. `link_pat
 
 ### Découverte par sitemap officiel
 
-Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consulte aussi les sitemaps produits publics des enseignes. Cette voie permet de repérer une nouvelle fiche même lorsqu'elle n'apparaît pas encore dans une page de recherche interne. Les sitemaps sont relus toutes les 10 minutes, puis les fiches découvertes sont gardées dans le registre local et contrôlées toutes les 60 secondes. Les fiches déjà connues sont toujours contrôlées en premier : un sitemap lent ne retarde donc pas leur vérification de stock.
+Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consulte aussi les sitemaps produits publics des enseignes. Cette voie permet de repérer une nouvelle fiche même lorsqu'elle n'apparaît pas encore dans une page de recherche interne. Les sitemaps sont relus toutes les 2 minutes, puis les fiches découvertes sont gardées dans le registre local et contrôlées toutes les 60 secondes. Les fiches déjà connues sont toujours contrôlées en premier : un sitemap lent ne retarde donc pas leur vérification de stock.
 
 Les champs utiles sont `type: "sitemap"`, `sitemap_include_patterns`, `max_sitemap_files`, `max_discovered_products` et `discovery_interval_minutes`. Une erreur temporaire ne vide pas le cache de la dernière découverte réussie.
 
-Après un refus HTTP ou une panne, une source de découverte attend par défaut 60 minutes avant de réessayer (`retry_interval_minutes`). Les contrôles des fiches produit déjà connues continuent normalement entre-temps.
+Après un refus HTTP ou une panne, une source de découverte attend par défaut 2 minutes avant de réessayer (`retry_interval_minutes`). Les contrôles des fiches produit déjà connues continuent normalement entre-temps.
 
 Important : les sites changent régulièrement leur HTML et certains bloquent les serveurs GitHub. Le programme préfère ne pas alerter lorsque le vendeur ou l'état est incertain. Consultez les logs et ajustez l'option `require_direct_seller` seulement si nécessaire.
 
@@ -153,7 +153,7 @@ Le planning de secours GitHub est `*/30 * * * *`. Les boutiques sont vérifiées
 
 ## Surveillance locale rapide sur le Mac
 
-Les LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL toutes les 10 minutes, vérifient un produit témoin par boutique toutes les 10 minutes et envoient le rapport Telegram toutes les 10 minutes. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
+Les LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL par EAN, mots-clés, catégories et sitemaps toutes les 2 minutes, vérifient un produit témoin par boutique toutes les 10 minutes et envoient le rapport Telegram toutes les 10 minutes. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
 
 L'installation lance aussi `/usr/bin/caffeinate -i` via un LaunchAgent dédié. Cela empêche uniquement la veille automatique du système : l'écran peut toujours s'éteindre. Fermer le capot d'un Mac portable interrompt normalement la surveillance locale ; GitHub Actions reste alors la voie de secours.
 

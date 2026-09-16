@@ -132,7 +132,11 @@ def _cached_discovery(source: dict[str, Any], state: dict[str, Any], test_mode: 
         products = cached["products"] if isinstance(cached.get("products"), list) else []
         if cached.get("last_error") and cached.get("last_attempt"):
             last_attempt = datetime.fromisoformat(str(cached["last_attempt"]))
-            retry_interval = timedelta(minutes=float(source.get("retry_interval_minutes", 60)))
+            retry_interval = timedelta(
+                minutes=float(
+                    source.get("retry_interval_minutes", config.DISCOVERY_RETRY_INTERVAL_MINUTES)
+                )
+            )
             if paris_now() - last_attempt < retry_interval:
                 return products
         if source.get("discovery_interval_minutes") and cached.get("last_success"):

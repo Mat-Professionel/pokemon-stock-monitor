@@ -12,7 +12,7 @@
   <key>RunAtLoad</key>
   <true/>
   <key>StartInterval</key>
-  <integer>600</integer>
+  <integer>120</integer>
   <key>ProcessType</key>
   <string>Background</string>
   <key>LowPriorityIO</key>
