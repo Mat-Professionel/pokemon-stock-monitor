@@ -153,7 +153,7 @@ Le planning de secours GitHub est `*/30 * * * *`. Les boutiques sont vérifiées
 
 ## Surveillance locale rapide sur le Mac
 
-Les trois LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL toutes les 10 minutes et envoient un rapport de santé Telegram toutes les 10 minutes. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
+Les LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL toutes les 10 minutes, vérifient un produit témoin par boutique toutes les 10 minutes et envoient le rapport Telegram toutes les 10 minutes. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
 
 Installation :
 
@@ -173,7 +173,7 @@ Le workflow GitHub reste un secours toutes les 30 minutes lorsque le Mac est ét
 
 Le rapport Telegram envoyé toutes les 10 minutes indique le nombre de sites et de produits surveillés, l'heure et l'âge du dernier scan, la couverture URL/EAN/catégorie de l'ETB et les erreurs encore actives. Si le dernier scan rapide date de plus de trois minutes, le rapport devient rouge et signale que le moniteur est en retard. Si tous les contrôles d'une boutique échouent cinq fois de suite, une alerte technique est envoyée avec l'erreur observée et le fallback utilisé. L'alerte n'est pas répétée à chaque scan. Un second message confirme automatiquement le rétablissement de la boutique.
 
-Le bloc de confiance repose sur chaque voie configurée (URL produit, recherche, catégorie, sitemap ou API). Une fiche produit ne compte comme fonctionnelle que si elle renvoie un état certain `available` ou `unavailable` ; `unknown`, une erreur HTTP ou un résultat trop ancien ne compte pas. Une boutique est vérifiable lorsqu'au moins une de ses voies est fonctionnelle et récente. Les voies produit expirent après 3 minutes et les voies de découverte après 30 minutes. Le test d'alerte interroge silencieusement Telegram `getChat` avec le bot et le chat configurés avant l'envoi du rapport.
+Le bloc de confiance combine les voies configurées (URL produit, recherche, catégorie, sitemap ou API) et un produit témoin Pokémon distinct dans `canaries.json`. Le témoin ne déclenche jamais d'alerte de stock. Vert signifie que prix et achat sont confirmés, orange que la page répond mais que l'achat n'est pas prouvé, rouge que la boutique est techniquement non vérifiable. Un témoin expire après 30 minutes. Les voies produit expirent après 3 minutes et les voies de découverte après 30 minutes. Le test d'alerte interroge silencieusement Telegram `getChat` avec le bot et le chat configurés avant l'envoi du rapport.
 
 ```text
 Bot vivant : ✅
@@ -181,6 +181,11 @@ Boutiques vérifiables : 9/13
 Voies fonctionnelles : 18/24 (75 %)
 Boutiques aveugles : Carrefour, Fnac
 Dernier test d'alerte : ✅
+
+Produits témoins
+• Cultura : 🟢 API + prix confirmés
+• Amazon France : 🟠 page accessible, achat non confirmé
+• Carrefour : 🔴 non vérifiable
 ```
 
 Le compteur est remis à zéro dès qu'au moins une vérification de la boutique réussit. Une simple rupture de stock n'est jamais considérée comme une panne du moniteur.

@@ -1,0 +1,99 @@
+[
+  {
+    "id": "canary-amazon",
+    "name": "Produit témoin Pokémon",
+    "store": "Amazon France",
+    "url": "https://www.amazon.fr/Pok%C3%A9mon-boosters-%C3%89carlate-%C3%89volutions-Prismatiques/dp/B0DTV7L6JV",
+    "engine": "playwright",
+    "enabled": true
+  },
+  {
+    "id": "canary-auchan",
+    "name": "Pack Battle Figurine Pokémon",
+    "store": "Auchan",
+    "url": "https://www.auchan.fr/jazwares-pack-battle-figurine-pokemon/pr-C1844340",
+    "engine": "playwright",
+    "enabled": true
+  },
+  {
+    "id": "canary-carrefour",
+    "name": "Académie de Combat Pokémon",
+    "store": "Carrefour",
+    "url": "https://www.carrefour.fr/p/coffret-cartes-pokemon-l-academie-de-combat-3eme-edition-asmodee-0820650557446",
+    "ean": "0820650557446",
+    "engine": "playwright",
+    "enabled": true
+  },
+  {
+    "id": "canary-cdiscount",
+    "name": "Booster Pokémon Astres Radieux",
+    "store": "Cdiscount",
+    "url": "https://www.cdiscount.com/juniors/jeux-de-societe-cartes/pokemon-booster-epee-et-bouclier-astres-radieux/f-120791604-pokpoeb1002.html",
+    "engine": "playwright",
+    "enabled": true
+  },
+  {
+    "id": "canary-cultura",
+    "name": "Pokémon 500 stickers Paldea",
+    "store": "Cultura",
+    "url": "https://www.cultura.com/p-pokemon-500-stickers-paldea-500-stickers-9782017247777.html",
+    "ean": "9782017247777",
+    "enabled": true
+  },
+  {
+    "id": "canary-leclerc",
+    "name": "Pokémon pack portfolio + booster",
+    "store": "E.Leclerc",
+    "url": "https://www.e.leclerc/fp/pokemon-me03-pack-portfolio-booster-3558380135920",
+    "ean": "3558380135920",
+    "enabled": true
+  },
+  {
+    "id": "canary-fnac",
+    "name": "Funko Pop Pokémon Pikachu",
+    "store": "Fnac",
+    "url": "https://www.fnac.com/Figurine-Funko-Pop-Games-Pokemon-S1-Pikachu/a14935512/w-4",
+    "engine": "playwright",
+    "enabled": true
+  },
+  {
+    "id": "canary-joueclub",
+    "name": "Pokémon pack 2 boosters",
+    "store": "JouéClub",
+    "url": "https://www.joueclub.fr/pokemon/pokemon-pack-2-boosters-piece-3-cartes-promo-0196214134591.html",
+    "ean": "0196214134591",
+    "engine": "playwright",
+    "enabled": true
+  },
+  {
+    "id": "canary-king-jouet",
+    "name": "Monopoly Pokémon",
+    "store": "King Jouet",
+    "url": "https://www.king-jouet.com/jeu-jouet/jeux-societes/jeux-strategie-reflexion/ref-981757-monopoly-pokemon.htm",
+    "enabled": true
+  },
+  {
+    "id": "canary-la-grande-recre",
+    "name": "Arène avec deux spinners Pokémon",
+    "store": "La Grande Récré",
+    "url": "https://www.lagranderecre.fr/vehicules-et-figurines/figurines/les-figurines-interactives-et-a-fonction/arene-avec-deux-spinners-pokemon.html",
+    "ean": "3701405823597",
+    "enabled": true
+  },
+  {
+    "id": "canary-micromania",
+    "name": "Carte micro SDXC Pokémon Ectoplasma",
+    "store": "Micromania",
+    "url": "https://www.micromania.fr/p/carte-micro-sdxc-512gb-pokemon-ectoplasm-144083.html",
+    "engine": "playwright",
+    "enabled": true
+  },
+  {
+    "id": "canary-smyths",
+    "name": "Funko Pop Pokémon Florizarre",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/marques/pokemon/funko-pop-figurine-1158-pokemon-florizarre/p/252787",
+    "engine": "playwright",
+    "enabled": true
+  }
+]

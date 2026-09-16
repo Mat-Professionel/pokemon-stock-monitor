@@ -11,11 +11,12 @@ RESTART_CALLBACK_DATA = "restart_all"
 LOCAL_SERVICE_LABELS = (
     "com.leo.pokemon-stock-monitor",
     "com.leo.pokemon-stock-monitor.discovery",
+    "com.leo.pokemon-stock-monitor.canaries",
 )
 
 
 def restart_local_services() -> bool:
-    """Redémarre uniquement les deux scanners launchd de l'utilisateur courant."""
+    """Redémarre uniquement les scanners launchd du moniteur."""
     domain = f"gui/{os.getuid()}"
     success = True
     for label in LOCAL_SERVICE_LABELS:

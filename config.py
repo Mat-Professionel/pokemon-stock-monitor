@@ -8,7 +8,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "products.json"
+CANARIES_FILE = BASE_DIR / "canaries.json"
 STATE_FILE = Path(os.getenv("STATE_FILE", str(BASE_DIR / "state.json"))).expanduser()
+CANARY_STATE_FILE = Path(
+    os.getenv("CANARY_STATE_FILE", str(BASE_DIR / "state-canaries.json"))
+).expanduser()
 _discovered_file = os.getenv("DISCOVERED_PRODUCTS_FILE", "")
 DISCOVERED_PRODUCTS_FILE = Path(_discovered_file).expanduser() if _discovered_file else None
 HEALTH_STATE_FILES = [
@@ -20,6 +24,7 @@ RECORD_HEALTH = os.getenv("RECORD_HEALTH", "false").lower() in {"1", "true", "ye
 HEALTH_STALE_AFTER_SECONDS = int(os.getenv("HEALTH_STALE_AFTER_SECONDS", "180"))
 PRODUCT_ROUTE_STALE_SECONDS = int(os.getenv("PRODUCT_ROUTE_STALE_SECONDS", "180"))
 DISCOVERY_ROUTE_STALE_SECONDS = int(os.getenv("DISCOVERY_ROUTE_STALE_SECONDS", "1800"))
+CANARY_STALE_SECONDS = int(os.getenv("CANARY_STALE_SECONDS", "1800"))
 AUTO_RESTART_STALE = os.getenv("AUTO_RESTART_STALE", "false").lower() in {"1", "true", "yes"}
 
 TIMEZONE = "Europe/Paris"

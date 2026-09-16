@@ -9,6 +9,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 from monitor import (
+    classify_canary,
     expand_discovery_sources,
     product_key,
     send_health_report,
@@ -55,6 +56,53 @@ class DetectionTests(unittest.TestCase):
     def test_key_is_stable(self):
         self.assertEqual(product_key(self.product), product_key(dict(self.product)))
 
+    def test_canary_classification_has_three_honest_levels(self):
+        product = {"id": "c", "name": "Témoin", "store": "Cultura", "url": "https://example.test"}
+        green = classify_canary(product, {"status": "available", "price": 6.95, "reason": "API Cultura : stock disponible", "http_status": 200, "error": None})
+        orange = classify_canary(product, {"status": "unknown", "price": 6.95, "reason": "Aucun bouton", "http_status": 200, "error": None})
+        red = classify_canary(product, {"status": "unknown", "price": None, "reason": "HTTP 403", "http_status": 403, "error": "HTTP 403"})
+        self.assertEqual(green["level"], "verified")
+        self.assertIn("API + prix", green["label"])
+        self.assertEqual(orange["level"], "partial")
+        self.assertEqual(red["level"], "blind")
+
+    @patch("monitor.send_telegram_message", return_value=True)
+    @patch("monitor.test_telegram_connection", return_value=True)
+    def test_health_report_uses_fresh_canary_results(self, telegram_test, send):
+        now = datetime.now(ZoneInfo("Europe/Paris")).isoformat()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            products = root / "products.json"
+            canaries = root / "canaries.json"
+            state = root / "state.json"
+            canary_state = root / "state-canaries.json"
+            products.write_text(json.dumps([
+                {"id": "p", "name": "P", "store": "Cultura", "url": "https://c.test/p"},
+                {"id": "p2", "name": "P", "store": "Fnac", "url": "https://f.test/p"},
+            ]), encoding="utf-8")
+            canaries.write_text(json.dumps([
+                {"id": "c1", "name": "T", "store": "Cultura", "url": "https://c.test/t"},
+                {"id": "c2", "name": "T", "store": "Fnac", "url": "https://f.test/t"},
+            ]), encoding="utf-8")
+            state.write_text(json.dumps({"last_scan": now}), encoding="utf-8")
+            canary_state.write_text(json.dumps({"canaries": {
+                "cultura": {"level": "verified", "label": "🟢 API + prix confirmés", "last_check": now},
+                "fnac": {"level": "blind", "label": "🔴 non vérifiable", "last_check": now},
+            }}), encoding="utf-8")
+            with (
+                patch("monitor.config.PRODUCTS_FILE", products),
+                patch("monitor.config.CANARIES_FILE", canaries),
+                patch("monitor.config.CANARY_STATE_FILE", canary_state),
+                patch("monitor.config.DISCOVERED_PRODUCTS_FILE", None),
+                patch("monitor.config.HEALTH_STATE_FILES", [state]),
+            ):
+                self.assertTrue(send_health_report())
+        message = send.call_args.args[0]
+        self.assertIn("Boutiques vérifiables : 1/2", message)
+        self.assertIn("Cultura : 🟢 API + prix confirmés", message)
+        self.assertIn("Fnac : 🔴 non vérifiable", message)
+        self.assertIn("Boutiques aveugles : Fnac", message)
+
     @patch("monitor.send_telegram_message", return_value=True)
     def test_store_health_alerts_on_fifth_failure_then_recovers(self, send):
         states = {}
@@ -83,6 +131,8 @@ class DetectionTests(unittest.TestCase):
             state.write_text(json.dumps({"last_scan": "2020-01-01T00:00:00+01:00"}), encoding="utf-8")
             with (
                 patch("monitor.config.PRODUCTS_FILE", products),
+                patch("monitor.config.CANARIES_FILE", root / "missing-canaries.json"),
+                patch("monitor.config.CANARY_STATE_FILE", root / "missing-canary-state.json"),
                 patch("monitor.config.DISCOVERED_PRODUCTS_FILE", None),
                 patch("monitor.config.HEALTH_STATE_FILES", [state]),
             ):
@@ -116,6 +166,8 @@ class DetectionTests(unittest.TestCase):
             state.write_text(json.dumps({"last_scan": now, "route_health": routes}), encoding="utf-8")
             with (
                 patch("monitor.config.PRODUCTS_FILE", products),
+                patch("monitor.config.CANARIES_FILE", root / "missing-canaries.json"),
+                patch("monitor.config.CANARY_STATE_FILE", root / "missing-canary-state.json"),
                 patch("monitor.config.DISCOVERED_PRODUCTS_FILE", None),
                 patch("monitor.config.HEALTH_STATE_FILES", [state]),
             ):

@@ -386,6 +386,71 @@ def update_route_health(
     }
 
 
+def classify_canary(product: dict[str, Any], result: dict[str, Any]) -> dict[str, Any]:
+    """Classe un témoin sans déclencher d'alerte commerciale."""
+    http_status = result.get("http_status")
+    error = result.get("error")
+    status = result.get("status", "unknown")
+    price = result.get("price")
+    reason = str(result.get("reason") or error or "Résultat incomplet")
+    if error or (isinstance(http_status, int) and (http_status in (403, 429) or http_status >= 500)):
+        level, label = "blind", "🔴 non vérifiable"
+    elif status == "available" and price is not None:
+        level = "verified"
+        label = "🟢 API + prix confirmés" if reason.startswith("API ") else "🟢 disponibilité + prix confirmés"
+    else:
+        level = "partial"
+        label = "🟠 page accessible, achat non confirmé"
+    return {
+        "id": str(product.get("id") or product_key(product)),
+        "store": str(product["store"]),
+        "name": str(product["name"]),
+        "url": str(product["url"]),
+        "level": level,
+        "label": label,
+        "status": status,
+        "price": price,
+        "http_status": http_status,
+        "detail": reason[:300],
+        "last_check": now_iso(),
+    }
+
+
+def run_canaries() -> int:
+    canaries = load_json(config.CANARIES_FILE, [])
+    if not isinstance(canaries, list):
+        logging.error("canaries.json doit contenir une liste JSON")
+        return 2
+    active = [item for item in canaries if isinstance(item, dict) and item.get("enabled", True)]
+    invalid = [validate_product(item, index) for index, item in enumerate(active, start=1)]
+    if any(invalid):
+        for error in (value for value in invalid if value):
+            logging.error("Témoin invalide: %s", error)
+        return 2
+    state: dict[str, Any] = {"version": 1, "last_scan": now_iso(), "canaries": {}}
+    with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(active) or 1)) as executor:
+        futures = {executor.submit(check_product, product): product for product in active}
+        for future in as_completed(futures):
+            product = futures[future]
+            try:
+                _, result = future.result()
+            except Exception as exc:
+                result = {
+                    "status": "unknown",
+                    "price": None,
+                    "error": f"{type(exc).__name__}: {exc}",
+                    "reason": str(exc),
+                }
+            value = classify_canary(product, result)
+            state["canaries"][str(product["store"]).strip().lower()] = value
+            logging.info("[TÉMOIN %s] %s — %s", product["store"].upper(), value["label"], value["detail"])
+            # L'état est visible même si un autre navigateur prend du temps.
+            save_json_atomic(config.CANARY_STATE_FILE, state)
+    state["last_scan"] = now_iso()
+    save_json_atomic(config.CANARY_STATE_FILE, state)
+    return 0
+
+
 def send_health_report() -> bool:
     products = load_json(config.PRODUCTS_FILE, [])
     enabled = [item for item in products if isinstance(item, dict) and item.get("enabled", True)]
@@ -454,8 +519,38 @@ def send_health_report() -> bool:
         if is_functional:
             functional_routes += 1
             verifiable_stores.add(str(item.get("store", "")).strip())
-    blind_stores = [store for store in sites if store not in verifiable_stores]
+    route_blind_stores = [store for store in sites if store not in verifiable_stores]
     confidence_percent = round(100 * functional_routes / len(enabled)) if enabled else 0
+    canary_config = load_json(config.CANARIES_FILE, [])
+    canary_config = [item for item in canary_config if isinstance(item, dict) and item.get("enabled", True)] \
+        if isinstance(canary_config, list) else []
+    canary_state = load_json(config.CANARY_STATE_FILE, {})
+    canary_results = canary_state.get("canaries", {}) if isinstance(canary_state, dict) else {}
+    canary_lines: list[str] = []
+    verified_canary_stores: set[str] = set()
+    blind_canary_stores: list[str] = []
+    for item in sorted(canary_config, key=lambda value: str(value.get("store", ""))):
+        store = str(item.get("store", "Boutique"))
+        result = canary_results.get(store.strip().lower(), {})
+        fresh = False
+        try:
+            checked_at = datetime.fromisoformat(str(result["last_check"])).astimezone(ZoneInfo(config.TIMEZONE))
+            fresh = (paris_now() - checked_at).total_seconds() <= config.CANARY_STALE_SECONDS
+        except (KeyError, TypeError, ValueError):
+            pass
+        if not fresh:
+            label = "🔴 non vérifié récemment"
+            blind_canary_stores.append(store)
+        else:
+            label = str(result.get("label") or "🔴 non vérifiable")
+            if result.get("level") == "verified":
+                verified_canary_stores.add(store)
+            elif result.get("level") == "blind":
+                blind_canary_stores.append(store)
+        canary_lines.append(f"• {html.escape(store)} : {html.escape(label)}")
+    report_verifiable = verified_canary_stores if canary_config else verifiable_stores
+    report_total = len(canary_config) if canary_config else len(sites)
+    blind_stores = blind_canary_stores if canary_config else route_blind_stores
     telegram_healthy = test_telegram_connection()
     restart_requested = False
     if not scan_is_fresh and config.AUTO_RESTART_STALE:
@@ -464,7 +559,7 @@ def send_health_report() -> bool:
         "<b>✅ Pokémon Monitor opérationnel</b>" if scan_is_fresh else "<b>🔴 Pokémon Monitor en retard</b>",
         "",
         f"Bot vivant : {'✅' if scan_is_fresh else '❌'}",
-        f"Boutiques vérifiables : {len(verifiable_stores)}/{len(sites)}",
+        f"Boutiques vérifiables : {len(report_verifiable)}/{report_total}",
         f"Voies fonctionnelles : {functional_routes}/{len(enabled)} ({confidence_percent} %)",
         f"Boutiques aveugles : {html.escape(', '.join(blind_stores) if blind_stores else 'aucune')}",
         f"Dernier test d'alerte : {'✅' if telegram_healthy else '❌'}",
@@ -475,6 +570,8 @@ def send_health_report() -> bool:
         f"🎯 ETB {target_ean} : {len(exact_ean)} URL(s) exacte(s), {len(ean_sources)} source(s) EAN, {len(category_sources)} catégorie(s)/sitemap(s)",
         f"⚠️ Erreurs actives : {len(errors)}",
     ]
+    if canary_lines:
+        lines.extend(["", "<b>Produits témoins</b>", *canary_lines])
     if not scan_is_fresh:
         lines.append("⚠️ Le scan rapide devrait dater de moins de 3 minutes.")
         lines.append(
@@ -681,12 +778,15 @@ def main() -> int:
     modes.add_argument("--products-only", action="store_true", help="contrôle uniquement les fiches connues")
     modes.add_argument("--discovery-only", action="store_true", help="cherche et contrôle uniquement les nouvelles fiches")
     modes.add_argument("--health-report", action="store_true", help="envoie le rapport de santé quotidien")
+    modes.add_argument("--canaries-only", action="store_true", help="contrôle les produits témoins sans alerte stock")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     if args.test_telegram:
         return 0 if send_telegram_message("✅ Bot Pokémon opérationnel.") else 1
     if args.health_report:
         return 0 if send_health_report() else 1
+    if args.canaries_only:
+        return run_canaries()
     return run(
         test_mode=args.test,
         products_only=args.products_only,
