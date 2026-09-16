@@ -375,6 +375,14 @@ def run(test_mode: bool = False, products_only: bool = False, discovery_only: bo
     # Priorité au stock des fiches connues : une exploration de gros sitemaps
     # ne doit jamais retarder le contrôle des boutons « Ajouter au panier ».
     direct = [item for item in active if item.get("type", "product") == "product"]
+    if products_only and config.DISCOVERED_PRODUCTS_FILE:
+        cached_products = load_json(config.DISCOVERED_PRODUCTS_FILE, [])
+        if isinstance(cached_products, list):
+            by_url = {product["url"]: product for product in direct}
+            for product in cached_products:
+                if isinstance(product, dict) and product.get("url"):
+                    by_url.setdefault(product["url"], product)
+            direct = list(by_url.values())
     if not discovery_only:
         check_products_batch(direct, product_states, test_mode)
 
@@ -384,6 +392,8 @@ def run(test_mode: bool = False, products_only: bool = False, discovery_only: bo
         direct_urls = {product["url"] for product in direct}
         discovered = [product for product in expanded if product["url"] not in direct_urls]
         check_products_batch(discovered, product_states, test_mode)
+        if config.DISCOVERED_PRODUCTS_FILE and not test_mode:
+            save_json_atomic(config.DISCOVERED_PRODUCTS_FILE, discovered)
 
     checked_count = (0 if discovery_only else len(direct)) + len(discovered)
     if checked_count == 0:

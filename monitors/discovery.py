@@ -16,6 +16,8 @@ from bs4 import BeautifulSoup
 
 from config import REQUEST_TIMEOUT_SECONDS, USER_AGENT
 from .generic import GenericMonitor, normalized
+from .cultura_api import item_url as cultura_item_url
+from .cultura_api import search as cultura_search
 
 
 def _searchable(value: str) -> str:
@@ -106,9 +108,31 @@ def _product_from_url(source: dict[str, Any], url: str, title: str = "") -> dict
         "require_direct_seller": source.get("require_direct_seller", False),
         "alert_if_too_expensive": source.get("alert_if_too_expensive", False),
         "engine": source.get("product_engine", "requests"),
+        "api_engine": source.get("api_engine"),
         "type": "product",
         "discovered_from": source.get("id"),
     }
+
+
+def discover_from_cultura_api(source: dict[str, Any], session: requests.Session) -> list[dict[str, Any]]:
+    found: dict[str, dict[str, Any]] = {}
+    queries = source.get("api_queries") or source.get("keywords", [])[:3]
+    if source.get("eans"):
+        queries = [*source["eans"], *queries]
+    limit = int(source.get("max_discovered_products", 20))
+    for query in queries:
+        for item in cultura_search(session, str(query), min(60, limit)):
+            url = cultura_item_url(item)
+            title = str(item.get("name", ""))
+            if not url or not _matches(title, f"{url} {item.get('ean', '')}", source):
+                continue
+            product = _product_from_url(source, url, title)
+            product["ean"] = str(item.get("ean", ""))
+            product["sku"] = str(item.get("sku", ""))
+            found[url] = product
+            if len(found) >= limit:
+                return list(found.values())
+    return list(found.values())
 
 
 def _xml_root(content: bytes) -> ElementTree.Element:
@@ -189,6 +213,11 @@ def discover_from_sitemap(source: dict[str, Any], session: requests.Session) -> 
 
 def discover_products(source: dict[str, Any], session: requests.Session) -> list[dict[str, Any]]:
     """Charge une page de veille puis retourne les nouvelles fiches candidates."""
+    if source.get("api_engine") == "cultura_graphql":
+        try:
+            return discover_from_cultura_api(source, session)
+        except Exception as exc:
+            logging.warning("[CULTURA] découverte API indisponible, fallback HTML: %s", exc)
     if source.get("type") == "sitemap":
         return discover_from_sitemap(source, session)
     if source.get("engine") == "playwright":

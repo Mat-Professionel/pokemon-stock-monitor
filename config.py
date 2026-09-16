@@ -9,6 +9,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "products.json"
 STATE_FILE = Path(os.getenv("STATE_FILE", str(BASE_DIR / "state.json"))).expanduser()
+_discovered_file = os.getenv("DISCOVERED_PRODUCTS_FILE", "")
+DISCOVERED_PRODUCTS_FILE = Path(_discovered_file).expanduser() if _discovered_file else None
 
 TIMEZONE = "Europe/Paris"
 MAX_WORKERS = int(os.getenv("MAX_WORKERS", "5"))

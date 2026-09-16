@@ -77,6 +77,7 @@ fi
 
 /bin/launchctl bootout "gui/$USER_ID/$LABEL" >/dev/null 2>&1 || true
 /bin/launchctl bootout "gui/$USER_ID/$DISCOVERY_LABEL" >/dev/null 2>&1 || true
+/bin/sleep 1
 /bin/launchctl bootstrap "gui/$USER_ID" "$PLIST_TARGET"
 /bin/launchctl bootstrap "gui/$USER_ID" "$DISCOVERY_PLIST_TARGET"
 /bin/launchctl kickstart -k "gui/$USER_ID/$LABEL"

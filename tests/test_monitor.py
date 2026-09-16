@@ -8,6 +8,7 @@ import requests
 from monitor import expand_discovery_sources, product_key, updated_state_and_alert
 from monitors.discovery import discover_from_html, discover_from_sitemap
 from monitors.generic import GenericMonitor, parse_price
+from monitors.cultura_api import result_for as cultura_result_for
 
 
 class DetectionTests(unittest.TestCase):
@@ -182,6 +183,29 @@ class DetectionTests(unittest.TestCase):
         products = expand_discovery_sources([source], state)
         check_source.assert_not_called()
         self.assertEqual(products, [cached_product])
+
+    @patch("monitors.cultura_api.search")
+    def test_cultura_api_returns_price_and_unavailable(self, search):
+        search.return_value = [
+            {
+                "sku": "13360309",
+                "ean": "4521329462424",
+                "stock_item_extra": {"front_availability": "unavailable", "offer": []},
+                "price_range": {"minimum_price": {"final_price": {"value": 19.99, "currency": "EUR"}}},
+                "mp_info": {"offers": []},
+            }
+        ]
+        product = {
+            "name": "Produit Cultura",
+            "store": "Cultura",
+            "url": "https://www.cultura.com/p-test.html",
+            "ean": "4521329462424",
+        }
+        result = cultura_result_for(product, requests.Session())
+        self.assertIsNotNone(result)
+        self.assertEqual(result.status, "unavailable")
+        self.assertEqual(result.price, 19.99)
+        self.assertEqual(result.seller, "Cultura")
 
 
 if __name__ == "__main__":

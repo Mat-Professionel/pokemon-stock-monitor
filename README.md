@@ -102,6 +102,10 @@ Après un refus HTTP ou une panne, une source de découverte attend par défaut 
 
 Important : les sites changent régulièrement leur HTML et certains bloquent les serveurs GitHub. Le programme préfère ne pas alerter lorsque le vendeur ou l'état est incertain. Consultez les logs et ajustez l'option `require_direct_seller` seulement si nécessaire.
 
+### API boutique prioritaire
+
+Le moniteur utilise un endpoint JSON/GraphQL public en priorité lorsqu'il a été vérifié comme source fiable de prix et de stock. Cultura utilise actuellement son GraphQL public pour chercher par EAN/mots-clés et lire prix, disponibilité, quantité et vendeur. Si cet endpoint change, renvoie une erreur ou ne retrouve pas la fiche exacte, le moteur revient automatiquement au navigateur/HTML. Aucun cookie privé, jeton de session ou endpoint protégé n'est enregistré.
+
 ## 6. Tester Telegram
 
 Dans GitHub, ouvrez **Actions → Surveillance Pokémon 30 ans → Run workflow**. Le workflow normal effectuera déjà un scan.
@@ -149,7 +153,7 @@ Le planning de secours GitHub est `*/30 * * * *`. Les boutiques sont vérifiées
 
 ## Surveillance locale rapide sur le Mac
 
-Les deux LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes et découvrent les nouvelles URL toutes les 15 minutes, indépendamment l'un de l'autre. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
+Les deux LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes et découvrent les nouvelles URL toutes les 15 minutes, indépendamment l'un de l'autre. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
 
 Installation :
 

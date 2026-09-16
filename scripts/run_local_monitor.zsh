@@ -16,6 +16,7 @@ fi
 
 export TELEGRAM_BOT_TOKEN="$token"
 export TELEGRAM_CHAT_ID="$chat_id"
+export DISCOVERED_PRODUCTS_FILE="$RUNTIME_DIR/discovered-products.json"
 mode="${1:---products-only}"
 if [[ "$mode" == "--discovery-only" ]]; then
   export STATE_FILE="$RUNTIME_DIR/state-discovery.json"
