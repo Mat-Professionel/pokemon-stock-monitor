@@ -1,43 +1,57 @@
 {
   "discovery": {
     "amazon-pokemon-30-discovery": {
-      "last_attempt": "2026-09-16T04:01:49+02:00",
+      "last_attempt": "2026-09-16T09:50:34+02:00",
       "last_error": "RuntimeError: HTTP 503",
       "products": []
     },
     "auchan-pokemon-30-sitemap": {
-      "last_success": "2026-09-16T03:55:24+02:00",
+      "last_attempt": "2026-09-16T09:50:28+02:00",
+      "last_success": "2026-09-16T09:50:28+02:00",
+      "products": []
+    },
+    "carrefour-etb-30-ean-search": {
+      "last_attempt": "2026-09-16T09:50:27+02:00",
+      "last_error": "RuntimeError: HTTP 403",
+      "products": []
+    },
+    "carrefour-pokemon-category": {
+      "last_attempt": "2026-09-16T09:50:27+02:00",
+      "last_error": "RuntimeError: HTTP 403",
       "products": []
     },
     "cultura-pokemon-30-discovery": {
-      "last_attempt": "2026-09-16T04:01:47+02:00",
+      "last_attempt": "2026-09-16T09:50:29+02:00",
       "last_error": "RuntimeError: HTTP 403",
       "products": []
     },
     "cultura-pokemon-30-sitemap": {
-      "last_attempt": "2026-09-16T04:01:45+02:00",
+      "last_attempt": "2026-09-16T09:50:28+02:00",
       "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.cultura.com/sitemap_products.xml",
       "products": []
     },
     "fnac-pokemon-30-discovery": {
-      "last_attempt": "2026-09-16T04:01:47+02:00",
+      "last_attempt": "2026-09-16T09:50:27+02:00",
       "last_error": "RuntimeError: HTTP 403",
       "products": []
     },
     "joueclub-pokemon-30-sitemap": {
-      "last_success": "2026-09-16T03:55:33+02:00",
+      "last_attempt": "2026-09-16T09:50:35+02:00",
+      "last_success": "2026-09-16T09:50:35+02:00",
       "products": []
     },
     "lagranderecre-pokemon-30-sitemap": {
-      "last_success": "2026-09-16T03:55:33+02:00",
+      "last_attempt": "2026-09-16T09:50:34+02:00",
+      "last_success": "2026-09-16T09:50:34+02:00",
       "products": []
     },
     "leclerc-pokemon-30-sitemap": {
-      "last_success": "2026-09-16T03:58:25+02:00",
+      "last_attempt": "2026-09-16T09:53:20+02:00",
+      "last_success": "2026-09-16T09:53:20+02:00",
       "products": []
     },
     "micromania-pokemon-30-discovery": {
-      "last_attempt": "2026-09-16T04:01:49+02:00",
+      "last_attempt": "2026-09-16T09:50:31+02:00",
       "last_error": "RuntimeError: HTTP 403",
       "products": []
     }
@@ -93,6 +107,358 @@
       "name": "Coffret Collection Poster Pokémon 30e anniversaire",
       "store": "Smyths Toys",
       "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-collection-poster-30eme-anniversaire/p/261814"
+    }
+  },
+  "route_health": {
+    "discovery:amazon-pokemon-30-discovery": {
+      "detail": "RuntimeError: HTTP 503",
+      "functional": false,
+      "id": "amazon-pokemon-30-discovery",
+      "kind": "search",
+      "last_check": "2026-09-16T09:50:34+02:00",
+      "name": "Recherche Amazon Pokémon 30e anniversaire",
+      "store": "Amazon France"
+    },
+    "discovery:auchan-pokemon-30-discovery": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "auchan-pokemon-30-discovery",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:29+02:00",
+      "name": "Recherche Auchan Pokémon 30e anniversaire",
+      "store": "Auchan"
+    },
+    "discovery:auchan-pokemon-30-sitemap": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "auchan-pokemon-30-sitemap",
+      "kind": "sitemap",
+      "last_check": "2026-09-16T09:50:28+02:00",
+      "name": "Sitemap produits Auchan Pokémon 30 ans",
+      "store": "Auchan"
+    },
+    "discovery:carrefour-etb-30-ean-search": {
+      "detail": "RuntimeError: HTTP 403",
+      "functional": false,
+      "id": "carrefour-etb-30-ean-search",
+      "kind": "search",
+      "last_check": "2026-09-16T09:50:27+02:00",
+      "name": "Recherche EAN ETB Pokémon 30e anniversaire",
+      "store": "Carrefour"
+    },
+    "discovery:carrefour-pokemon-category": {
+      "detail": "RuntimeError: HTTP 403",
+      "functional": false,
+      "id": "carrefour-pokemon-category",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:27+02:00",
+      "name": "Catégorie Carrefour cartes à collectionner Pokémon",
+      "store": "Carrefour"
+    },
+    "discovery:cdiscount-pokemon-30-discovery": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "cdiscount-pokemon-30-discovery",
+      "kind": "search",
+      "last_check": "2026-09-16T09:50:32+02:00",
+      "name": "Recherche Cdiscount Pokémon 30e anniversaire",
+      "store": "Cdiscount"
+    },
+    "discovery:cultura-pokemon-30-discovery": {
+      "detail": "RuntimeError: HTTP 403",
+      "functional": false,
+      "id": "cultura-pokemon-30-discovery",
+      "kind": "search",
+      "last_check": "2026-09-16T09:50:29+02:00",
+      "name": "Recherche Cultura Pokémon 30e anniversaire",
+      "store": "Cultura"
+    },
+    "discovery:cultura-pokemon-30-sitemap": {
+      "detail": "HTTPError: 403 Client Error: Forbidden for url: https://www.cultura.com/sitemap_products.xml",
+      "functional": false,
+      "id": "cultura-pokemon-30-sitemap",
+      "kind": "sitemap",
+      "last_check": "2026-09-16T09:50:28+02:00",
+      "name": "Sitemap produits Cultura Pokémon 30 ans",
+      "store": "Cultura"
+    },
+    "discovery:fnac-pokemon-30-discovery": {
+      "detail": "RuntimeError: HTTP 403",
+      "functional": false,
+      "id": "fnac-pokemon-30-discovery",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:27+02:00",
+      "name": "Catégorie Fnac cartes Pokémon",
+      "store": "Fnac"
+    },
+    "discovery:joueclub-pokemon-30-discovery": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "joueclub-pokemon-30-discovery",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:31+02:00",
+      "name": "Sélection JouéClub Pokémon 30 ans",
+      "store": "JouéClub"
+    },
+    "discovery:joueclub-pokemon-30-sitemap": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "joueclub-pokemon-30-sitemap",
+      "kind": "sitemap",
+      "last_check": "2026-09-16T09:50:35+02:00",
+      "name": "Sitemap produits JouéClub Pokémon 30 ans",
+      "store": "JouéClub"
+    },
+    "discovery:kingjouet-pokemon-30-discovery": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "kingjouet-pokemon-30-discovery",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:29+02:00",
+      "name": "Sélection King Jouet Pokémon 30 ans",
+      "store": "King Jouet"
+    },
+    "discovery:lagranderecre-pokemon-30-discovery": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "lagranderecre-pokemon-30-discovery",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:32+02:00",
+      "name": "Sélection La Grande Récré Pokémon",
+      "store": "La Grande Récré"
+    },
+    "discovery:lagranderecre-pokemon-30-sitemap": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "lagranderecre-pokemon-30-sitemap",
+      "kind": "sitemap",
+      "last_check": "2026-09-16T09:50:34+02:00",
+      "name": "Sitemap produits La Grande Récré Pokémon 30 ans",
+      "store": "La Grande Récré"
+    },
+    "discovery:leclerc-pokemon-30-discovery": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "leclerc-pokemon-30-discovery",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:28+02:00",
+      "name": "Recherche E.Leclerc Pokémon 30e anniversaire",
+      "store": "E.Leclerc"
+    },
+    "discovery:leclerc-pokemon-30-sitemap": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "leclerc-pokemon-30-sitemap",
+      "kind": "sitemap",
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "name": "Sitemap produits E.Leclerc Pokémon 30 ans",
+      "store": "E.Leclerc"
+    },
+    "discovery:micromania-pokemon-30-discovery": {
+      "detail": "RuntimeError: HTTP 403",
+      "functional": false,
+      "id": "micromania-pokemon-30-discovery",
+      "kind": "search",
+      "last_check": "2026-09-16T09:50:31+02:00",
+      "name": "Recherche Micromania Pokémon 30e anniversaire",
+      "store": "Micromania"
+    },
+    "discovery:smyths-etb-30-ean-search": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "smyths-etb-30-ean-search",
+      "kind": "search",
+      "last_check": "2026-09-16T09:50:27+02:00",
+      "name": "Recherche EAN ETB Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "discovery:smyths-pokemon-30-discovery": {
+      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
+      "functional": true,
+      "id": "smyths-pokemon-30-discovery",
+      "kind": "category_search",
+      "last_check": "2026-09-16T09:50:27+02:00",
+      "name": "Découverte Smyths Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "product:carrefour-etb-30": {
+      "detail": "HTTP 403",
+      "functional": false,
+      "id": "carrefour-etb-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:22+02:00",
+      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
+      "store": "Carrefour"
+    },
+    "product:joueclub-pokemon-day-30": {
+      "detail": "Données produit : indisponible",
+      "functional": true,
+      "id": "joueclub-pokemon-day-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:23+02:00",
+      "name": "Coffret Pokémon Day 2026 - 30 ans",
+      "store": "JouéClub"
+    },
+    "product:smyths-amphinobi-30": {
+      "detail": "Aucun signal d'achat fiable",
+      "functional": false,
+      "id": "smyths-amphinobi-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:22+02:00",
+      "name": "Coffret Amphinobi-ex 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "product:smyths-deck-dresseur-30": {
+      "detail": "Aucun signal d'achat fiable",
+      "functional": false,
+      "id": "smyths-deck-dresseur-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:22+02:00",
+      "name": "Deck du Dresseur Combat Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "product:smyths-etb-30": {
+      "detail": "Aucun signal d'achat fiable",
+      "functional": false,
+      "id": "smyths-etb-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:24+02:00",
+      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "product:smyths-nymphali-30": {
+      "detail": "Aucun signal d'achat fiable",
+      "functional": false,
+      "id": "smyths-nymphali-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:22+02:00",
+      "name": "Coffret Nymphali-ex Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "product:smyths-pack-2-boosters-30": {
+      "detail": "Aucun signal d'achat fiable",
+      "functional": false,
+      "id": "smyths-pack-2-boosters-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:22+02:00",
+      "name": "Pack 2 Boosters Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "product:smyths-portfolio-30": {
+      "detail": "Aucun signal d'achat fiable",
+      "functional": false,
+      "id": "smyths-portfolio-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:24+02:00",
+      "name": "Portfolio avec Boosters Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    },
+    "product:smyths-poster-30": {
+      "detail": "Aucun signal d'achat fiable",
+      "functional": false,
+      "id": "smyths-poster-30",
+      "kind": "product",
+      "last_check": "2026-09-16T09:50:24+02:00",
+      "name": "Coffret Collection Poster Pokémon 30e anniversaire",
+      "store": "Smyths Toys"
+    }
+  },
+  "store_health": {
+    "amazon france": {
+      "consecutive_errors": 1,
+      "error_since": "2026-09-16T09:53:20+02:00",
+      "fallback": "Playwright actif",
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": "RuntimeError: HTTP 503",
+      "store": "Amazon France"
+    },
+    "auchan": {
+      "alerted": false,
+      "consecutive_errors": 0,
+      "error_since": null,
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": null,
+      "store": "Auchan"
+    },
+    "carrefour": {
+      "consecutive_errors": 2,
+      "error_since": "2026-09-16T09:50:24+02:00",
+      "fallback": "Playwright actif",
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": "RuntimeError: HTTP 403",
+      "store": "Carrefour"
+    },
+    "cdiscount": {
+      "alerted": false,
+      "consecutive_errors": 0,
+      "error_since": null,
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": null,
+      "store": "Cdiscount"
+    },
+    "cultura": {
+      "consecutive_errors": 1,
+      "error_since": "2026-09-16T09:53:20+02:00",
+      "fallback": "Playwright actif",
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.cultura.com/sitemap_products.xml",
+      "store": "Cultura"
+    },
+    "e.leclerc": {
+      "alerted": false,
+      "consecutive_errors": 0,
+      "error_since": null,
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": null,
+      "store": "E.Leclerc"
+    },
+    "fnac": {
+      "consecutive_errors": 1,
+      "error_since": "2026-09-16T09:53:20+02:00",
+      "fallback": "Playwright actif",
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": "RuntimeError: HTTP 403",
+      "store": "Fnac"
+    },
+    "jouéclub": {
+      "alerted": false,
+      "consecutive_errors": 0,
+      "error_since": null,
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": null,
+      "store": "JouéClub"
+    },
+    "king jouet": {
+      "alerted": false,
+      "consecutive_errors": 0,
+      "error_since": null,
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": null,
+      "store": "King Jouet"
+    },
+    "la grande récré": {
+      "alerted": false,
+      "consecutive_errors": 0,
+      "error_since": null,
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": null,
+      "store": "La Grande Récré"
+    },
+    "micromania": {
+      "consecutive_errors": 1,
+      "error_since": "2026-09-16T09:53:20+02:00",
+      "fallback": "Playwright actif",
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": "RuntimeError: HTTP 403",
+      "store": "Micromania"
+    },
+    "smyths toys": {
+      "alerted": false,
+      "consecutive_errors": 0,
+      "error_since": null,
+      "last_check": "2026-09-16T09:53:20+02:00",
+      "last_error": null,
+      "store": "Smyths Toys"
     }
   },
   "version": 1
