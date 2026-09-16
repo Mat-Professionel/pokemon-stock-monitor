@@ -18,6 +18,8 @@ HEALTH_STATE_FILES = [
 ]
 RECORD_HEALTH = os.getenv("RECORD_HEALTH", "false").lower() in {"1", "true", "yes"}
 HEALTH_STALE_AFTER_SECONDS = int(os.getenv("HEALTH_STALE_AFTER_SECONDS", "180"))
+PRODUCT_ROUTE_STALE_SECONDS = int(os.getenv("PRODUCT_ROUTE_STALE_SECONDS", "180"))
+DISCOVERY_ROUTE_STALE_SECONDS = int(os.getenv("DISCOVERY_ROUTE_STALE_SECONDS", "1800"))
 AUTO_RESTART_STALE = os.getenv("AUTO_RESTART_STALE", "false").lower() in {"1", "true", "yes"}
 
 TIMEZONE = "Europe/Paris"

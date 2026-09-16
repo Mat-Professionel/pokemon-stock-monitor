@@ -73,7 +73,8 @@ class DetectionTests(unittest.TestCase):
         self.assertFalse(states["fnac"]["alerted"])
 
     @patch("monitor.send_telegram_message", return_value=True)
-    def test_health_report_flags_a_stale_scan(self, send):
+    @patch("monitor.test_telegram_connection", return_value=True)
+    def test_health_report_flags_a_stale_scan(self, telegram_test, send):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             products = root / "products.json"
@@ -92,6 +93,38 @@ class DetectionTests(unittest.TestCase):
             send.call_args.kwargs["reply_markup"]["inline_keyboard"][0][0]["callback_data"],
             "restart_all",
         )
+
+    @patch("monitor.send_telegram_message", return_value=True)
+    @patch("monitor.test_telegram_connection", return_value=True)
+    def test_confidence_report_counts_recent_functional_routes(self, telegram_test, send):
+        now = datetime.now(ZoneInfo("Europe/Paris")).isoformat()
+        configured = [
+            {"id": "p1", "name": "Produit", "store": "Boutique A", "url": "https://a.test/p", "type": "product"},
+            {"id": "s1", "name": "Recherche", "store": "Boutique A", "url": "https://a.test/s", "type": "search"},
+            {"id": "s2", "name": "Recherche", "store": "Boutique B", "url": "https://b.test/s", "type": "search"},
+        ]
+        routes = {
+            "product:p1": {"functional": True, "last_check": now},
+            "discovery:s1": {"functional": False, "last_check": now},
+            "discovery:s2": {"functional": False, "last_check": now},
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            products = root / "products.json"
+            state = root / "state.json"
+            products.write_text(json.dumps(configured), encoding="utf-8")
+            state.write_text(json.dumps({"last_scan": now, "route_health": routes}), encoding="utf-8")
+            with (
+                patch("monitor.config.PRODUCTS_FILE", products),
+                patch("monitor.config.DISCOVERED_PRODUCTS_FILE", None),
+                patch("monitor.config.HEALTH_STATE_FILES", [state]),
+            ):
+                self.assertTrue(send_health_report())
+        message = send.call_args.args[0]
+        self.assertIn("Boutiques vérifiables : 1/2", message)
+        self.assertIn("Voies fonctionnelles : 1/3 (33 %)", message)
+        self.assertIn("Boutiques aveugles : Boutique B", message)
+        self.assertIn("Dernier test d'alerte : ✅", message)
 
     @patch("monitor.send_telegram_alert", return_value=True)
     def test_alert_once_then_rearm_after_out_of_stock(self, send):

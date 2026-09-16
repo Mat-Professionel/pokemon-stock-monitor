@@ -80,6 +80,12 @@ def product_key(product: dict[str, Any]) -> str:
     return hashlib.sha256(raw.encode()).hexdigest()[:20]
 
 
+def route_key(item: dict[str, Any]) -> str:
+    kind = "product" if item.get("type", "product") == "product" else "discovery"
+    identifier = str(item.get("id") or product_key(item))
+    return f"{kind}:{identifier}"
+
+
 def validate_product(product: Any, index: int) -> str | None:
     if not isinstance(product, dict):
         return f"Entrée {index}: doit être un objet JSON"
@@ -149,6 +155,7 @@ def expand_discovery_sources(
 
     discovered: list[dict[str, Any]] = []
     outcomes: dict[str, list[str | None]] = {}
+    route_states = state.setdefault("route_health", {})
     due: list[dict[str, Any]] = []
     for source in sources:
         cached = _cached_discovery(source, state, test_mode)
@@ -166,6 +173,12 @@ def expand_discovery_sources(
                 _, products = future.result()
             except Exception as exc:
                 logging.warning("[%s] découverte en erreur: %s", source["store"].upper(), exc)
+                update_route_health(
+                    source,
+                    False,
+                    f"{type(exc).__name__}: {exc}"[:300],
+                    route_states,
+                )
                 outcomes.setdefault(str(source["store"]), []).append(f"{type(exc).__name__}: {exc}"[:300])
                 if not test_mode:
                     cache_key = str(source.get("id", source["url"]))
@@ -176,8 +189,17 @@ def expand_discovery_sources(
                         "last_error": f"{type(exc).__name__}: {exc}"[:300],
                         "products": previous.get("products", []),
                     }
+                    # Rend la mesure de confiance visible sans attendre que les
+                    # autres boutiques (ou un gros sitemap) aient terminé.
+                    save_json_atomic(config.STATE_FILE, state)
                 continue
             logging.info("[%s] découverte → %d fiche(s) correspondante(s)", source["store"].upper(), len(products))
+            update_route_health(
+                source,
+                True,
+                f"Page analysée, {len(products)} fiche(s) correspondante(s)",
+                route_states,
+            )
             outcomes.setdefault(str(source["store"]), []).append(None)
             discovered.extend(products)
             if source.get("discovery_interval_minutes") and not test_mode:
@@ -189,6 +211,8 @@ def expand_discovery_sources(
                 }
             elif not test_mode:
                 state.setdefault("discovery", {}).pop(str(source.get("id", source["url"])), None)
+            if not test_mode:
+                save_json_atomic(config.STATE_FILE, state)
 
     store_states = state.setdefault("store_health", {})
     for store, values in outcomes.items():
@@ -248,6 +272,22 @@ def send_telegram_message(message: str, reply_markup: dict[str, Any] | None = No
         return False
     except (ValueError, RuntimeError) as exc:
         logging.error("Réponse Telegram invalide: %s", exc)
+        return False
+
+
+def test_telegram_connection() -> bool:
+    """Vérifie silencieusement le token et l'accès au chat du rapport."""
+    if not config.TELEGRAM_BOT_TOKEN or not config.TELEGRAM_CHAT_ID:
+        return False
+    try:
+        response = requests.post(
+            f"https://api.telegram.org/bot{config.TELEGRAM_BOT_TOKEN}/getChat",
+            json={"chat_id": config.TELEGRAM_CHAT_ID},
+            timeout=config.REQUEST_TIMEOUT_SECONDS,
+        )
+        payload = response.json()
+        return response.ok and payload.get("ok") is True
+    except (requests.RequestException, ValueError):
         return False
 
 
@@ -329,6 +369,23 @@ def update_store_health(
     store_states[key] = current
 
 
+def update_route_health(
+    item: dict[str, Any],
+    functional: bool,
+    detail: str,
+    route_states: dict[str, Any],
+) -> None:
+    route_states[route_key(item)] = {
+        "id": str(item.get("id") or product_key(item)),
+        "store": str(item.get("store", "Boutique")),
+        "name": str(item.get("name", "Voie sans nom")),
+        "kind": str(item.get("type", "product")),
+        "functional": bool(functional),
+        "detail": detail[:300],
+        "last_check": now_iso(),
+    }
+
+
 def send_health_report() -> bool:
     products = load_json(config.PRODUCTS_FILE, [])
     enabled = [item for item in products if isinstance(item, dict) and item.get("enabled", True)]
@@ -339,6 +396,7 @@ def send_health_report() -> bool:
 
     latest_scan: str | None = None
     errors: dict[str, dict[str, Any]] = {}
+    route_states: dict[str, dict[str, Any]] = {}
     for path in config.HEALTH_STATE_FILES:
         state = load_json(path, {})
         scan = state.get("last_scan") if isinstance(state, dict) else None
@@ -349,6 +407,12 @@ def send_health_report() -> bool:
                 existing = errors.get(key)
                 if not existing or int(value.get("consecutive_errors", 0)) > int(existing.get("consecutive_errors", 0)):
                     errors[key] = value
+        for key, value in (state.get("route_health", {}) if isinstance(state, dict) else {}).items():
+            if not isinstance(value, dict):
+                continue
+            existing = route_states.get(key)
+            if not existing or str(value.get("last_check", "")) > str(existing.get("last_check", "")):
+                route_states[key] = value
 
     last_scan = "aucun scan enregistré"
     scan_is_fresh = False
@@ -373,11 +437,37 @@ def send_health_report() -> bool:
     category_sources = [
         item for item in ean_sources if item.get("type") in ("category_search", "sitemap")
     ]
+    functional_routes = 0
+    verifiable_stores: set[str] = set()
+    for item in enabled:
+        route = route_states.get(route_key(item), {})
+        try:
+            checked_at = datetime.fromisoformat(str(route["last_check"])).astimezone(ZoneInfo(config.TIMEZONE))
+            max_age = (
+                config.PRODUCT_ROUTE_STALE_SECONDS
+                if item.get("type", "product") == "product"
+                else config.DISCOVERY_ROUTE_STALE_SECONDS
+            )
+            is_functional = bool(route.get("functional")) and (paris_now() - checked_at).total_seconds() <= max_age
+        except (KeyError, TypeError, ValueError):
+            is_functional = False
+        if is_functional:
+            functional_routes += 1
+            verifiable_stores.add(str(item.get("store", "")).strip())
+    blind_stores = [store for store in sites if store not in verifiable_stores]
+    confidence_percent = round(100 * functional_routes / len(enabled)) if enabled else 0
+    telegram_healthy = test_telegram_connection()
     restart_requested = False
     if not scan_is_fresh and config.AUTO_RESTART_STALE:
         restart_requested = restart_local_services()
     lines = [
         "<b>✅ Pokémon Monitor opérationnel</b>" if scan_is_fresh else "<b>🔴 Pokémon Monitor en retard</b>",
+        "",
+        f"Bot vivant : {'✅' if scan_is_fresh else '❌'}",
+        f"Boutiques vérifiables : {len(verifiable_stores)}/{len(sites)}",
+        f"Voies fonctionnelles : {functional_routes}/{len(enabled)} ({confidence_percent} %)",
+        f"Boutiques aveugles : {html.escape(', '.join(blind_stores) if blind_stores else 'aucune')}",
+        f"Dernier test d'alerte : {'✅' if telegram_healthy else '❌'}",
         "",
         f"🏪 Sites surveillés : {len(sites)}",
         f"📦 Produits : {len(configured_products) + len(discovered)}",
@@ -477,6 +567,7 @@ def check_products_batch(
     products: list[dict[str, Any]],
     product_states: dict[str, Any],
     store_states: dict[str, Any],
+    route_states: dict[str, Any],
     test_mode: bool,
 ) -> None:
     if not products:
@@ -490,11 +581,19 @@ def check_products_batch(
                 _, result = future.result()
             except Exception as exc:
                 logging.exception("[%s] %s → échec isolé: %s", product["store"], product["name"], exc)
+                update_route_health(product, False, f"{type(exc).__name__}: {exc}", route_states)
                 outcomes.setdefault(str(product["store"]), []).append(
                     f"{type(exc).__name__}: {exc}"[:300]
                 )
                 continue
             log_result(product, result)
+            functional = not result.get("error") and result.get("status") in ("available", "unavailable")
+            update_route_health(
+                product,
+                functional,
+                str(result.get("reason") or result.get("error") or result.get("status", "inconnu")),
+                route_states,
+            )
             outcomes.setdefault(str(product["store"]), []).append(result.get("error"))
             key = product_key(product)
             product_states[key] = updated_state_and_alert(
@@ -528,6 +627,7 @@ def run(test_mode: bool = False, products_only: bool = False, discovery_only: bo
     old_state = json.dumps(state, sort_keys=True)
     product_states = state.setdefault("products", {})
     store_states = state.setdefault("store_health", {})
+    route_states = state.setdefault("route_health", {})
 
     # Priorité au stock des fiches connues : une exploration de gros sitemaps
     # ne doit jamais retarder le contrôle des boutons « Ajouter au panier ».
@@ -541,14 +641,14 @@ def run(test_mode: bool = False, products_only: bool = False, discovery_only: bo
                     by_url.setdefault(product["url"], product)
             direct = list(by_url.values())
     if not discovery_only:
-        check_products_batch(direct, product_states, store_states, test_mode)
+        check_products_batch(direct, product_states, store_states, route_states, test_mode)
 
     discovered: list[dict[str, Any]] = []
     if not products_only:
         expanded = expand_discovery_sources(active, state, test_mode)
         direct_urls = {product["url"] for product in direct}
         discovered = [product for product in expanded if product["url"] not in direct_urls]
-        check_products_batch(discovered, product_states, store_states, test_mode)
+        check_products_batch(discovered, product_states, store_states, route_states, test_mode)
         if config.DISCOVERED_PRODUCTS_FILE and not test_mode:
             save_json_atomic(config.DISCOVERED_PRODUCTS_FILE, discovered)
 

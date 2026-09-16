@@ -173,6 +173,16 @@ Le workflow GitHub reste un secours toutes les 30 minutes lorsque le Mac est ét
 
 Le rapport Telegram envoyé toutes les 10 minutes indique le nombre de sites et de produits surveillés, l'heure et l'âge du dernier scan, la couverture URL/EAN/catégorie de l'ETB et les erreurs encore actives. Si le dernier scan rapide date de plus de trois minutes, le rapport devient rouge et signale que le moniteur est en retard. Si tous les contrôles d'une boutique échouent cinq fois de suite, une alerte technique est envoyée avec l'erreur observée et le fallback utilisé. L'alerte n'est pas répétée à chaque scan. Un second message confirme automatiquement le rétablissement de la boutique.
 
+Le bloc de confiance repose sur chaque voie configurée (URL produit, recherche, catégorie, sitemap ou API). Une fiche produit ne compte comme fonctionnelle que si elle renvoie un état certain `available` ou `unavailable` ; `unknown`, une erreur HTTP ou un résultat trop ancien ne compte pas. Une boutique est vérifiable lorsqu'au moins une de ses voies est fonctionnelle et récente. Les voies produit expirent après 3 minutes et les voies de découverte après 30 minutes. Le test d'alerte interroge silencieusement Telegram `getChat` avec le bot et le chat configurés avant l'envoi du rapport.
+
+```text
+Bot vivant : ✅
+Boutiques vérifiables : 9/13
+Voies fonctionnelles : 18/24 (75 %)
+Boutiques aveugles : Carrefour, Fnac
+Dernier test d'alerte : ✅
+```
+
 Le compteur est remis à zéro dès qu'au moins une vérification de la boutique réussit. Une simple rupture de stock n'est jamais considérée comme une panne du moniteur.
 
 Lorsqu'un rapport est rouge, le moniteur tente d'abord de relancer automatiquement le scan produits et la découverte. Le même message affiche aussi un bouton **🔄 Tout relancer**. Un petit contrôleur local lit uniquement les clics de ce bouton toutes les 15 secondes et n'accepte la commande que depuis le `TELEGRAM_CHAT_ID` configuré. Il ne permet d'exécuter aucune commande libre. Le bouton ne peut fonctionner que si le Mac est allumé, connecté à Internet et que la session utilisateur est ouverte.
