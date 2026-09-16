@@ -4,6 +4,7 @@ from unittest.mock import patch
 import requests
 
 from monitor import product_key, updated_state_and_alert
+from monitors.discovery import discover_from_html
 from monitors.generic import GenericMonitor, parse_price
 
 
@@ -66,6 +67,42 @@ class DetectionTests(unittest.TestCase):
         result = {"status": "available", "price": 59.0, "seller": "Vendeur tiers", "direct_seller": False}
         updated_state_and_alert(product, result, {}, dry_run=False)
         self.assertEqual(send.call_count, 0)
+
+    def test_discovery_finds_matching_product_link(self):
+        source = {
+            "id": "search-test",
+            "name": "Recherche",
+            "store": "Test",
+            "url": "https://shop.test/search?q=pokemon",
+            "keywords": ["Pokémon 30e anniversaire"],
+            "eans": ["0196214144835"],
+            "link_patterns": ["/product/"],
+            "max_price": 65,
+        }
+        page = """
+        <body>
+        <div class="card"><a href="/product/etb-30">ETB Pokémon 30e anniversaire</a></div>
+        <div class="card"><a href="/product/random">Booster ordinaire</a></div>
+        </body>
+        """
+        products = discover_from_html(source, page)
+        self.assertEqual(len(products), 1)
+        self.assertEqual(products[0]["url"], "https://shop.test/product/etb-30")
+        self.assertEqual(products[0]["max_price"], 65)
+
+    def test_discovery_matches_ean_in_card_context(self):
+        source = {
+            "id": "ean-test",
+            "name": "Recherche",
+            "store": "Test",
+            "url": "https://shop.test/search",
+            "keywords": [],
+            "eans": ["0196214144835"],
+            "link_patterns": ["/p/"],
+        }
+        page = '<article><span>EAN 0196214144835</span><a href="/p/etb">Voir la fiche</a></article>'
+        products = discover_from_html(source, page)
+        self.assertEqual(len(products), 1)
 
 
 if __name__ == "__main__":

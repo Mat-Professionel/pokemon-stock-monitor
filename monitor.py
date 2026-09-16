@@ -24,6 +24,7 @@ from urllib3.util.retry import Retry
 
 import config
 from monitors import monitor_for
+from monitors.discovery import discover_products
 
 
 def paris_now() -> datetime:
@@ -104,6 +105,39 @@ def check_product(product: dict[str, Any]) -> tuple[dict[str, Any], dict[str, An
         return product, result.to_dict()
     finally:
         session.close()
+
+
+def check_discovery_source(source: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    session = make_session()
+    try:
+        return source, discover_products(source, session)
+    finally:
+        session.close()
+
+
+def expand_discovery_sources(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    direct = [item for item in entries if item.get("type", "product") == "product"]
+    sources = [item for item in entries if item.get("type") in ("search", "category_search", "discovery")]
+    if not sources:
+        return direct
+
+    discovered: list[dict[str, Any]] = []
+    with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(sources))) as executor:
+        futures = {executor.submit(check_discovery_source, source): source for source in sources}
+        for future in as_completed(futures):
+            source = futures[future]
+            try:
+                _, products = future.result()
+            except Exception as exc:
+                logging.warning("[%s] découverte en erreur: %s", source["store"].upper(), exc)
+                continue
+            logging.info("[%s] découverte → %d fiche(s) correspondante(s)", source["store"].upper(), len(products))
+            discovered.extend(products)
+
+    unique: dict[str, dict[str, Any]] = {}
+    for product in [*direct, *discovered]:
+        unique[product["url"]] = product
+    return list(unique.values())
 
 
 def money(price: float | None) -> str:
@@ -259,6 +293,7 @@ def run(test_mode: bool = False) -> int:
         else:
             active.append(product)
 
+    active = expand_discovery_sources(active)
     if not active:
         logging.warning("Aucun produit actif avec une URL réelle dans products.json")
         return 0

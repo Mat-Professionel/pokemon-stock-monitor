@@ -71,6 +71,27 @@ Options disponibles dans chaque bloc :
 - `engine`: utilisez `"requests"` par défaut. Essayez `"playwright"` si la fiche reste en état inconnu parce que son contenu est chargé en JavaScript ;
 - `enabled`: `false` désactive temporairement l'entrée.
 
+### Surveiller une recherche ou une catégorie
+
+Une entrée avec `"type": "search"` ou `"type": "category_search"` ne déclenche pas directement une alerte. Elle découvre d'abord les liens des fiches qui contiennent un EAN ou un des mots-clés configurés, puis analyse chaque fiche trouvée comme un produit normal.
+
+```json
+{
+  "id": "boutique-pokemon-30-discovery",
+  "name": "Recherche Pokémon 30e anniversaire",
+  "store": "Nom de la boutique",
+  "url": "https://boutique.example/recherche?q=pokemon",
+  "eans": ["0196214144835"],
+  "keywords": ["Pokémon 30e anniversaire", "ETB Pokémon 30 ans"],
+  "link_patterns": ["/produit/"],
+  "max_price": 65,
+  "type": "search",
+  "enabled": true
+}
+```
+
+Le système limite par défaut la découverte à 12 fiches par source. `link_patterns` est facultatif, mais permet d'écarter les liens de menus, articles et publicités.
+
 Important : les sites changent régulièrement leur HTML et certains bloquent les serveurs GitHub. Le programme préfère ne pas alerter lorsque le vendeur ou l'état est incertain. Consultez les logs et ajustez l'option `require_direct_seller` seulement si nécessaire.
 
 ## 6. Tester Telegram
@@ -148,4 +169,3 @@ python monitor.py --test
 python monitor.py --once
 python -m unittest discover -v
 ```
-
