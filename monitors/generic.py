@@ -88,6 +88,8 @@ class GenericMonitor:
         try:
             if self.engine == "playwright":
                 html, status_code = self._fetch_playwright(product["url"])
+                if status_code in (403, 429) or status_code >= 500:
+                    return Result(reason=f"HTTP {status_code}", http_status=status_code, error=f"HTTP {status_code}")
             else:
                 response = self.session.get(
                     product["url"],

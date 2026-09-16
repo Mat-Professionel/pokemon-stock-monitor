@@ -153,7 +153,7 @@ Le planning de secours GitHub est `*/30 * * * *`. Les boutiques sont vérifiées
 
 ## Surveillance locale rapide sur le Mac
 
-Les deux LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes et découvrent les nouvelles URL toutes les 15 minutes, indépendamment l'un de l'autre. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
+Les trois LaunchAgents fournis dans `launchd/` contrôlent les fiches connues toutes les 60 secondes, découvrent les nouvelles URL toutes les 15 minutes et envoient un rapport de santé chaque jour à 7 h. Un registre atomique partagé transmet immédiatement les nouvelles fiches au contrôle rapide suivant. Ils fonctionnent tant que la session macOS est ouverte et que le Mac ne dort pas. Leur copie d'exécution et leurs états sont isolés dans `~/Library/Application Support/PokemonStockMonitor/`, leurs secrets sont lus depuis le Trousseau macOS et leurs logs sont enregistrés dans `~/Library/Logs/PokemonStockMonitor/`.
 
 Installation :
 
@@ -168,6 +168,18 @@ Arrêt et désinstallation réversible :
 ```
 
 Le workflow GitHub reste un secours toutes les 30 minutes lorsque le Mac est éteint. Une alerte locale et une alerte GitHub peuvent exceptionnellement être envoyées pour le même retour en stock, car leurs états anti-spam sont séparés.
+
+### Surveillance du moniteur
+
+Le rapport Telegram de 7 h indique le nombre de sites et de produits surveillés, l'heure du dernier scan et les erreurs encore actives. Si tous les contrôles d'une boutique échouent cinq fois de suite, une alerte technique est envoyée avec l'erreur observée et le fallback utilisé. L'alerte n'est pas répétée à chaque scan. Un second message confirme automatiquement le rétablissement de la boutique.
+
+Le compteur est remis à zéro dès qu'au moins une vérification de la boutique réussit. Une simple rupture de stock n'est jamais considérée comme une panne du moniteur.
+
+Pour envoyer le rapport immédiatement sans attendre 7 h :
+
+```bash
+"$HOME/Library/Application Support/PokemonStockMonitor/run_local_monitor.zsh" --health-report
+```
 
 ## Comment fonctionne l'anti-spam ?
 

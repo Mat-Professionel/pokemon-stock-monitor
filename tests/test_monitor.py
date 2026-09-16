@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-from monitor import expand_discovery_sources, product_key, updated_state_and_alert
+from monitor import expand_discovery_sources, product_key, update_store_health, updated_state_and_alert
 from monitors.discovery import discover_from_html, discover_from_sitemap
 from monitors.generic import GenericMonitor, parse_price
 from monitors.cultura_api import result_for as cultura_result_for
@@ -45,6 +45,23 @@ class DetectionTests(unittest.TestCase):
 
     def test_key_is_stable(self):
         self.assertEqual(product_key(self.product), product_key(dict(self.product)))
+
+    @patch("monitor.send_telegram_message", return_value=True)
+    def test_store_health_alerts_on_fifth_failure_then_recovers(self, send):
+        states = {}
+        for _ in range(4):
+            update_store_health("Fnac", "HTTP 403", states, dry_run=False, fallback="Playwright actif")
+        send.assert_not_called()
+
+        update_store_health("Fnac", "HTTP 403", states, dry_run=False, fallback="Playwright actif")
+        self.assertEqual(send.call_count, 1)
+        self.assertTrue(states["fnac"]["alerted"])
+        self.assertEqual(states["fnac"]["consecutive_errors"], 5)
+
+        update_store_health("Fnac", None, states, dry_run=False)
+        self.assertEqual(send.call_count, 2)
+        self.assertEqual(states["fnac"]["consecutive_errors"], 0)
+        self.assertFalse(states["fnac"]["alerted"])
 
     @patch("monitor.send_telegram_alert", return_value=True)
     def test_alert_once_then_rearm_after_out_of_stock(self, send):

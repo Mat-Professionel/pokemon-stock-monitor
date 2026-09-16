@@ -147,6 +147,7 @@ def expand_discovery_sources(
         return direct
 
     discovered: list[dict[str, Any]] = []
+    outcomes: dict[str, list[str | None]] = {}
     due: list[dict[str, Any]] = []
     for source in sources:
         cached = _cached_discovery(source, state, test_mode)
@@ -164,6 +165,7 @@ def expand_discovery_sources(
                 _, products = future.result()
             except Exception as exc:
                 logging.warning("[%s] découverte en erreur: %s", source["store"].upper(), exc)
+                outcomes.setdefault(str(source["store"]), []).append(f"{type(exc).__name__}: {exc}"[:300])
                 if not test_mode:
                     cache_key = str(source.get("id", source["url"]))
                     previous = state.setdefault("discovery", {}).get(cache_key, {})
@@ -175,6 +177,7 @@ def expand_discovery_sources(
                     }
                 continue
             logging.info("[%s] découverte → %d fiche(s) correspondante(s)", source["store"].upper(), len(products))
+            outcomes.setdefault(str(source["store"]), []).append(None)
             discovered.extend(products)
             if source.get("discovery_interval_minutes") and not test_mode:
                 cache_key = str(source.get("id", source["url"]))
@@ -185,6 +188,15 @@ def expand_discovery_sources(
                 }
             elif not test_mode:
                 state.setdefault("discovery", {}).pop(str(source.get("id", source["url"])), None)
+
+    store_states = state.setdefault("store_health", {})
+    for store, values in outcomes.items():
+        failures = [value for value in values if value]
+        error = failures[0] if failures and len(failures) == len(values) else None
+        fallback = "Playwright actif" if any(
+            source.get("engine") == "playwright" and str(source.get("store")) == store for source in due
+        ) else "Fallback HTML disponible"
+        update_store_health(store, error, store_states, test_mode, fallback)
 
     unique: dict[str, dict[str, Any]] = {}
     for product in [*direct, *discovered]:
@@ -261,6 +273,102 @@ def send_telegram_alert(product: dict[str, Any], result: dict[str, Any], expensi
     return send_telegram_message("\n".join(lines))
 
 
+def update_store_health(
+    store: str,
+    error: str | None,
+    store_states: dict[str, Any],
+    dry_run: bool,
+    fallback: str = "HTML/Playwright disponible",
+) -> None:
+    key = store.strip().lower()
+    previous = store_states.get(key, {})
+    current = dict(previous)
+    current.update({"store": store, "last_check": now_iso()})
+    if error:
+        failures = int(previous.get("consecutive_errors", 0)) + 1
+        current.update(
+            {
+                "consecutive_errors": failures,
+                "last_error": error[:300],
+                "error_since": previous.get("error_since") or now_iso(),
+                "fallback": fallback,
+            }
+        )
+        if failures >= 5 and not previous.get("alerted") and not dry_run:
+            message = "\n".join(
+                [
+                    f"<b>⚠️ {html.escape(store.upper())} monitor en erreur</b>",
+                    "",
+                    f"Échecs consécutifs : {failures}",
+                    f"Depuis : {html.escape(str(current['error_since']))}",
+                    f"Erreur : {html.escape(error[:300])}",
+                    f"Fallback : {html.escape(fallback)}",
+                ]
+            )
+            if send_telegram_message(message):
+                current["alerted"] = True
+                current["last_alert"] = now_iso()
+    else:
+        if previous.get("alerted") and not dry_run:
+            send_telegram_message(
+                f"<b>✅ {html.escape(store.upper())} monitor rétabli</b>\n\n"
+                f"Les vérifications répondent de nouveau normalement."
+            )
+        current.update(
+            {
+                "consecutive_errors": 0,
+                "last_error": None,
+                "error_since": None,
+                "alerted": False,
+            }
+        )
+    store_states[key] = current
+
+
+def send_health_report() -> bool:
+    products = load_json(config.PRODUCTS_FILE, [])
+    enabled = [item for item in products if isinstance(item, dict) and item.get("enabled", True)]
+    sites = sorted({str(item.get("store", "")).strip() for item in enabled if item.get("store")})
+    configured_products = [item for item in enabled if item.get("type", "product") == "product"]
+    discovered = load_json(config.DISCOVERED_PRODUCTS_FILE, []) if config.DISCOVERED_PRODUCTS_FILE else []
+    discovered = discovered if isinstance(discovered, list) else []
+
+    latest_scan: str | None = None
+    errors: dict[str, dict[str, Any]] = {}
+    for path in config.HEALTH_STATE_FILES:
+        state = load_json(path, {})
+        scan = state.get("last_scan") if isinstance(state, dict) else None
+        if scan and (latest_scan is None or str(scan) > latest_scan):
+            latest_scan = str(scan)
+        for key, value in (state.get("store_health", {}) if isinstance(state, dict) else {}).items():
+            if isinstance(value, dict) and int(value.get("consecutive_errors", 0)) > 0:
+                existing = errors.get(key)
+                if not existing or int(value.get("consecutive_errors", 0)) > int(existing.get("consecutive_errors", 0)):
+                    errors[key] = value
+
+    last_scan = "aucun scan enregistré"
+    if latest_scan:
+        try:
+            last_scan = datetime.fromisoformat(latest_scan).astimezone(ZoneInfo(config.TIMEZONE)).strftime("%d/%m/%Y %H:%M:%S")
+        except ValueError:
+            last_scan = latest_scan
+    lines = [
+        "<b>✅ Pokémon Monitor opérationnel</b>",
+        "",
+        f"🏪 Sites surveillés : {len(sites)}",
+        f"📦 Produits : {len(configured_products) + len(discovered)}",
+        f"🕒 Dernier scan : {html.escape(last_scan)}",
+        f"⚠️ Erreurs actives : {len(errors)}",
+    ]
+    for value in sorted(errors.values(), key=lambda item: str(item.get("store", "")))[:8]:
+        lines.append(
+            f"• {html.escape(str(value.get('store', 'Site')))} : "
+            f"{int(value.get('consecutive_errors', 0))} échec(s) — "
+            f"{html.escape(str(value.get('last_error') or 'erreur inconnue'))}"
+        )
+    return send_telegram_message("\n".join(lines))
+
+
 def log_result(product: dict[str, Any], result: dict[str, Any]) -> None:
     tag = str(product["store"]).upper()
     name = product["name"]
@@ -330,10 +438,14 @@ def updated_state_and_alert(
 
 
 def check_products_batch(
-    products: list[dict[str, Any]], product_states: dict[str, Any], test_mode: bool
+    products: list[dict[str, Any]],
+    product_states: dict[str, Any],
+    store_states: dict[str, Any],
+    test_mode: bool,
 ) -> None:
     if not products:
         return
+    outcomes: dict[str, list[str | None]] = {}
     with ThreadPoolExecutor(max_workers=min(config.MAX_WORKERS, len(products))) as executor:
         futures = {executor.submit(check_product, product): product for product in products}
         for future in as_completed(futures):
@@ -342,12 +454,20 @@ def check_products_batch(
                 _, result = future.result()
             except Exception as exc:
                 logging.exception("[%s] %s → échec isolé: %s", product["store"], product["name"], exc)
+                outcomes.setdefault(str(product["store"]), []).append(
+                    f"{type(exc).__name__}: {exc}"[:300]
+                )
                 continue
             log_result(product, result)
+            outcomes.setdefault(str(product["store"]), []).append(result.get("error"))
             key = product_key(product)
             product_states[key] = updated_state_and_alert(
                 product, result, product_states.get(key, {}), test_mode
             )
+    for store, values in outcomes.items():
+        failures = [value for value in values if value]
+        error = failures[0] if failures and len(failures) == len(values) else None
+        update_store_health(store, error, store_states, test_mode, "Fallback HTML/Playwright actif")
 
 
 def run(test_mode: bool = False, products_only: bool = False, discovery_only: bool = False) -> int:
@@ -371,6 +491,7 @@ def run(test_mode: bool = False, products_only: bool = False, discovery_only: bo
     state = load_json(config.STATE_FILE, {"version": 1, "products": {}})
     old_state = json.dumps(state, sort_keys=True)
     product_states = state.setdefault("products", {})
+    store_states = state.setdefault("store_health", {})
 
     # Priorité au stock des fiches connues : une exploration de gros sitemaps
     # ne doit jamais retarder le contrôle des boutons « Ajouter au panier ».
@@ -384,16 +505,19 @@ def run(test_mode: bool = False, products_only: bool = False, discovery_only: bo
                     by_url.setdefault(product["url"], product)
             direct = list(by_url.values())
     if not discovery_only:
-        check_products_batch(direct, product_states, test_mode)
+        check_products_batch(direct, product_states, store_states, test_mode)
 
     discovered: list[dict[str, Any]] = []
     if not products_only:
         expanded = expand_discovery_sources(active, state, test_mode)
         direct_urls = {product["url"] for product in direct}
         discovered = [product for product in expanded if product["url"] not in direct_urls]
-        check_products_batch(discovered, product_states, test_mode)
+        check_products_batch(discovered, product_states, store_states, test_mode)
         if config.DISCOVERED_PRODUCTS_FILE and not test_mode:
             save_json_atomic(config.DISCOVERED_PRODUCTS_FILE, discovered)
+
+    if config.RECORD_HEALTH and not test_mode:
+        state["last_scan"] = now_iso()
 
     checked_count = (0 if discovery_only else len(direct)) + len(discovered)
     if checked_count == 0:
@@ -404,10 +528,10 @@ def run(test_mode: bool = False, products_only: bool = False, discovery_only: bo
 
     if test_mode:
         logging.info("Mode test: aucune alerte envoyée, state.json non modifié")
-    elif json.dumps(state, sort_keys=True) != old_state:
+    if not test_mode and json.dumps(state, sort_keys=True) != old_state:
         save_json_atomic(config.STATE_FILE, state)
         logging.info("state.json mis à jour")
-    else:
+    elif not test_mode:
         logging.info("Aucun changement d'état")
     return 0
 
@@ -420,10 +544,13 @@ def main() -> int:
     modes.add_argument("--test-telegram", action="store_true", help="teste uniquement Telegram")
     modes.add_argument("--products-only", action="store_true", help="contrôle uniquement les fiches connues")
     modes.add_argument("--discovery-only", action="store_true", help="cherche et contrôle uniquement les nouvelles fiches")
+    modes.add_argument("--health-report", action="store_true", help="envoie le rapport de santé quotidien")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     if args.test_telegram:
         return 0 if send_telegram_message("✅ Bot Pokémon opérationnel.") else 1
+    if args.health_report:
+        return 0 if send_health_report() else 1
     return run(
         test_mode=args.test,
         products_only=args.products_only,

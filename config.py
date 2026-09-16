@@ -11,6 +11,12 @@ PRODUCTS_FILE = BASE_DIR / "products.json"
 STATE_FILE = Path(os.getenv("STATE_FILE", str(BASE_DIR / "state.json"))).expanduser()
 _discovered_file = os.getenv("DISCOVERED_PRODUCTS_FILE", "")
 DISCOVERED_PRODUCTS_FILE = Path(_discovered_file).expanduser() if _discovered_file else None
+HEALTH_STATE_FILES = [
+    Path(value).expanduser()
+    for value in os.getenv("HEALTH_STATE_FILES", str(STATE_FILE)).split(":")
+    if value
+]
+RECORD_HEALTH = os.getenv("RECORD_HEALTH", "false").lower() in {"1", "true", "yes"}
 
 TIMEZONE = "Europe/Paris"
 MAX_WORKERS = int(os.getenv("MAX_WORKERS", "5"))
