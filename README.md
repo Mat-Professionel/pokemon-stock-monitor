@@ -98,6 +98,8 @@ Pour E.Leclerc, Auchan, Cultura, JouéClub et La Grande Récré, le projet consu
 
 Les champs utiles sont `type: "sitemap"`, `sitemap_include_patterns`, `max_sitemap_files`, `max_discovered_products` et `discovery_interval_minutes`. Une erreur temporaire ne vide pas le cache de la dernière découverte réussie.
 
+Après un refus HTTP ou une panne, une source de découverte attend par défaut 60 minutes avant de réessayer (`retry_interval_minutes`). Les contrôles des fiches produit déjà connues continuent normalement entre-temps.
+
 Important : les sites changent régulièrement leur HTML et certains bloquent les serveurs GitHub. Le programme préfère ne pas alerter lorsque le vendeur ou l'état est incertain. Consultez les logs et ajustez l'option `require_direct_seller` seulement si nécessaire.
 
 ## 6. Tester Telegram

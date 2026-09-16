@@ -97,9 +97,9 @@
   },
   {
     "id": "fnac-pokemon-30-discovery",
-    "name": "Recherche Fnac Pokémon 30e anniversaire",
+    "name": "Catégorie Fnac cartes Pokémon",
     "store": "Fnac",
-    "url": "https://www.fnac.com/SearchResult/ResultList.aspx?Search=pokemon+30+anniversaire",
+    "url": "https://www.fnac.com/n529205/Jeux-de-recre-cartes-a-collectionner/Cartes-Pokemon",
     "eans": ["0196214144835"],
     "keywords": ["Pokémon 30e anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokémon 30 ans", "Elite Trainer Box 30th"],
     "link_patterns": ["/a"],
@@ -107,7 +107,8 @@
     "require_direct_seller": true,
     "engine": "playwright",
     "product_engine": "playwright",
-    "type": "search",
+    "retry_interval_minutes": 60,
+    "type": "category_search",
     "enabled": true
   },
   {

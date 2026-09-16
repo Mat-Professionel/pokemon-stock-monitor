@@ -116,16 +116,23 @@ def check_discovery_source(source: dict[str, Any]) -> tuple[dict[str, Any], list
 
 
 def _cached_discovery(source: dict[str, Any], state: dict[str, Any], test_mode: bool) -> list[dict[str, Any]] | None:
-    if test_mode or not source.get("discovery_interval_minutes"):
+    if test_mode:
         return None
     cached = state.setdefault("discovery", {}).get(str(source.get("id", source["url"])))
-    if not isinstance(cached, dict) or "products" not in cached or not cached.get("last_success"):
+    if not isinstance(cached, dict):
         return None
     try:
-        last_success = datetime.fromisoformat(str(cached["last_success"]))
-        interval = timedelta(minutes=float(source["discovery_interval_minutes"]))
-        if paris_now() - last_success < interval:
-            return cached["products"] if isinstance(cached["products"], list) else []
+        products = cached["products"] if isinstance(cached.get("products"), list) else []
+        if cached.get("last_error") and cached.get("last_attempt"):
+            last_attempt = datetime.fromisoformat(str(cached["last_attempt"]))
+            retry_interval = timedelta(minutes=float(source.get("retry_interval_minutes", 60)))
+            if paris_now() - last_attempt < retry_interval:
+                return products
+        if source.get("discovery_interval_minutes") and cached.get("last_success"):
+            last_success = datetime.fromisoformat(str(cached["last_success"]))
+            interval = timedelta(minutes=float(source["discovery_interval_minutes"]))
+            if paris_now() - last_success < interval:
+                return products
     except (TypeError, ValueError):
         pass
     return None
@@ -157,15 +164,27 @@ def expand_discovery_sources(
                 _, products = future.result()
             except Exception as exc:
                 logging.warning("[%s] découverte en erreur: %s", source["store"].upper(), exc)
+                if not test_mode:
+                    cache_key = str(source.get("id", source["url"]))
+                    previous = state.setdefault("discovery", {}).get(cache_key, {})
+                    state["discovery"][cache_key] = {
+                        **previous,
+                        "last_attempt": now_iso(),
+                        "last_error": f"{type(exc).__name__}: {exc}"[:300],
+                        "products": previous.get("products", []),
+                    }
                 continue
             logging.info("[%s] découverte → %d fiche(s) correspondante(s)", source["store"].upper(), len(products))
             discovered.extend(products)
             if source.get("discovery_interval_minutes") and not test_mode:
                 cache_key = str(source.get("id", source["url"]))
                 state.setdefault("discovery", {})[cache_key] = {
+                    "last_attempt": now_iso(),
                     "last_success": now_iso(),
                     "products": products,
                 }
+            elif not test_mode:
+                state.setdefault("discovery", {}).pop(str(source.get("id", source["url"])), None)
 
     unique: dict[str, dict[str, Any]] = {}
     for product in [*direct, *discovered]:

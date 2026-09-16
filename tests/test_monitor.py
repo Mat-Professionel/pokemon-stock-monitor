@@ -1,5 +1,7 @@
 import unittest
+from datetime import datetime
 from unittest.mock import patch
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -150,6 +152,36 @@ class DetectionTests(unittest.TestCase):
         self.assertEqual(len(products), 1)
         self.assertEqual(products[0]["id"], "explicit")
         self.assertEqual(products[0]["max_price"], 30)
+
+    @patch("monitor.check_discovery_source")
+    def test_recent_discovery_error_uses_cached_products(self, check_source):
+        source = {
+            "id": "blocked-source",
+            "name": "Recherche",
+            "store": "Test",
+            "url": "https://shop.test/search",
+            "type": "search",
+        }
+        cached_product = {
+            "id": "cached",
+            "name": "Produit en cache",
+            "store": "Test",
+            "url": "https://shop.test/p/1",
+            "type": "product",
+        }
+        state = {
+            "products": {},
+            "discovery": {
+                "blocked-source": {
+                    "last_attempt": datetime.now(ZoneInfo("Europe/Paris")).isoformat(),
+                    "last_error": "HTTP 403",
+                    "products": [cached_product],
+                }
+            },
+        }
+        products = expand_discovery_sources([source], state)
+        check_source.assert_not_called()
+        self.assertEqual(products, [cached_product])
 
 
 if __name__ == "__main__":
