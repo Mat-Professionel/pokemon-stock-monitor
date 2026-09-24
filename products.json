@@ -1,5 +1,27 @@
 [
   {
+    "id": "coursesu-marque-pokemon",
+    "name": "Marque Pokémon CoursesU (drive Super U)",
+    "store": "CoursesU",
+    "url": "https://www.coursesu.com/marques-pokemon.html",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "coursesu-rayon-pokemon",
+    "name": "Rayon jouets Pokémon CoursesU",
+    "store": "CoursesU",
+    "url": "https://www.coursesu.com/c/maison-et-loisirs/jouets-culture-et-loisirs/jouets/pokemon",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
     "id": "joueclub-pokemon-30-discovery",
     "name": "Sélection JouéClub Pokémon 30 ans",
     "store": "JouéClub",
@@ -34,7 +56,7 @@
     "store": "vcollect",
     "url": "https://vcollect.fr/collections/30-ans-pokemon",
     "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
-    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
     "max_price": 65,
     "type": "category_search",
     "enabled": true
@@ -45,7 +67,8 @@
     "store": "Philibert",
     "url": "https://www.philibertnet.com/fr/212-pokemon",
     "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
-    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
     "max_price": 65,
     "type": "category_search",
     "enabled": true
@@ -56,7 +79,8 @@
     "store": "UltraJeux",
     "url": "https://www.ultrajeux.com/",
     "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
-    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
     "max_price": 65,
     "type": "category_search",
     "enabled": true
@@ -67,8 +91,56 @@
     "store": "Playin",
     "url": "https://www.play-in.com/fr",
     "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
-    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O.", "Pokébox"],
-    "exclude_keywords": ["CN", "JP", "japonais", "chinois", "import"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "exclude_keywords": ["CN", "JP", "japonais", "chinois", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "1001hobbies-pokemon-30",
+    "name": "Rayon Pokémon 1001hobbies",
+    "store": "1001hobbies",
+    "url": "https://www.1001hobbies.fr/23453-pokemon-jeu-de-cartes-a-collectionner",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "exclude_keywords": ["allemand", "japonais", "anglais", "import"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "blazingtail-pokemon-30",
+    "name": "Blazing Tail Pokémon 30 ans",
+    "store": "Blazing Tail",
+    "url": "https://www.blazingtail.fr/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "pikaboutique-pokemon-30",
+    "name": "Pika-Boutique Pokémon 30 ans",
+    "store": "Pika-Boutique",
+    "url": "https://pika-boutique.fr/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "pokestorefrance-pokemon-30",
+    "name": "PokéStore France 30 ans",
+    "store": "PokéStore France",
+    "url": "https://pokestore-france.com/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
     "max_price": 65,
     "type": "category_search",
     "enabled": true
@@ -79,7 +151,7 @@
     "store": "Maison de la Presse",
     "url": "https://www.maisondelapresse.com/blog/post/jcc-pokemon-30-ans-produits-reserver",
     "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
-    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
     "max_price": 65,
     "type": "category_search",
     "enabled": true
@@ -90,7 +162,7 @@
     "store": "Monoprix",
     "url": "https://www.monoprix.fr/c/loisirs/jouets/pokemon",
     "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
-    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
     "max_price": 65,
     "type": "category_search",
     "enabled": true
@@ -101,7 +173,7 @@
     "store": "King Jouet",
     "url": "https://www.king-jouet.com/30-ans-pokemon.htm",
     "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
-    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'élite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O.", "Pokébox"],
+    "keywords": ["Pokémon 30 ans", "Pokémon 30e anniversaire", "Coffret Dresseur d'élite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boîte", "Collection Classeur", "Collection K.O.", "Pokébox"],
     "link_patterns": ["/jeu-jouet/"],
     "max_price": 65,
     "type": "category_search",
@@ -353,6 +425,20 @@
     "enabled": false
   },
   {
+    "id": "smyths-pokemon-30-discovery",
+    "name": "Découverte Smyths Pokémon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/c/SM1301061101",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Élite 30ème Anniversaire", "Coffret Nymphali-ex 30ème Anniversaire", "Coffret Amphinobi-ex 30ème Anniversaire", "Pack 2 Boosters 30ème Anniversaire", "Collection Poster 30ème Anniversaire"],
+    "link_patterns": ["/p/"],
+    "max_price": 65,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "category_search",
+    "enabled": false
+  },
+  {
     "id": "smyths-etb-30",
     "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
     "store": "Smyths Toys",
@@ -435,20 +521,6 @@
     "engine": "playwright",
     "product_engine": "playwright",
     "type": "search",
-    "enabled": false
-  },
-  {
-    "id": "smyths-pokemon-30-discovery",
-    "name": "Découverte Smyths Pokémon 30e anniversaire",
-    "store": "Smyths Toys",
-    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/c/SM1301061101",
-    "eans": ["0196214144835"],
-    "keywords": ["Pokémon 30e anniversaire", "Pokémon 30ème anniversaire", "Coffret Dresseur d'Élite 30ème Anniversaire", "Coffret Nymphali-ex 30ème Anniversaire", "Coffret Amphinobi-ex 30ème Anniversaire", "Pack 2 Boosters 30ème Anniversaire", "Collection Poster 30ème Anniversaire"],
-    "link_patterns": ["/p/"],
-    "max_price": 65,
-    "engine": "playwright",
-    "product_engine": "playwright",
-    "type": "category_search",
     "enabled": false
   }
 ]
