@@ -1,1718 +1,550 @@
-{
-  "discovery": {
-    "amazon-pokemon-30-discovery": {
-      "last_attempt": "2026-09-23T23:25:32+02:00",
-      "last_error": "RuntimeError: HTTP 503",
-      "products": []
-    },
-    "auchan-pokemon-30-sitemap": {
-      "last_attempt": "2026-09-24T20:30:40+02:00",
-      "last_success": "2026-09-24T20:30:40+02:00",
-      "products": []
-    },
-    "carrefour-etb-30-ean-search": {
-      "last_attempt": "2026-09-23T23:25:22+02:00",
-      "last_error": "RuntimeError: HTTP 403",
-      "products": []
-    },
-    "carrefour-pokemon-category": {
-      "last_attempt": "2026-09-23T23:25:23+02:00",
-      "last_error": "RuntimeError: HTTP 403",
-      "products": []
-    },
-    "coursesu-marque-pokemon": {
-      "last_attempt": "2026-09-24T20:30:34+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.coursesu.com/marques-pokemon.html",
-      "products": []
-    },
-    "coursesu-rayon-pokemon": {
-      "last_attempt": "2026-09-24T20:30:34+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.coursesu.com/c/maison-et-loisirs/jouets-culture-et-loisirs/jouets/pokemon",
-      "products": []
-    },
-    "cultura-pokemon-30-discovery": {
-      "last_attempt": "2026-09-23T23:25:27+02:00",
-      "last_error": "RuntimeError: HTTP 403",
-      "products": []
-    },
-    "cultura-pokemon-30-sitemap": {
-      "last_attempt": "2026-09-23T23:25:23+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.cultura.com/sitemap_products.xml",
-      "products": []
-    },
-    "fnac-pokemon-30-discovery": {
-      "last_attempt": "2026-09-23T23:25:22+02:00",
-      "last_error": "RuntimeError: HTTP 403",
-      "products": []
-    },
-    "joueclub-pokemon-30-sitemap": {
-      "last_attempt": "2026-09-24T20:30:38+02:00",
-      "last_success": "2026-09-24T20:30:38+02:00",
-      "products": [
-        {
-          "alert_if_too_expensive": false,
-          "api_engine": null,
-          "discovered_from": "joueclub-pokemon-30-sitemap",
-          "engine": "requests",
-          "id": "joueclub-pokemon-30-sitemap:7d5e3ba23dfd",
-          "max_price": 65,
-          "name": "pokemon 30eme anniversaire 2 boosters evoli 0196214152311",
-          "require_direct_seller": false,
-          "store": "JouéClub",
-          "type": "product",
-          "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-2-boosters-evoli-0196214152311.html"
-        },
-        {
-          "alert_if_too_expensive": false,
-          "api_engine": null,
-          "discovered_from": "joueclub-pokemon-30-sitemap",
-          "engine": "requests",
-          "id": "joueclub-pokemon-30-sitemap:6d7c210995e1",
-          "max_price": 65,
-          "name": "pokemon 30eme anniversaire coffret collection poster 0196214147225",
-          "require_direct_seller": false,
-          "store": "JouéClub",
-          "type": "product",
-          "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-collection-poster-0196214147225.html"
-        },
-        {
-          "alert_if_too_expensive": false,
-          "api_engine": null,
-          "discovered_from": "joueclub-pokemon-30-sitemap",
-          "engine": "requests",
-          "id": "joueclub-pokemon-30-sitemap:fd5b2a4fdf3e",
-          "max_price": 65,
-          "name": "pokemon 30eme anniversaire coffret 4 boosters nymphali ex 0196214147102",
-          "require_direct_seller": false,
-          "store": "JouéClub",
-          "type": "product",
-          "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-4-boosters-nymphali-ex-0196214147102.html"
-        },
-        {
-          "alert_if_too_expensive": false,
-          "api_engine": null,
-          "discovered_from": "joueclub-pokemon-30-sitemap",
-          "engine": "requests",
-          "id": "joueclub-pokemon-30-sitemap:5b85f7e405a5",
-          "max_price": 65,
-          "name": "pokemon 30eme anniversaire coffret 4 boosters amphinobi ex 0196214147164",
-          "require_direct_seller": false,
-          "store": "JouéClub",
-          "type": "product",
-          "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-4-boosters-amphinobi-ex-0196214147164.html"
-        },
-        {
-          "alert_if_too_expensive": false,
-          "api_engine": null,
-          "discovered_from": "joueclub-pokemon-30-sitemap",
-          "engine": "requests",
-          "id": "joueclub-pokemon-30-sitemap:263de0b923f5",
-          "max_price": 65,
-          "name": "pokemon 30eme anniversaire coffret dresseur d elite 0196214144835",
-          "require_direct_seller": false,
-          "store": "JouéClub",
-          "type": "product",
-          "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-dresseur-d-elite-0196214144835.html"
-        }
-      ]
-    },
-    "kingjouet-30-ans-page": {
-      "last_attempt": "2026-09-24T20:30:39+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.king-jouet.com/30-ans-pokemon.htm",
-      "products": []
-    },
-    "lagranderecre-pokemon-30-sitemap": {
-      "last_attempt": "2026-09-24T20:30:42+02:00",
-      "last_success": "2026-09-24T20:30:42+02:00",
-      "products": [
-        {
-          "alert_if_too_expensive": false,
-          "api_engine": null,
-          "discovered_from": "lagranderecre-pokemon-30-sitemap",
-          "engine": "requests",
-          "id": "lagranderecre-pokemon-30-sitemap:b1590cbbdb8f",
-          "max_price": 65,
-          "name": "mini tins pokemon mini boite amis de paldea",
-          "require_direct_seller": false,
-          "store": "La Grande Récré",
-          "type": "product",
-          "url": "https://www.lagranderecre.fr/jeux-de-societe/cartes-a-collectionner/mini-tins-pokemon-mini-boite-amis-de-paldea.html"
-        }
-      ]
-    },
-    "leclerc-pokemon-30-sitemap": {
-      "last_attempt": "2026-09-24T20:36:13+02:00",
-      "last_success": "2026-09-24T20:36:13+02:00",
-      "products": []
-    },
-    "maisondelapresse-pokemon-30": {
-      "last_attempt": "2026-09-24T20:30:39+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.maisondelapresse.com/blog/post/jcc-pokemon-30-ans-produits-reserver",
-      "products": []
-    },
-    "micromania-pokemon-30-discovery": {
-      "last_attempt": "2026-09-23T23:25:28+02:00",
-      "last_error": "RuntimeError: HTTP 410",
-      "products": []
-    },
-    "playin-pokemon-30": {
-      "last_attempt": "2026-09-24T20:30:35+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.play-in.com/fr",
-      "products": []
-    },
-    "pokestorefrance-pokemon-30": {
-      "last_attempt": "2026-09-24T20:30:38+02:00",
-      "last_error": "HTTPError: 423 Client Error: Locked for url: https://pokestore-france.com/",
-      "products": []
-    }
+[
+  {
+    "id": "ebay-etb-30-sous-130",
+    "name": "ETB 30 ans sur eBay sous 130 EUR",
+    "store": "eBay",
+    "url": "https://www.ebay.fr/sch/i.html?_nkw=ETB+pokemon+30e+anniversaire&_sop=15&LH_BIN=1&_udhi=130",
+    "keywords": ["Coffret Dresseur d'Elite 30e anniversaire", "ETB 30 ans", "Elite Trainer Box 30th", "30th Celebration Elite Trainer Box", "30th Anniversary ETB", "sealed", "scelle", "neuf", "new"],
+    "exclude_keywords": ["vide", "empty", "boite seule", "box only", "sans booster", "no booster", "opened", "ouvert", "descelle", "resealed", "reseal", "repro", "proxy", "custom", "fake", "carte seule", "single card", "sleeves", "protege-cartes", "promo seule", "japonais", "japanese", "chinois", "chinese", "korean", "coreen", "lot de cartes", "playmat seul"],
+    "max_price": 130,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "search",
+    "enabled": true
   },
-  "products": {
-    "1001hobbies-pokemon-30:5924169aa58e": {
-      "alert_level": "none",
-      "availability": "available",
-      "direct_seller": true,
-      "last_change": "2026-09-24T18:00:10+02:00",
-      "last_price": 74.99,
-      "name": "Derniers ex. ! Ajouter à la liste d'envies",
-      "seller": "1001hobbies.fr",
-      "store": "1001hobbies",
-      "url": "https://www.1001hobbies.fr/pokemon/861068-pokemon-company-bm-251811-pokemon-coffret-dresseur-d-elite-mega-evo-196214136380.html"
-    },
-    "1001hobbies-pokemon-30:d12f4e476ed3": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T18:00:13+02:00",
-      "last_price": 59.99,
-      "name": "Pokemon Company",
-      "seller": null,
-      "store": "1001hobbies",
-      "url": "https://www.1001hobbies.fr/5259_pokemon-company"
-    },
-    "1001hobbies-pokemon-30:f433bc3b1202": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T18:00:07+02:00",
-      "last_price": 36.99,
-      "name": "Nouveau Ajouter à la liste d'envies",
-      "seller": "1001hobbies.fr",
-      "store": "1001hobbies",
-      "url": "https://www.1001hobbies.fr/pokemon/878714-pokemon-company-bm-257047-pokemon-me-05-nuit-noire-bundle-6-boosters-196214142688.html"
-    },
-    "blazingtail-pokemon-30:43b1b25f4f68": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T18:00:05+02:00",
-      "last_price": 79.99,
-      "name": "à partir de 1 versions en stock 79,99 € Pokémon – ETB – Nuit Noire – ME05 – Coffret Dresseur d’Elite en... à partir de 1 versions en stock 79,99 € Pokémon – ETB – Nuit Noire – ME05",
-      "seller": "Blazing Tail",
-      "store": "Blazing Tail",
-      "url": "https://www.blazingtail.fr/80475-100535-etb-pokemon-nuit-noire-me05.html"
-    },
-    "blazingtail-pokemon-30:88e35d8b5758": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T18:00:06+02:00",
-      "last_price": 44.99,
-      "name": "à partir de 1 versions en stock 44,99 € Bundle Pokémon - ME05 - Nuit Noire - en français à partir de 1 versions en stock 44,99 € Bundle Pokémon - ME05 - Nuit Noire - en français à ",
-      "seller": "Blazing Tail",
-      "store": "Blazing Tail",
-      "url": "https://www.blazingtail.fr/80606-100812-bundle-pokemon-me5-nuit-noire-en-francais.html"
-    },
-    "blazingtail-pokemon-30:d1a7ad9a1476": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T18:00:06+02:00",
-      "last_price": 84.99,
-      "name": "à partir de 1 versions en stock 84,99 € Pokémon – ETB – Chaos Ascendant – ME04 – Coffret Dresseur d’Elite... à partir de 1 versions en stock 84,99 € Pokémon – ETB – Chaos Ascendant",
-      "seller": "Blazing Tail",
-      "store": "Blazing Tail",
-      "url": "https://www.blazingtail.fr/77323-62536-etb-pokemon-chaos-ascendant-me04.html"
-    },
-    "carrefour-etb-30": {
-      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
-      "store": "Carrefour",
-      "url": "https://www.carrefour.fr/p/cartes-a-jouer-et-a-collectionner-coffret-dresseur-d-elite-30e-anniversaire-pokemon-0196214144835"
-    },
-    "joueclub-pokemon-30-sitemap:263de0b923f5": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-17T22:29:22+02:00",
-      "last_price": 64.99,
-      "name": "pokemon 30eme anniversaire coffret dresseur d elite 0196214144835",
-      "seller": null,
-      "store": "JouéClub",
-      "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-dresseur-d-elite-0196214144835.html"
-    },
-    "joueclub-pokemon-30-sitemap:5b85f7e405a5": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-17T22:29:21+02:00",
-      "last_price": 29.99,
-      "name": "pokemon 30eme anniversaire coffret 4 boosters amphinobi ex 0196214147164",
-      "seller": null,
-      "store": "JouéClub",
-      "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-4-boosters-amphinobi-ex-0196214147164.html"
-    },
-    "joueclub-pokemon-30-sitemap:6d7c210995e1": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-17T22:29:22+02:00",
-      "last_price": 32.99,
-      "name": "pokemon 30eme anniversaire coffret collection poster 0196214147225",
-      "seller": null,
-      "store": "JouéClub",
-      "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-collection-poster-0196214147225.html"
-    },
-    "joueclub-pokemon-30-sitemap:7d5e3ba23dfd": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-17T22:29:21+02:00",
-      "last_price": 14.99,
-      "name": "pokemon 30eme anniversaire 2 boosters evoli 0196214152311",
-      "seller": null,
-      "store": "JouéClub",
-      "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-2-boosters-evoli-0196214152311.html"
-    },
-    "joueclub-pokemon-30-sitemap:fd5b2a4fdf3e": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-17T22:29:22+02:00",
-      "last_price": 29.99,
-      "name": "pokemon 30eme anniversaire coffret 4 boosters nymphali ex 0196214147102",
-      "seller": null,
-      "store": "JouéClub",
-      "url": "https://www.joueclub.fr/pokemon/pokemon-30eme-anniversaire-coffret-4-boosters-nymphali-ex-0196214147102.html"
-    },
-    "joueclub-pokemon-day-30": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-16T03:43:30+02:00",
-      "last_price": 19.99,
-      "name": "Coffret Pokémon Day 2026 - 30 ans",
-      "seller": null,
-      "store": "JouéClub",
-      "url": "https://www.joueclub.fr/pokemon/pokemon-coffret-3boosters-carte-exclusive-0196214139718.html"
-    },
-    "lagranderecre-pokemon-30-discovery:1af4ed910e21": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-16T14:59:53+02:00",
-      "last_price": 29.99,
-      "name": "LIVRAISON : INDISPONIBLE",
-      "seller": null,
-      "store": "La Grande Récré",
-      "url": "https://www.lagranderecre.fr/jeux-de-societe/cartes-a-collectionner/coffret-4-boosters-nymphali-ex-pokemon-30e-anniversaire.html"
-    },
-    "lagranderecre-pokemon-30-discovery:6bd5851ddddc": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-16T19:28:33+02:00",
-      "last_price": 29.99,
-      "name": "LIVRAISON : INDISPONIBLE",
-      "seller": null,
-      "store": "La Grande Récré",
-      "url": "https://www.lagranderecre.fr/jeux-de-societe/cartes-a-collectionner/2-boosters-evoli-pokemon-30e-anniversaire.html"
-    },
-    "lagranderecre-pokemon-30-discovery:8b3dbf1ec590": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-16T19:28:33+02:00",
-      "last_price": 29.99,
-      "name": "LIVRAISON : INDISPONIBLE",
-      "seller": null,
-      "store": "La Grande Récré",
-      "url": "https://www.lagranderecre.fr/jeux-de-societe/cartes-a-collectionner/coffret-dresseur-d-elite-pokemon-30e-anniversaire.html"
-    },
-    "lagranderecre-pokemon-30-discovery:b53f3dafc5bb": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-16T14:59:54+02:00",
-      "last_price": 29.99,
-      "name": "LIVRAISON : INDISPONIBLE",
-      "seller": null,
-      "store": "La Grande Récré",
-      "url": "https://www.lagranderecre.fr/jeux-de-societe/cartes-a-collectionner/coffret-4-boosters-amphinobi-ex-pokemon-30e-anniversaire.html"
-    },
-    "lagranderecre-pokemon-30-discovery:d9496913aff4": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-17T14:21:53+02:00",
-      "last_price": 32.99,
-      "name": "LIVRAISON : INDISPONIBLE",
-      "seller": null,
-      "store": "La Grande Récré",
-      "url": "https://www.lagranderecre.fr/jeux-de-societe/cartes-a-collectionner/coffret-collection-poster-pokemon-30e-anniversaire.html"
-    },
-    "lagranderecre-pokemon-30-sitemap:b1590cbbdb8f": {
-      "alert_level": "normal",
-      "availability": "available",
-      "direct_seller": true,
-      "last_alert": "2026-09-24T00:10:11+02:00",
-      "last_change": "2026-09-24T00:10:11+02:00",
-      "last_price": 29.99,
-      "name": "mini tins pokemon mini boite amis de paldea",
-      "seller": null,
-      "store": "La Grande Récré",
-      "url": "https://www.lagranderecre.fr/jeux-de-societe/cartes-a-collectionner/mini-tins-pokemon-mini-boite-amis-de-paldea.html"
-    },
-    "philibert-pokemon-30:0c4f28868480": {
-      "alert_level": "normal",
-      "availability": "available",
-      "direct_seller": true,
-      "last_alert": "2026-09-24T00:10:05+02:00",
-      "last_change": "2026-09-24T00:10:05+02:00",
-      "last_price": 27.95,
-      "name": "product.declinaisons",
-      "seller": null,
-      "store": "Philibert",
-      "url": "https://www.philibertnet.com/fr/pokemon/180963-pokemon-pokebox-mega-puissances-mega-dracolosse-ex-2100001398170.html"
-    },
-    "philibert-pokemon-30:93e828eced20": {
-      "alert_level": "normal",
-      "availability": "available",
-      "direct_seller": true,
-      "last_alert": "2026-09-24T00:10:05+02:00",
-      "last_change": "2026-09-24T00:10:05+02:00",
-      "last_price": 27.95,
-      "name": "product.declinaisons",
-      "seller": null,
-      "store": "Philibert",
-      "url": "https://www.philibertnet.com/fr/pokemon/180964-pokemon-pokebox-mega-puissances-mega-darkrai-ex-2100001398194.html"
-    },
-    "philibert-pokemon-30:eeffbed577ff": {
-      "alert_level": "normal",
-      "availability": "available",
-      "direct_seller": true,
-      "last_alert": "2026-09-24T00:10:06+02:00",
-      "last_change": "2026-09-24T00:10:06+02:00",
-      "last_price": 27.95,
-      "name": "product.declinaisons",
-      "seller": null,
-      "store": "Philibert",
-      "url": "https://www.philibertnet.com/fr/pokemon/180965-pokemon-pokebox-mega-puissances-mega-zeraora-ex-2100001398187.html"
-    },
-    "playin-pokemon-30:0bebdb3e2f7e": {
-      "alert_level": "none",
-      "availability": "available",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:09+02:00",
-      "last_price": 159.9,
-      "name": "Gift Bundle Le Hobbit - Magic EN",
-      "seller": null,
-      "store": "Playin",
-      "url": "https://www.play-in.com/fr/produit/648118/gift-bundle-le-hobbit-magic-en"
-    },
-    "playin-pokemon-30:b137eb3c4193": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:10+02:00",
-      "last_price": 4.9,
-      "name": "65 Pochettes Pokémon 30e anniversaire Format Standard",
-      "seller": null,
-      "store": "Playin",
-      "url": "https://www.play-in.com/fr/produit/672505/65-pochettes-pokemon-30e-anniversaire-format-standard"
-    },
-    "playin-pokemon-30:b8bd97403865": {
-      "alert_level": "normal",
-      "availability": "available",
-      "direct_seller": true,
-      "last_alert": "2026-09-24T00:10:10+02:00",
-      "last_change": "2026-09-24T00:10:10+02:00",
-      "last_price": 2.0,
-      "name": "Lot de 7 dés Pokémon 30e anniversaire",
-      "seller": null,
-      "store": "Playin",
-      "url": "https://www.play-in.com/fr/produit/672506/lot-de-7-des-pokemon-30e-anniversaire"
-    },
-    "playin-pokemon-30:c45af012c562": {
-      "alert_level": "normal",
-      "availability": "available",
-      "direct_seller": true,
-      "last_alert": "2026-09-24T06:54:20+02:00",
-      "last_change": "2026-09-24T06:54:20+02:00",
-      "last_price": 4.9,
-      "name": "Boîte de rangement vide Pokémon 30e anniversaire",
-      "seller": null,
-      "store": "Playin",
-      "url": "https://www.play-in.com/fr/produit/672503/boite-de-rangement-vide-pokemon-30e-anniversaire"
-    },
-    "smyths-amphinobi-30": {
-      "name": "Coffret Amphinobi-ex 30e anniversaire",
-      "store": "Smyths Toys",
-      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-amphinobi-ex-30eme-anniversaire/p/261830"
-    },
-    "smyths-deck-dresseur-30": {
-      "name": "Deck du Dresseur Combat Pokémon 30e anniversaire",
-      "store": "Smyths Toys",
-      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-deck-du-dresseur-combat-30e-anniversaire-modele-aleatoire/p/261786"
-    },
-    "smyths-etb-30": {
-      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
-      "store": "Smyths Toys",
-      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-dresseur-delite-30eme-anniversaire/p/261821"
-    },
-    "smyths-nymphali-30": {
-      "name": "Coffret Nymphali-ex Pokémon 30e anniversaire",
-      "store": "Smyths Toys",
-      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-nymphali-ex-30eme-anniversaire/p/261788"
-    },
-    "smyths-pack-2-boosters-30": {
-      "name": "Pack 2 Boosters Pokémon 30e anniversaire",
-      "store": "Smyths Toys",
-      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-pack-2-boosters-30eme-anniversaire/p/261787"
-    },
-    "smyths-portfolio-30": {
-      "name": "Portfolio avec Boosters Pokémon 30e anniversaire",
-      "store": "Smyths Toys",
-      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-portfolio-avec-boosters-modele-aleatoire/p/261831"
-    },
-    "smyths-poster-30": {
-      "name": "Coffret Collection Poster Pokémon 30e anniversaire",
-      "store": "Smyths Toys",
-      "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-collection-poster-30eme-anniversaire/p/261814"
-    },
-    "ultrajeux-pokemon-30:2b0e623363c5": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:06+02:00",
-      "last_price": 34.9,
-      "name": "Bundle de 6 Boosters",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-523-4-bundle-de-6-boosters.html"
-    },
-    "ultrajeux-pokemon-30:4ea41bb4ac36": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:07+02:00",
-      "last_price": 34.9,
-      "name": "Booster Français",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-15-4-booster-francais.html"
-    },
-    "ultrajeux-pokemon-30:4fdcac3d67af": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T16:29:07+02:00",
-      "last_price": 34.9,
-      "name": "Tout voir Pokémon",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/jeu-4-pokemon.html"
-    },
-    "ultrajeux-pokemon-30:84288f738828": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:06+02:00",
-      "last_price": 34.9,
-      "name": "ETB Coffret Dresseur d'Elite",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-505-4-etb-coffret-dresseur-d-elite.html"
-    },
-    "ultrajeux-pokemon-30:97126ef36dd6": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:07+02:00",
-      "last_price": 34.9,
-      "name": "Booster Français sous Blisters",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-497-4-booster-francais-sous-blisters.html"
-    },
-    "ultrajeux-pokemon-30:bc09a61fabeb": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:08+02:00",
-      "last_price": 34.9,
-      "name": "Coffret Collection Ultra Premium",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-522-4-coffret-collection-ultra-premium.html"
-    },
-    "ultrajeux-pokemon-30:cbac8c21cbfc": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:06+02:00",
-      "last_price": 34.9,
-      "name": "Pokebox",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-81-4-pokebox.html"
-    },
-    "ultrajeux-pokemon-30:cc62896d2560": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:07+02:00",
-      "last_price": 34.9,
-      "name": "Duopack 2 Boosters",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-512-4-duopack-2-boosters.html"
-    },
-    "ultrajeux-pokemon-30:db3e5ac58d5f": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:08+02:00",
-      "last_price": 34.9,
-      "name": "Tripack 3 Boosters",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-511-4-tripack-3-boosters.html"
-    },
-    "ultrajeux-pokemon-30:e1e08be69157": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:06+02:00",
-      "last_price": 34.9,
-      "name": "Boite de Boosters Français",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-469-4-boite-de-boosters-francais.html"
-    },
-    "ultrajeux-pokemon-30:eda0e97b7899": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:08+02:00",
-      "last_price": 34.9,
-      "name": "Coffret Tournoi Premium",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-508-4-coffret-tournoi-premium.html"
-    },
-    "ultrajeux-pokemon-30:f73a027efa15": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:08+02:00",
-      "last_price": 34.9,
-      "name": "Kit d'Avant-Première",
-      "seller": null,
-      "store": "UltraJeux",
-      "url": "https://www.ultrajeux.com/type-499-4-kit-d-avant-premiere.html"
-    },
-    "vcollect-pokemon-30:6b0db9906dec": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:04+02:00",
-      "last_price": 29.9,
-      "name": "Coffret Collection Classeur - 30e Anniversaire - Français",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/products/coffret-collection-classeur-30e-anniversaire-francais"
-    },
-    "vcollect-pokemon-30:7f7e5e6a3c96": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:03+02:00",
-      "last_price": 20.0,
-      "name": "30 ans Pokémon chinois",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/collections/30-ans-pokemon-chinois"
-    },
-    "vcollect-pokemon-30:969bc6f83544": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:03+02:00",
-      "last_price": 20.0,
-      "name": "Pokémon Japonais",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/collections/pokemon-japonais"
-    },
-    "vcollect-pokemon-30:9c3fe6d9129a": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:04+02:00",
-      "last_price": 20.0,
-      "name": "Pokémon Chinois",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/collections/pokemon-chinois"
-    },
-    "vcollect-pokemon-30:9f4b3f45fee0": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:04+02:00",
-      "last_price": 54.9,
-      "name": "Bundle - 30e Anniversaire - Français",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/products/bundle-30e-anniversaire-francais"
-    },
-    "vcollect-pokemon-30:a4bba9f3ef1a": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:04+02:00",
-      "last_price": 69.9,
-      "name": "Coffret Dresseur d'Élite - 30e Anniversaire - Français",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/products/etb-30e-anniversaire-francais"
-    },
-    "vcollect-pokemon-30:b096b1dbe840": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:04+02:00",
-      "last_price": 20.0,
-      "name": "Pokémon Français",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/collections/pokemon-francais"
-    },
-    "vcollect-pokemon-30:b65d21954b39": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:03+02:00",
-      "last_price": 20.0,
-      "name": "30 ans Pokémon japonais : 30th Celebration",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/collections/30-ans-pokemon-japonais"
-    },
-    "vcollect-pokemon-30:cc1b2e26d0ef": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:03+02:00",
-      "last_price": 20.0,
-      "name": "ETB et coffrets 30 ans Pokémon français",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/collections/etb-coffrets-30-ans-pokemon-francais"
-    },
-    "vcollect-pokemon-30:fa2d5a8c8cb0": {
-      "alert_level": "none",
-      "availability": "unavailable",
-      "direct_seller": true,
-      "last_change": "2026-09-24T00:10:03+02:00",
-      "last_price": 20.0,
-      "name": "Boosters et displays 30 ans Pokémon",
-      "seller": null,
-      "store": "vcollect",
-      "url": "https://vcollect.fr/collections/boosters-displays-30-ans-pokemon"
-    }
+  {
+    "id": "coursesu-marque-pokemon",
+    "name": "Marque Pokemon CoursesU (drive Super U)",
+    "store": "CoursesU",
+    "url": "https://www.coursesu.com/marques-pokemon.html",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
   },
-  "route_health": {
-    "discovery:1001hobbies-pokemon-30": {
-      "detail": "Page analysée, 3 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "1001hobbies-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:38+02:00",
-      "name": "Rayon Pokémon 1001hobbies",
-      "store": "1001hobbies"
-    },
-    "discovery:amazon-pokemon-30-discovery": {
-      "detail": "RuntimeError: HTTP 503",
-      "functional": false,
-      "id": "amazon-pokemon-30-discovery",
-      "kind": "search",
-      "last_check": "2026-09-23T23:25:32+02:00",
-      "name": "Recherche Amazon Pokémon 30e anniversaire",
-      "store": "Amazon France"
-    },
-    "discovery:auchan-pokemon-30-discovery": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "auchan-pokemon-30-discovery",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:41+02:00",
-      "name": "Recherche Auchan Pokémon 30e anniversaire",
-      "store": "Auchan"
-    },
-    "discovery:auchan-pokemon-30-sitemap": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "auchan-pokemon-30-sitemap",
-      "kind": "sitemap",
-      "last_check": "2026-09-24T20:30:40+02:00",
-      "name": "Sitemap produits Auchan Pokémon 30 ans",
-      "store": "Auchan"
-    },
-    "discovery:blazingtail-pokemon-30": {
-      "detail": "Page analysée, 3 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "blazingtail-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:36+02:00",
-      "name": "Blazing Tail Pokémon 30 ans",
-      "store": "Blazing Tail"
-    },
-    "discovery:carrefour-etb-30-ean-search": {
-      "detail": "RuntimeError: HTTP 403",
-      "functional": false,
-      "id": "carrefour-etb-30-ean-search",
-      "kind": "search",
-      "last_check": "2026-09-23T23:25:22+02:00",
-      "name": "Recherche EAN ETB Pokémon 30e anniversaire",
-      "store": "Carrefour"
-    },
-    "discovery:carrefour-pokemon-category": {
-      "detail": "RuntimeError: HTTP 403",
-      "functional": false,
-      "id": "carrefour-pokemon-category",
-      "kind": "category_search",
-      "last_check": "2026-09-23T23:25:23+02:00",
-      "name": "Catégorie Carrefour cartes à collectionner Pokémon",
-      "store": "Carrefour"
-    },
-    "discovery:cdiscount-pokemon-30-discovery": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "cdiscount-pokemon-30-discovery",
-      "kind": "search",
-      "last_check": "2026-09-24T20:30:41+02:00",
-      "name": "Recherche Cdiscount Pokémon 30e anniversaire",
-      "store": "Cdiscount"
-    },
-    "discovery:coursesu-marque-pokemon": {
-      "detail": "HTTPError: 403 Client Error: Forbidden for url: https://www.coursesu.com/marques-pokemon.html",
-      "functional": false,
-      "id": "coursesu-marque-pokemon",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:34+02:00",
-      "name": "Marque Pokémon CoursesU (drive Super U)",
-      "store": "CoursesU"
-    },
-    "discovery:coursesu-rayon-pokemon": {
-      "detail": "HTTPError: 403 Client Error: Forbidden for url: https://www.coursesu.com/c/maison-et-loisirs/jouets-culture-et-loisirs/jouets/pokemon",
-      "functional": false,
-      "id": "coursesu-rayon-pokemon",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:34+02:00",
-      "name": "Rayon jouets Pokémon CoursesU",
-      "store": "CoursesU"
-    },
-    "discovery:cultura-pokemon-30-discovery": {
-      "detail": "RuntimeError: HTTP 403",
-      "functional": false,
-      "id": "cultura-pokemon-30-discovery",
-      "kind": "search",
-      "last_check": "2026-09-23T23:25:27+02:00",
-      "name": "Recherche Cultura Pokémon 30e anniversaire",
-      "store": "Cultura"
-    },
-    "discovery:cultura-pokemon-30-sitemap": {
-      "detail": "HTTPError: 403 Client Error: Forbidden for url: https://www.cultura.com/sitemap_products.xml",
-      "functional": false,
-      "id": "cultura-pokemon-30-sitemap",
-      "kind": "sitemap",
-      "last_check": "2026-09-23T23:25:23+02:00",
-      "name": "Sitemap produits Cultura Pokémon 30 ans",
-      "store": "Cultura"
-    },
-    "discovery:fnac-pokemon-30-discovery": {
-      "detail": "RuntimeError: HTTP 403",
-      "functional": false,
-      "id": "fnac-pokemon-30-discovery",
-      "kind": "category_search",
-      "last_check": "2026-09-23T23:25:22+02:00",
-      "name": "Catégorie Fnac cartes Pokémon",
-      "store": "Fnac"
-    },
-    "discovery:joueclub-pokemon-30-discovery": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "joueclub-pokemon-30-discovery",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:35+02:00",
-      "name": "Sélection JouéClub Pokémon 30 ans",
-      "store": "JouéClub"
-    },
-    "discovery:joueclub-pokemon-30-sitemap": {
-      "detail": "Page analysée, 5 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "joueclub-pokemon-30-sitemap",
-      "kind": "sitemap",
-      "last_check": "2026-09-24T20:30:38+02:00",
-      "name": "Sitemap produits JouéClub Pokémon 30 ans",
-      "store": "JouéClub"
-    },
-    "discovery:kingjouet-30-ans-page": {
-      "detail": "HTTPError: 403 Client Error: Forbidden for url: https://www.king-jouet.com/30-ans-pokemon.htm",
-      "functional": false,
-      "id": "kingjouet-30-ans-page",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:39+02:00",
-      "name": "Page 30 ans King Jouet",
-      "store": "King Jouet"
-    },
-    "discovery:kingjouet-pokemon-30-discovery": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "kingjouet-pokemon-30-discovery",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:39+02:00",
-      "name": "Sélection King Jouet Pokémon 30 ans",
-      "store": "King Jouet"
-    },
-    "discovery:lagranderecre-pokemon-30-discovery": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-discovery",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:40+02:00",
-      "name": "Sélection La Grande Récré Pokémon",
-      "store": "La Grande Récré"
-    },
-    "discovery:lagranderecre-pokemon-30-sitemap": {
-      "detail": "Page analysée, 1 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-sitemap",
-      "kind": "sitemap",
-      "last_check": "2026-09-24T20:30:42+02:00",
-      "name": "Sitemap produits La Grande Récré Pokémon 30 ans",
-      "store": "La Grande Récré"
-    },
-    "discovery:leclerc-pokemon-30-discovery": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "leclerc-pokemon-30-discovery",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:41+02:00",
-      "name": "Recherche E.Leclerc Pokémon 30e anniversaire",
-      "store": "E.Leclerc"
-    },
-    "discovery:leclerc-pokemon-30-sitemap": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "leclerc-pokemon-30-sitemap",
-      "kind": "sitemap",
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "name": "Sitemap produits E.Leclerc Pokémon 30 ans",
-      "store": "E.Leclerc"
-    },
-    "discovery:maisondelapresse-pokemon-30": {
-      "detail": "HTTPError: 403 Client Error: Forbidden for url: https://www.maisondelapresse.com/blog/post/jcc-pokemon-30-ans-produits-reserver",
-      "functional": false,
-      "id": "maisondelapresse-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:39+02:00",
-      "name": "Maison de la Presse produits 30 ans",
-      "store": "Maison de la Presse"
-    },
-    "discovery:micromania-pokemon-30-discovery": {
-      "detail": "RuntimeError: HTTP 410",
-      "functional": false,
-      "id": "micromania-pokemon-30-discovery",
-      "kind": "search",
-      "last_check": "2026-09-23T23:25:28+02:00",
-      "name": "Recherche Micromania Pokémon 30e anniversaire",
-      "store": "Micromania"
-    },
-    "discovery:monoprix-pokemon-30": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "monoprix-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:39+02:00",
-      "name": "Rayon Pokémon Monoprix",
-      "store": "Monoprix"
-    },
-    "discovery:philibert-pokemon-30": {
-      "detail": "Page analysée, 3 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "philibert-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:37+02:00",
-      "name": "Rayon Pokémon Philibert",
-      "store": "Philibert"
-    },
-    "discovery:pikaboutique-pokemon-30": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "pikaboutique-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:39+02:00",
-      "name": "Pika-Boutique Pokémon 30 ans",
-      "store": "Pika-Boutique"
-    },
-    "discovery:playin-pokemon-30": {
-      "detail": "HTTPError: 403 Client Error: Forbidden for url: https://www.play-in.com/fr",
-      "functional": false,
-      "id": "playin-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:35+02:00",
-      "name": "Recherche Playin Pokémon 30 ans",
-      "store": "Playin"
-    },
-    "discovery:pokestorefrance-pokemon-30": {
-      "detail": "HTTPError: 423 Client Error: Locked for url: https://pokestore-france.com/",
-      "functional": false,
-      "id": "pokestorefrance-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:38+02:00",
-      "name": "PokéStore France 30 ans",
-      "store": "PokéStore France"
-    },
-    "discovery:smyths-etb-30-ean-search": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "smyths-etb-30-ean-search",
-      "kind": "search",
-      "last_check": "2026-09-23T23:25:22+02:00",
-      "name": "Recherche EAN ETB Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "discovery:smyths-pokemon-30-discovery": {
-      "detail": "Page analysée, 0 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "smyths-pokemon-30-discovery",
-      "kind": "category_search",
-      "last_check": "2026-09-23T23:25:22+02:00",
-      "name": "Découverte Smyths Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "discovery:ultrajeux-pokemon-30": {
-      "detail": "Page analysée, 12 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:38+02:00",
-      "name": "Recherche UltraJeux Pokémon 30 ans",
-      "store": "UltraJeux"
-    },
-    "discovery:vcollect-pokemon-30": {
-      "detail": "Page analysée, 10 fiche(s) correspondante(s)",
-      "functional": true,
-      "id": "vcollect-pokemon-30",
-      "kind": "category_search",
-      "last_check": "2026-09-24T20:30:35+02:00",
-      "name": "Collection 30 ans vcollect",
-      "store": "vcollect"
-    },
-    "product:1001hobbies-pokemon-30:5924169aa58e": {
-      "detail": "Bouton d'achat actif",
-      "functional": true,
-      "id": "1001hobbies-pokemon-30:5924169aa58e",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:20+02:00",
-      "name": "Derniers ex. ! Ajouter à la liste d'envies",
-      "store": "1001hobbies"
-    },
-    "product:1001hobbies-pokemon-30:d12f4e476ed3": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "1001hobbies-pokemon-30:d12f4e476ed3",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:19+02:00",
-      "name": "Pokemon Company",
-      "store": "1001hobbies"
-    },
-    "product:1001hobbies-pokemon-30:f433bc3b1202": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "1001hobbies-pokemon-30:f433bc3b1202",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:20+02:00",
-      "name": "Nouveau Ajouter à la liste d'envies",
-      "store": "1001hobbies"
-    },
-    "product:blazingtail-pokemon-30:43b1b25f4f68": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "blazingtail-pokemon-30:43b1b25f4f68",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:16+02:00",
-      "name": "à partir de 1 versions en stock 79,99 € Pokémon – ETB – Nuit Noire – ME05 – Coffret Dresseur d’Elite en... à partir de 1 versions en stock 79,99 € Pokémon – ETB – Nuit Noire – ME05",
-      "store": "Blazing Tail"
-    },
-    "product:blazingtail-pokemon-30:88e35d8b5758": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "blazingtail-pokemon-30:88e35d8b5758",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:16+02:00",
-      "name": "à partir de 1 versions en stock 44,99 € Bundle Pokémon - ME05 - Nuit Noire - en français à partir de 1 versions en stock 44,99 € Bundle Pokémon - ME05 - Nuit Noire - en français à ",
-      "store": "Blazing Tail"
-    },
-    "product:blazingtail-pokemon-30:d1a7ad9a1476": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "blazingtail-pokemon-30:d1a7ad9a1476",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:16+02:00",
-      "name": "à partir de 1 versions en stock 84,99 € Pokémon – ETB – Chaos Ascendant – ME04 – Coffret Dresseur d’Elite... à partir de 1 versions en stock 84,99 € Pokémon – ETB – Chaos Ascendant",
-      "store": "Blazing Tail"
-    },
-    "product:carrefour-etb-30": {
-      "detail": "HTTP 403",
-      "functional": false,
-      "id": "carrefour-etb-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:18+02:00",
-      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
-      "store": "Carrefour"
-    },
-    "product:joueclub-pokemon-30-sitemap:263de0b923f5": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "joueclub-pokemon-30-sitemap:263de0b923f5",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:17+02:00",
-      "name": "pokemon 30eme anniversaire coffret dresseur d elite 0196214144835",
-      "store": "JouéClub"
-    },
-    "product:joueclub-pokemon-30-sitemap:5b85f7e405a5": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "joueclub-pokemon-30-sitemap:5b85f7e405a5",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:17+02:00",
-      "name": "pokemon 30eme anniversaire coffret 4 boosters amphinobi ex 0196214147164",
-      "store": "JouéClub"
-    },
-    "product:joueclub-pokemon-30-sitemap:6d7c210995e1": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "joueclub-pokemon-30-sitemap:6d7c210995e1",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:17+02:00",
-      "name": "pokemon 30eme anniversaire coffret collection poster 0196214147225",
-      "store": "JouéClub"
-    },
-    "product:joueclub-pokemon-30-sitemap:7d5e3ba23dfd": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "joueclub-pokemon-30-sitemap:7d5e3ba23dfd",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:17+02:00",
-      "name": "pokemon 30eme anniversaire 2 boosters evoli 0196214152311",
-      "store": "JouéClub"
-    },
-    "product:joueclub-pokemon-30-sitemap:fd5b2a4fdf3e": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "joueclub-pokemon-30-sitemap:fd5b2a4fdf3e",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:17+02:00",
-      "name": "pokemon 30eme anniversaire coffret 4 boosters nymphali ex 0196214147102",
-      "store": "JouéClub"
-    },
-    "product:joueclub-pokemon-day-30": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "joueclub-pokemon-day-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:18+02:00",
-      "name": "Coffret Pokémon Day 2026 - 30 ans",
-      "store": "JouéClub"
-    },
-    "product:lagranderecre-pokemon-30-discovery:1af4ed910e21": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-discovery:1af4ed910e21",
-      "kind": "product",
-      "last_check": "2026-09-17T08:57:48+02:00",
-      "name": "LIVRAISON : INDISPONIBLE",
-      "store": "La Grande Récré"
-    },
-    "product:lagranderecre-pokemon-30-discovery:6bd5851ddddc": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-discovery:6bd5851ddddc",
-      "kind": "product",
-      "last_check": "2026-09-17T08:57:47+02:00",
-      "name": "LIVRAISON : INDISPONIBLE",
-      "store": "La Grande Récré"
-    },
-    "product:lagranderecre-pokemon-30-discovery:8b3dbf1ec590": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-discovery:8b3dbf1ec590",
-      "kind": "product",
-      "last_check": "2026-09-17T08:57:48+02:00",
-      "name": "LIVRAISON : INDISPONIBLE",
-      "store": "La Grande Récré"
-    },
-    "product:lagranderecre-pokemon-30-discovery:b53f3dafc5bb": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-discovery:b53f3dafc5bb",
-      "kind": "product",
-      "last_check": "2026-09-17T08:57:47+02:00",
-      "name": "LIVRAISON : INDISPONIBLE",
-      "store": "La Grande Récré"
-    },
-    "product:lagranderecre-pokemon-30-discovery:d9496913aff4": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-discovery:d9496913aff4",
-      "kind": "product",
-      "last_check": "2026-09-17T22:29:22+02:00",
-      "name": "LIVRAISON : INDISPONIBLE",
-      "store": "La Grande Récré"
-    },
-    "product:lagranderecre-pokemon-30-sitemap:b1590cbbdb8f": {
-      "detail": "Bouton d'achat actif",
-      "functional": true,
-      "id": "lagranderecre-pokemon-30-sitemap:b1590cbbdb8f",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "name": "mini tins pokemon mini boite amis de paldea",
-      "store": "La Grande Récré"
-    },
-    "product:philibert-pokemon-30:0c4f28868480": {
-      "detail": "Bouton d'achat actif",
-      "functional": true,
-      "id": "philibert-pokemon-30:0c4f28868480",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:16+02:00",
-      "name": "product.declinaisons",
-      "store": "Philibert"
-    },
-    "product:philibert-pokemon-30:93e828eced20": {
-      "detail": "Bouton d'achat actif",
-      "functional": true,
-      "id": "philibert-pokemon-30:93e828eced20",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:16+02:00",
-      "name": "product.declinaisons",
-      "store": "Philibert"
-    },
-    "product:philibert-pokemon-30:eeffbed577ff": {
-      "detail": "Bouton d'achat actif",
-      "functional": true,
-      "id": "philibert-pokemon-30:eeffbed577ff",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:16+02:00",
-      "name": "product.declinaisons",
-      "store": "Philibert"
-    },
-    "product:playin-pokemon-30:0bebdb3e2f7e": {
-      "detail": "Bouton d'achat actif",
-      "functional": true,
-      "id": "playin-pokemon-30:0bebdb3e2f7e",
-      "kind": "product",
-      "last_check": "2026-09-24T18:47:35+02:00",
-      "name": "Gift Bundle Le Hobbit - Magic EN",
-      "store": "Playin"
-    },
-    "product:playin-pokemon-30:b137eb3c4193": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "playin-pokemon-30:b137eb3c4193",
-      "kind": "product",
-      "last_check": "2026-09-24T02:16:53+02:00",
-      "name": "65 Pochettes Pokémon 30e anniversaire Format Standard",
-      "store": "Playin"
-    },
-    "product:playin-pokemon-30:b8bd97403865": {
-      "detail": "Données produit : en stock",
-      "functional": true,
-      "id": "playin-pokemon-30:b8bd97403865",
-      "kind": "product",
-      "last_check": "2026-09-24T18:47:34+02:00",
-      "name": "Lot de 7 dés Pokémon 30e anniversaire",
-      "store": "Playin"
-    },
-    "product:playin-pokemon-30:c45af012c562": {
-      "detail": "Données produit : en stock",
-      "functional": true,
-      "id": "playin-pokemon-30:c45af012c562",
-      "kind": "product",
-      "last_check": "2026-09-24T18:47:34+02:00",
-      "name": "Boîte de rangement vide Pokémon 30e anniversaire",
-      "store": "Playin"
-    },
-    "product:smyths-amphinobi-30": {
-      "detail": "Aucun signal d'achat fiable",
-      "functional": false,
-      "id": "smyths-amphinobi-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:17+02:00",
-      "name": "Coffret Amphinobi-ex 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "product:smyths-deck-dresseur-30": {
-      "detail": "Aucun signal d'achat fiable",
-      "functional": false,
-      "id": "smyths-deck-dresseur-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:17+02:00",
-      "name": "Deck du Dresseur Combat Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "product:smyths-etb-30": {
-      "detail": "Aucun signal d'achat fiable",
-      "functional": false,
-      "id": "smyths-etb-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:20+02:00",
-      "name": "Coffret Dresseur d'Élite Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "product:smyths-nymphali-30": {
-      "detail": "Aucun signal d'achat fiable",
-      "functional": false,
-      "id": "smyths-nymphali-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:17+02:00",
-      "name": "Coffret Nymphali-ex Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "product:smyths-pack-2-boosters-30": {
-      "detail": "Aucun signal d'achat fiable",
-      "functional": false,
-      "id": "smyths-pack-2-boosters-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:17+02:00",
-      "name": "Pack 2 Boosters Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "product:smyths-portfolio-30": {
-      "detail": "Aucun signal d'achat fiable",
-      "functional": false,
-      "id": "smyths-portfolio-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:20+02:00",
-      "name": "Portfolio avec Boosters Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "product:smyths-poster-30": {
-      "detail": "Aucun signal d'achat fiable",
-      "functional": false,
-      "id": "smyths-poster-30",
-      "kind": "product",
-      "last_check": "2026-09-23T23:25:20+02:00",
-      "name": "Coffret Collection Poster Pokémon 30e anniversaire",
-      "store": "Smyths Toys"
-    },
-    "product:ultrajeux-pokemon-30:2b0e623363c5": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:2b0e623363c5",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:19+02:00",
-      "name": "Bundle de 6 Boosters",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:4ea41bb4ac36": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:4ea41bb4ac36",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:22+02:00",
-      "name": "Booster Français",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:4fdcac3d67af": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:4fdcac3d67af",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:22+02:00",
-      "name": "Tout voir Pokémon",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:84288f738828": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:84288f738828",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:19+02:00",
-      "name": "ETB Coffret Dresseur d'Elite",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:97126ef36dd6": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:97126ef36dd6",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:21+02:00",
-      "name": "Booster Français sous Blisters",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:bc09a61fabeb": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:bc09a61fabeb",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:23+02:00",
-      "name": "Coffret Collection Ultra Premium",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:cbac8c21cbfc": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:cbac8c21cbfc",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:21+02:00",
-      "name": "Pokebox",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:cc62896d2560": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:cc62896d2560",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:22+02:00",
-      "name": "Duopack 2 Boosters",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:db3e5ac58d5f": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:db3e5ac58d5f",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:23+02:00",
-      "name": "Tripack 3 Boosters",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:e1e08be69157": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:e1e08be69157",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:22+02:00",
-      "name": "Boite de Boosters Français",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:eda0e97b7899": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:eda0e97b7899",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "name": "Coffret Tournoi Premium",
-      "store": "UltraJeux"
-    },
-    "product:ultrajeux-pokemon-30:f73a027efa15": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "ultrajeux-pokemon-30:f73a027efa15",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:23+02:00",
-      "name": "Kit d'Avant-Première",
-      "store": "UltraJeux"
-    },
-    "product:vcollect-pokemon-30:6b0db9906dec": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "vcollect-pokemon-30:6b0db9906dec",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:15+02:00",
-      "name": "Coffret Collection Classeur - 30e Anniversaire - Français",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:7f7e5e6a3c96": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "vcollect-pokemon-30:7f7e5e6a3c96",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:14+02:00",
-      "name": "30 ans Pokémon chinois",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:969bc6f83544": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "vcollect-pokemon-30:969bc6f83544",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:14+02:00",
-      "name": "Pokémon Japonais",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:9c3fe6d9129a": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "vcollect-pokemon-30:9c3fe6d9129a",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:15+02:00",
-      "name": "Pokémon Chinois",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:9f4b3f45fee0": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "vcollect-pokemon-30:9f4b3f45fee0",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:15+02:00",
-      "name": "Bundle - 30e Anniversaire - Français",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:a4bba9f3ef1a": {
-      "detail": "Données produit : indisponible",
-      "functional": true,
-      "id": "vcollect-pokemon-30:a4bba9f3ef1a",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:15+02:00",
-      "name": "Coffret Dresseur d'Élite - 30e Anniversaire - Français",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:b096b1dbe840": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "vcollect-pokemon-30:b096b1dbe840",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:15+02:00",
-      "name": "Pokémon Français",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:b65d21954b39": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "vcollect-pokemon-30:b65d21954b39",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:14+02:00",
-      "name": "30 ans Pokémon japonais : 30th Celebration",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:cc1b2e26d0ef": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "vcollect-pokemon-30:cc1b2e26d0ef",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:14+02:00",
-      "name": "ETB et coffrets 30 ans Pokémon français",
-      "store": "vcollect"
-    },
-    "product:vcollect-pokemon-30:fa2d5a8c8cb0": {
-      "detail": "Signal d'indisponibilité détecté",
-      "functional": true,
-      "id": "vcollect-pokemon-30:fa2d5a8c8cb0",
-      "kind": "product",
-      "last_check": "2026-09-24T20:36:14+02:00",
-      "name": "Boosters et displays 30 ans Pokémon",
-      "store": "vcollect"
-    }
+  {
+    "id": "coursesu-rayon-pokemon",
+    "name": "Rayon jouets Pokemon CoursesU",
+    "store": "CoursesU",
+    "url": "https://www.coursesu.com/c/maison-et-loisirs/jouets-culture-et-loisirs/jouets/pokemon",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
   },
-  "store_health": {
-    "1001hobbies": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "last_error": null,
-      "store": "1001hobbies"
-    },
-    "amazon france": {
-      "alerted": false,
-      "consecutive_errors": 4,
-      "error_since": "2026-09-17T14:21:52+02:00",
-      "fallback": "Playwright actif",
-      "last_check": "2026-09-23T23:28:14+02:00",
-      "last_error": "RuntimeError: HTTP 503",
-      "store": "Amazon France"
-    },
-    "auchan": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": null,
-      "store": "Auchan"
-    },
-    "blazing tail": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "last_error": null,
-      "store": "Blazing Tail"
-    },
-    "carrefour": {
-      "alerted": true,
-      "consecutive_errors": 22,
-      "error_since": "2026-09-16T09:50:24+02:00",
-      "fallback": "Playwright actif",
-      "last_alert": "2026-09-16T19:26:30+02:00",
-      "last_check": "2026-09-23T23:28:14+02:00",
-      "last_error": "RuntimeError: HTTP 403",
-      "store": "Carrefour"
-    },
-    "cdiscount": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": null,
-      "store": "Cdiscount"
-    },
-    "coursesu": {
-      "consecutive_errors": 3,
-      "error_since": "2026-09-24T17:59:59+02:00",
-      "fallback": "Fallback HTML disponible",
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.coursesu.com/marques-pokemon.html",
-      "store": "CoursesU"
-    },
-    "cultura": {
-      "alerted": true,
-      "consecutive_errors": 11,
-      "error_since": "2026-09-16T09:53:20+02:00",
-      "fallback": "Playwright actif",
-      "last_alert": "2026-09-17T01:07:23+02:00",
-      "last_check": "2026-09-23T23:28:14+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.cultura.com/sitemap_products.xml",
-      "store": "Cultura"
-    },
-    "e.leclerc": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": null,
-      "store": "E.Leclerc"
-    },
-    "fnac": {
-      "alerted": true,
-      "consecutive_errors": 11,
-      "error_since": "2026-09-16T09:53:20+02:00",
-      "fallback": "Playwright actif",
-      "last_alert": "2026-09-17T01:07:22+02:00",
-      "last_check": "2026-09-23T23:28:14+02:00",
-      "last_error": "RuntimeError: HTTP 403",
-      "store": "Fnac"
-    },
-    "jouéclub": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "last_error": null,
-      "store": "JouéClub"
-    },
-    "king jouet": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": null,
-      "store": "King Jouet"
-    },
-    "la grande récré": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "last_error": null,
-      "store": "La Grande Récré"
-    },
-    "maison de la presse": {
-      "alerted": true,
-      "consecutive_errors": 8,
-      "error_since": "2026-09-24T00:10:03+02:00",
-      "fallback": "Fallback HTML disponible",
-      "last_alert": "2026-09-24T16:29:03+02:00",
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.maisondelapresse.com/blog/post/jcc-pokemon-30-ans-produits-reserver",
-      "store": "Maison de la Presse"
-    },
-    "micromania": {
-      "alerted": true,
-      "consecutive_errors": 11,
-      "error_since": "2026-09-16T09:53:20+02:00",
-      "fallback": "Playwright actif",
-      "last_alert": "2026-09-17T01:07:23+02:00",
-      "last_check": "2026-09-23T23:28:14+02:00",
-      "last_error": "RuntimeError: HTTP 410",
-      "store": "Micromania"
-    },
-    "monoprix": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": null,
-      "store": "Monoprix"
-    },
-    "philibert": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "last_error": null,
-      "store": "Philibert"
-    },
-    "pika-boutique": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": null,
-      "store": "Pika-Boutique"
-    },
-    "playin": {
-      "alerted": false,
-      "consecutive_errors": 1,
-      "error_since": "2026-09-24T20:36:13+02:00",
-      "fallback": "Fallback HTML disponible",
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": "HTTPError: 403 Client Error: Forbidden for url: https://www.play-in.com/fr",
-      "store": "Playin"
-    },
-    "pokéstore france": {
-      "consecutive_errors": 3,
-      "error_since": "2026-09-24T17:59:59+02:00",
-      "fallback": "Fallback HTML disponible",
-      "last_check": "2026-09-24T20:36:13+02:00",
-      "last_error": "HTTPError: 423 Client Error: Locked for url: https://pokestore-france.com/",
-      "store": "PokéStore France"
-    },
-    "smyths toys": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-23T23:28:14+02:00",
-      "last_error": null,
-      "store": "Smyths Toys"
-    },
-    "ultrajeux": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "last_error": null,
-      "store": "UltraJeux"
-    },
-    "vcollect": {
-      "alerted": false,
-      "consecutive_errors": 0,
-      "error_since": null,
-      "last_check": "2026-09-24T20:36:24+02:00",
-      "last_error": null,
-      "store": "vcollect"
-    }
+  {
+    "id": "joueclub-pokemon-30-discovery",
+    "name": "Selection JoueClub Pokemon 30 ans",
+    "store": "JoueClub",
+    "url": "https://www.joueclub.fr/contenu/pokemon-30-ans.html",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/pokemon/"],
+    "exclude_link_patterns": ["/liste-des-produits", "/contenu/"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
   },
-  "version": 1
-}
+  {
+    "id": "joueclub-pokemon-30-sitemap",
+    "name": "Sitemap produits JoueClub Pokemon 30 ans",
+    "store": "JoueClub",
+    "url": "https://www.joueclub.fr/Assets/Rbs/Seo/sitemap-index.xml",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "ETB Pokemon 30 ans", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/pokemon/"],
+    "sitemap_include_patterns": ["Rbs_Catalog_Product"],
+    "max_sitemap_files": 5,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 2,
+    "max_price": 65,
+    "type": "sitemap",
+    "enabled": true
+  },
+  {
+    "id": "vcollect-pokemon-30",
+    "name": "Collection 30 ans vcollect",
+    "store": "vcollect",
+    "url": "https://vcollect.fr/collections/30-ans-pokemon",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "philibert-pokemon-30",
+    "name": "Rayon Pokemon Philibert",
+    "store": "Philibert",
+    "url": "https://www.philibertnet.com/fr/212-pokemon",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "ultrajeux-pokemon-30",
+    "name": "Recherche UltraJeux Pokemon 30 ans",
+    "store": "UltraJeux",
+    "url": "https://www.ultrajeux.com/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "playin-pokemon-30",
+    "name": "Recherche Playin Pokemon 30 ans",
+    "store": "Playin",
+    "url": "https://www.play-in.com/fr",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "exclude_keywords": ["CN", "JP", "japonais", "chinois", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "1001hobbies-pokemon-30",
+    "name": "Rayon Pokemon 1001hobbies",
+    "store": "1001hobbies",
+    "url": "https://www.1001hobbies.fr/23453-pokemon-jeu-de-cartes-a-collectionner",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "30th Celebration", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "exclude_keywords": ["allemand", "japonais", "anglais", "import"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "blazingtail-pokemon-30",
+    "name": "Blazing Tail Pokemon 30 ans",
+    "store": "Blazing Tail",
+    "url": "https://www.blazingtail.fr/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "pikaboutique-pokemon-30",
+    "name": "Pika-Boutique Pokemon 30 ans",
+    "store": "Pika-Boutique",
+    "url": "https://pika-boutique.fr/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "pokestorefrance-pokemon-30",
+    "name": "PokeStore France 30 ans",
+    "store": "PokeStore France",
+    "url": "https://pokestore-france.com/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "exclude_keywords": ["japonais", "japonaise", "import", "anglais"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "maisondelapresse-pokemon-30",
+    "name": "Maison de la Presse produits 30 ans",
+    "store": "Maison de la Presse",
+    "url": "https://www.maisondelapresse.com/blog/post/jcc-pokemon-30-ans-produits-reserver",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "monoprix-pokemon-30",
+    "name": "Rayon Pokemon Monoprix",
+    "store": "Monoprix",
+    "url": "https://www.monoprix.fr/c/loisirs/jouets/pokemon",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "kingjouet-30-ans-page",
+    "name": "Page 30 ans King Jouet",
+    "store": "King Jouet",
+    "url": "https://www.king-jouet.com/30-ans-pokemon.htm",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/jeu-jouet/"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "kingjouet-pokemon-30-discovery",
+    "name": "Selection King Jouet Pokemon 30 ans",
+    "store": "King Jouet",
+    "url": "https://www.king-jouet.com/jeux-jouets-pokemon.htm",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/jeu-jouet/"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "leclerc-pokemon-30-discovery",
+    "name": "Recherche E.Leclerc Pokemon 30e anniversaire",
+    "store": "E.Leclerc",
+    "url": "https://www.e.leclerc/cat/cartes-pokemon",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "ETB Pokemon 30 ans", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/fp/"],
+    "max_price": 65,
+    "require_direct_seller": true,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "leclerc-pokemon-30-sitemap",
+    "name": "Sitemap produits E.Leclerc Pokemon 30 ans",
+    "store": "E.Leclerc",
+    "url": "https://www.e.leclerc/sitemap/sitemap-index.xml",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "ETB Pokemon 30 ans", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/fp/"],
+    "sitemap_include_patterns": ["sitemap-products-"],
+    "max_sitemap_files": 60,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 2,
+    "max_price": 65,
+    "require_direct_seller": true,
+    "type": "sitemap",
+    "enabled": true
+  },
+  {
+    "id": "auchan-pokemon-30-discovery",
+    "name": "Recherche Auchan Pokemon 30e anniversaire",
+    "store": "Auchan",
+    "url": "https://www.auchan.fr/marques/pokemon/ca-55409",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "ETB Pokemon 30 ans", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/pr-"],
+    "max_price": 65,
+    "require_direct_seller": true,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "auchan-pokemon-30-sitemap",
+    "name": "Sitemap produits Auchan Pokemon 30 ans",
+    "store": "Auchan",
+    "url": "https://www.auchan.fr/sitemap.xml",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "ETB Pokemon 30 ans", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/pr-"],
+    "sitemap_include_patterns": ["sitemap-products"],
+    "max_sitemap_files": 5,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 2,
+    "max_price": 65,
+    "require_direct_seller": true,
+    "type": "sitemap",
+    "enabled": true
+  },
+  {
+    "id": "lagranderecre-30-ans-page",
+    "name": "Page evenement 30 ans La Grande Recre",
+    "store": "La Grande Recre",
+    "url": "https://www.lagranderecre.fr/evenements/30-ans-pokemon.html",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "lagranderecre-pokemon-30-discovery",
+    "name": "Selection La Grande Recre Pokemon",
+    "store": "La Grande Recre",
+    "url": "https://www.lagranderecre.fr/cartes-a-collectionner/",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "ETB Pokemon 30 ans", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/jeux-de-societe/", "/document/"],
+    "max_price": 65,
+    "type": "category_search",
+    "enabled": true
+  },
+  {
+    "id": "lagranderecre-pokemon-30-sitemap",
+    "name": "Sitemap produits La Grande Recre Pokemon 30 ans",
+    "store": "La Grande Recre",
+    "url": "https://www.lagranderecre.fr/Assets/Rbs/Seo/sitemap-index.xml",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "ETB Pokemon 30 ans", "Collection Poster", "Lot de 6 boosters", "Bundle", "Mini-boite", "Collection Classeur", "Collection K.O.", "Pokebox"],
+    "link_patterns": ["/pokemon/", "/jeux-de-societe/", "/document/"],
+    "sitemap_include_patterns": ["Rbs_Catalog_Product"],
+    "max_sitemap_files": 3,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 2,
+    "max_price": 65,
+    "type": "sitemap",
+    "enabled": true
+  },
+  {
+    "id": "cdiscount-pokemon-30-discovery",
+    "name": "Recherche Cdiscount Pokemon 30e anniversaire",
+    "store": "Cdiscount",
+    "url": "https://www.cdiscount.com/maison/r-pokemon%2B30e%2Banniversaire.html",
+    "eans": ["0196214144835", "0196214147225", "0196214152311", "0196214147102", "0196214147164"],
+    "keywords": ["Pokemon 30 ans", "Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite", "Collection Poster", "Lot de 6 boosters", "Bundle", "Collection Classeur", "Collection K.O."],
+    "link_patterns": ["/f-"],
+    "max_price": 65,
+    "require_direct_seller": true,
+    "type": "search",
+    "enabled": true
+  },
+  {
+    "id": "joueclub-pokemon-day-30",
+    "name": "Coffret Pokemon Day 2026 - PAS l'extension 30e Anniversaire",
+    "store": "JoueClub",
+    "url": "https://www.joueclub.fr/pokemon/pokemon-coffret-3boosters-carte-exclusive-0196214139718.html",
+    "ean": "0196214139718",
+    "max_price": 25,
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "carrefour-etb-30",
+    "name": "Coffret Dresseur d'Elite Pokemon 30e anniversaire",
+    "store": "Carrefour",
+    "url": "https://www.carrefour.fr/p/cartes-a-jouer-et-a-collectionner-coffret-dresseur-d-elite-30e-anniversaire-pokemon-0196214144835",
+    "ean": "0196214144835",
+    "max_price": 65,
+    "require_direct_seller": true,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "carrefour-etb-30-ean-search",
+    "name": "Recherche EAN ETB Pokemon 30e anniversaire",
+    "store": "Carrefour",
+    "url": "https://www.carrefour.fr/s?q=0196214144835",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokemon 30 ans"],
+    "link_patterns": ["/p/"],
+    "max_price": 65,
+    "require_direct_seller": true,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "search",
+    "enabled": false
+  },
+  {
+    "id": "carrefour-pokemon-category",
+    "name": "Categorie Carrefour cartes a collectionner Pokemon",
+    "store": "Carrefour",
+    "url": "https://www.carrefour.fr/r/jeux-jouets/jeux-societe-puzzle/cartes-collectionner",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokemon 30 ans"],
+    "link_patterns": ["/p/"],
+    "max_price": 65,
+    "require_direct_seller": true,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "category_search",
+    "enabled": false
+  },
+  {
+    "id": "fnac-pokemon-30-discovery",
+    "name": "Categorie Fnac cartes Pokemon",
+    "store": "Fnac",
+    "url": "https://www.fnac.com/n529205/Jeux-de-recre-cartes-a-collectionner/Cartes-Pokemon",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokemon 30 ans", "Elite Trainer Box 30th"],
+    "link_patterns": ["/a"],
+    "max_price": 65,
+    "require_direct_seller": true,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "retry_interval_minutes": 2,
+    "type": "category_search",
+    "enabled": false
+  },
+  {
+    "id": "cultura-pokemon-30-discovery",
+    "name": "Recherche Cultura Pokemon 30e anniversaire",
+    "store": "Cultura",
+    "url": "https://www.cultura.com/search/results?search_query=pokemon%2030%20anniversaire",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite 30e anniversaire"],
+    "api_queries": ["pokemon 30 anniversaire", "coffret dresseur elite 30 anniversaire", "0196214144835"],
+    "api_engine": "cultura_graphql",
+    "exclude_keywords": ["japonais", "japonaise", "import", "proxy"],
+    "link_patterns": ["/p-"],
+    "max_price": 65,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "search",
+    "enabled": false
+  },
+  {
+    "id": "cultura-pokemon-30-sitemap",
+    "name": "Sitemap produits Cultura Pokemon 30 ans",
+    "store": "Cultura",
+    "url": "https://www.cultura.com/sitemap_products.xml",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokemon 30 ans", "Elite Trainer Box 30th"],
+    "link_patterns": ["/p-"],
+    "sitemap_include_patterns": ["sitemap_products_"],
+    "max_sitemap_files": 50,
+    "max_discovered_products": 20,
+    "discovery_interval_minutes": 2,
+    "max_price": 65,
+    "product_engine": "playwright",
+    "type": "sitemap",
+    "enabled": false
+  },
+  {
+    "id": "micromania-pokemon-30-discovery",
+    "name": "Recherche Micromania Pokemon 30e anniversaire",
+    "store": "Micromania",
+    "url": "https://www.micromania.fr/search?q=pokemon",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokemon 30 ans"],
+    "max_price": 65,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "search",
+    "enabled": false
+  },
+  {
+    "id": "amazon-pokemon-30-discovery",
+    "name": "Recherche Amazon Pokemon 30e anniversaire",
+    "store": "Amazon France",
+    "url": "https://www.amazon.fr/s?k=pokemon+30+anniversaire",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Coffret Dresseur d'Elite 30e anniversaire", "ETB Pokemon 30 ans", "Elite Trainer Box 30th"],
+    "required_terms": ["dresseur", "etb", "coffret", "nymphali", "amphinobi", "booster", "collection"],
+    "exclude_keywords": ["chinois", "chinoise", "japonais", "japonaise", "import", "proxy"],
+    "link_patterns": ["/dp/"],
+    "max_price": 65,
+    "require_direct_seller": true,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "search",
+    "enabled": false
+  },
+  {
+    "id": "smyths-pokemon-30-discovery",
+    "name": "Decouverte Smyths Pokemon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/c/SM1301061101",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite 30eme Anniversaire", "Coffret Nymphali-ex 30eme Anniversaire", "Coffret Amphinobi-ex 30eme Anniversaire", "Pack 2 Boosters 30eme Anniversaire", "Collection Poster 30eme Anniversaire"],
+    "link_patterns": ["/p/"],
+    "max_price": 65,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "category_search",
+    "enabled": false
+  },
+  {
+    "id": "smyths-etb-30",
+    "name": "Coffret Dresseur d'Elite Pokemon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-dresseur-delite-30eme-anniversaire/p/261821",
+    "ean": "0196214144835",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "smyths-poster-30",
+    "name": "Coffret Collection Poster Pokemon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-collection-poster-30eme-anniversaire/p/261814",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "smyths-amphinobi-30",
+    "name": "Coffret Amphinobi-ex 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-amphinobi-ex-30eme-anniversaire/p/261830",
+    "max_price": 30,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "smyths-nymphali-30",
+    "name": "Coffret Nymphali-ex Pokemon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-coffret-nymphali-ex-30eme-anniversaire/p/261788",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "smyths-pack-2-boosters-30",
+    "name": "Pack 2 Boosters Pokemon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-pack-2-boosters-30eme-anniversaire/p/261787",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "smyths-deck-dresseur-30",
+    "name": "Deck du Dresseur Combat Pokemon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-deck-du-dresseur-combat-30e-anniversaire-modele-aleatoire/p/261786",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "smyths-portfolio-30",
+    "name": "Portfolio avec Boosters Pokemon 30e anniversaire",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/jouets/jeux-de-societe-et-puzzles/cartes-a-collectionner/cartes-pokemon/pokemon-portfolio-avec-boosters-modele-aleatoire/p/261831",
+    "max_price": 65,
+    "engine": "playwright",
+    "type": "product",
+    "enabled": false
+  },
+  {
+    "id": "smyths-etb-30-ean-search",
+    "name": "Recherche EAN ETB Pokemon 30e anniversaire Smyths",
+    "store": "Smyths Toys",
+    "url": "https://www.smythstoys.com/fr/fr-fr/search/?text=0196214144835",
+    "eans": ["0196214144835"],
+    "keywords": ["Pokemon 30e anniversaire", "Pokemon 30eme anniversaire", "Coffret Dresseur d'Elite 30eme Anniversaire"],
+    "link_patterns": ["/p/"],
+    "max_price": 65,
+    "engine": "playwright",
+    "product_engine": "playwright",
+    "type": "search",
+    "enabled": false
+  }
+]
