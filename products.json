@@ -89,7 +89,7 @@
     "engine": "playwright",
     "product_engine": "playwright",
     "type": "search",
-    "enabled": true,
+    "enabled": false,
     "required_terms": [
       "30 ans",
       "30e anniversaire",
@@ -285,7 +285,7 @@
     ],
     "max_price": 250,
     "type": "category_search",
-    "enabled": true,
+    "enabled": false,
     "required_terms": [
       "30 ans",
       "30e anniversaire",
@@ -553,7 +553,7 @@
       "Rbs_Catalog_Product"
     ],
     "max_sitemap_files": 5,
-    "max_discovered_products": 20,
+    "max_discovered_products": 10,
     "discovery_interval_minutes": 2,
     "max_price": 250,
     "type": "sitemap",
@@ -2099,7 +2099,7 @@
     ],
     "max_price": 250,
     "type": "category_search",
-    "enabled": true,
+    "enabled": false,
     "required_terms": [
       "30 ans",
       "30e anniversaire",
@@ -2363,8 +2363,8 @@
     "sitemap_include_patterns": [
       "sitemap-products-"
     ],
-    "max_sitemap_files": 60,
-    "max_discovered_products": 20,
+    "max_sitemap_files": 8,
+    "max_discovered_products": 10,
     "discovery_interval_minutes": 2,
     "max_price": 250,
     "require_direct_seller": true,
@@ -2634,7 +2634,7 @@
       "sitemap-products"
     ],
     "max_sitemap_files": 5,
-    "max_discovered_products": 20,
+    "max_discovered_products": 10,
     "discovery_interval_minutes": 2,
     "max_price": 250,
     "require_direct_seller": true,
@@ -2899,7 +2899,7 @@
     ],
     "max_price": 250,
     "type": "category_search",
-    "enabled": true,
+    "enabled": false,
     "required_terms": [
       "30 ans",
       "30e anniversaire",
@@ -3034,7 +3034,7 @@
       "Rbs_Catalog_Product"
     ],
     "max_sitemap_files": 3,
-    "max_discovered_products": 20,
+    "max_discovered_products": 10,
     "discovery_interval_minutes": 2,
     "max_price": 250,
     "type": "sitemap",
@@ -3170,7 +3170,7 @@
     "max_price": 250,
     "require_direct_seller": true,
     "type": "search",
-    "enabled": true,
+    "enabled": false,
     "required_terms": [
       "30 ans",
       "30e anniversaire",
@@ -3608,7 +3608,7 @@
     ],
     "max_price": 100,
     "type": "category_search",
-    "enabled": true
+    "enabled": false
   },
   {
     "id": "hamacards-30-ans",
@@ -4355,7 +4355,7 @@
     ],
     "max_price": 250,
     "type": "category_search",
-    "enabled": true
+    "enabled": false
   },
   {
     "id": "plazatcg",
@@ -4438,6 +4438,6 @@
     ],
     "max_price": 250,
     "type": "category_search",
-    "enabled": true
+    "enabled": false
   }
 ]
